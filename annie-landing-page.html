@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Annie Nguyễn — Trainer & Coach cho IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1714;
+    --warm-mid: #8B7355;
+    --accent: #C4944A;
+    --accent-light: #E8D5B0;
+    --line: rgba(26,23,20,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  html { font-size: 18px; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2.5rem; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 5.5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--warm-mid);
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-mid);
+    margin: 1.6rem 0 2.4rem;
+    max-width: 38ch;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-top: 0.3rem;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.1rem 2.2rem;
+    transition: background 0.3s, gap 0.3s;
+    width: fit-content;
+  }
+
+  .hero-cta:hover { background: var(--accent); gap: 1.2rem; }
+
+  .hero-cta-arrow { font-size: 1rem; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-frame {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 0;
+  }
+
+  /* Placeholder for Annie's photo — replace src with real photo */
+  .hero-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #E8D5B0 0%, #C4944A22 40%, #1A171408 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+  }
+
+  .hero-photo-placeholder span {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--warm-mid);
+    letter-spacing: 0.1em;
+    font-style: italic;
+  }
+
+  .hero-photo-placeholder svg {
+    opacity: 0.25;
+  }
+
+  .hero-bg-text {
+    position: absolute; bottom: 3rem; right: -1rem;
+    font-family: var(--serif);
+    font-size: 7rem;
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(139,115,85,0.15);
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 6rem; }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 3rem; height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ink);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    padding: 7rem 6rem;
+  }
+
+  #about .section-label { color: var(--accent-light); }
+  #about .section-label::after { background: var(--accent-light); }
+  #about .section-title { color: var(--cream); }
+
+  .about-left {}
+
+  .about-bio {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.75);
+    margin-top: 1.5rem;
+  }
+
+  .about-bio strong {
+    color: var(--accent-light);
+    font-weight: 400;
+  }
+
+  .about-tags {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 2.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245,240,232,0.2);
+    color: rgba(245,240,232,0.6);
+    padding: 0.4rem 1rem;
+  }
+
+  .about-right {}
+
+  .credentials-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .credentials-list li {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.7);
+  }
+
+  .cred-year {
+    font-family: var(--serif);
+    font-size: 0.88rem;
+    color: var(--accent);
+    min-width: 4.5rem;
+    padding-top: 0.1rem;
+    font-style: italic;
+  }
+
+  .cred-role { color: var(--cream); font-weight: 400; margin-bottom: 0.2rem; }
+
+  /* ── CASE STUDIES ── */
+  #cases {
+    padding: 7rem 6rem;
+  }
+
+  .cases-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+
+  .case-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+
+  .case-card:last-child { border-right: none; }
+
+  .case-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .case-card:hover { background: rgba(196,148,74,0.05); }
+  .case-card:hover::before { transform: scaleX(1); }
+
+  .case-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--accent-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .case-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.35;
+  }
+
+  .case-context {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--warm-mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .case-results {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+
+  .case-results li {
+    font-size: 0.88rem;
+    color: var(--ink);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .case-results li::before {
+    content: '↑';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  .result-num {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  /* ── MINI CASE STUDY ── */
+  #story {
+    background: #F0EAE0;
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .story-left {
+    position: sticky; top: 8rem;
+  }
+
+  .story-pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-top: 2rem;
+  }
+
+  .story-pull-quote em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .story-right {}
+
+  .story-body {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: #4A4035;
+  }
+
+  .story-body p { margin-bottom: 1.4rem; }
+
+  .story-body strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .story-result-box {
+    border-left: 2px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    background: rgba(196,148,74,0.07);
+    margin: 2rem 0;
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .story-lesson {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .story-lesson-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .story-lesson p {
+    font-size: 0.95rem;
+    color: #4A4035;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ── COURSES ── */
+  #courses {
+    padding: 7rem 6rem;
+  }
+
+  .courses-intro {
+    max-width: 50ch;
+    margin-bottom: 4rem;
+    font-size: 0.92rem;
+    color: var(--warm-mid);
+    line-height: 1.8;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--line);
+  }
+
+  .course-card {
+    background: var(--cream);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0;
+    background: var(--ink);
+    transition: height 0.4s cubic-bezier(0.23,1,0.32,1);
+    z-index: 0;
+  }
+
+  .course-card:hover::after { height: 100%; }
+  .course-card:hover .course-content { color: var(--cream); }
+  .course-card:hover .course-tag { border-color: rgba(245,240,232,0.3); color: rgba(245,240,232,0.5); }
+  .course-card:hover .course-title { color: var(--cream); }
+  .course-card:hover .course-cta { color: var(--accent-light); }
+
+  .course-content { position: relative; z-index: 1; transition: color 0.4s; }
+
+  .course-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    color: var(--warm-mid);
+    padding: 0.35rem 0.9rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s;
+  }
+
+  .course-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--ink);
+    transition: color 0.4s;
+  }
+
+  .course-desc {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: inherit;
+    margin-bottom: 1.5rem;
+  }
+
+  .course-outcomes {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .course-outcomes li {
+    font-size: 0.88rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .course-outcomes li::before {
+    content: '→';
+    position: absolute; left: 0;
+    font-size: 0.8rem;
+  }
+
+  .course-cta {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: color 0.4s;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+
+  #contact .section-label { color: var(--accent-light); }
+  #contact .section-label::after { background: var(--accent-light); }
+  #contact .section-title { color: var(--cream); }
+
+  .contact-left {}
+
+  .contact-desc {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.85;
+    margin-top: 1.5rem;
+    max-width: 36ch;
+  }
+
+  .contact-info {
+    margin-top: 3rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .contact-info-item {
+    display: flex; gap: 1rem; align-items: center;
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.6);
+  }
+
+  .contact-info-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    min-width: 4rem;
+  }
+
+  .contact-info-value a {
+    color: rgba(245,240,232,0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-info-value a:hover { color: var(--accent-light); }
+
+  .social-links {
+    display: flex; gap: 1.5rem; margin-top: 2rem;
+  }
+
+  .social-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .social-link:hover { color: var(--accent-light); }
+
+  /* ── FORM ── */
+  .contact-right {}
+
+  .contact-form {
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .form-group {
+    position: relative;
+    border-bottom: 1px solid rgba(245,240,232,0.15);
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 1.5rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 300;
+    padding-bottom: 1rem;
+    resize: none;
+    appearance: none;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: rgba(245,240,232,0.25); }
+
+  .form-select option { background: var(--ink); }
+
+  .form-textarea { min-height: 80px; }
+
+  .form-submit {
+    margin-top: 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .submit-btn {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: var(--accent);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    padding: 1.1rem 2.2rem;
+    cursor: pointer;
+    transition: background 0.3s, gap 0.3s;
+  }
+
+  .submit-btn:hover { background: #B8843E; gap: 1.4rem; }
+
+  .submit-note {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.25);
+    max-width: 20ch;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 6rem;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--ink);
+  }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.4);
+    font-style: italic;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.23,1,0.32,1) forwards;
+  }
+
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+  .delay-4 { animation-delay: 0.6s; }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 5rem 2rem 3rem; }
+    .hero-right { height: 50vw; }
+    .hero-bg-text { display: none; }
+
+    #about, #story, #contact {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    section, #about, #story, #contact, #cases, #courses {
+      padding: 5rem 2rem;
+    }
+
+    .cases-grid { grid-template-columns: 1fr; }
+    .case-card { border-right: none; border-bottom: 1px solid var(--line); }
+
+    .courses-grid { grid-template-columns: 1fr; }
+
+    .story-left { position: static; }
+
+    footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Thư Annie Nguyễn</a>
+  <ul class="nav-links">
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#courses">Khoá Học</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">Trainer · Coach · Facilitator</div>
+    <h1 class="hero-name fade-up delay-1">
+      Thư<br><em>Annie</em><br>Nguyễn
+    </h1>
+    <p class="hero-headline fade-up delay-2">
+      Giúp các công ty IT SME cải thiện giao tiếp trong đội ngũ và với khách hàng — để giảm rủi ro dự án và nâng cao hiệu suất.
+    </p>
+    <div class="hero-stats fade-up delay-3">
+      <div>
+        <div class="stat-num">17+</div>
+        <div class="stat-label">Năm trong ngành IT</div>
+      </div>
+      <div>
+        <div class="stat-num">MBA</div>
+        <div class="stat-label">ĐH Kinh tế</div>
+      </div>
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Khoá học tự thiết kế</div>
+      </div>
+    </div>
+    <a href="#contact" class="hero-cta fade-up delay-4">
+      Đặt lịch Executive Overview <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-image-frame">
+      <img src="photo.jpg" alt="Thư Annie Nguyễn" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="hero-bg-text">Annie</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <div class="section-label">Profile</div>
+    <h2 class="section-title">17 năm trong ngành.<br>Hiểu kỹ thuật.<br>Hiểu con người.</h2>
+    <p class="about-bio">
+      Xuất phát là developer rồi trải qua Project Manager, Product Manager — tôi đã sống qua đủ mọi góc nhìn trong một dự án IT. Nhờ vậy, tôi <strong>hiểu sâu những khó khăn thật sự</strong> mà các đội ngũ kỹ thuật đang đối mặt mỗi ngày: giao tiếp rối, ownership thấp, khách hàng phàn nàn.
+    </p>
+    <p class="about-bio" style="margin-top:1rem;">
+      Hiện tôi tập trung vào <strong>đào tạo và coaching</strong> cho nhà quản lý và kỹ sư IT, giúp họ phát triển kỹ năng giao tiếp, trí tuệ cảm xúc và năng lực lãnh đạo.
+    </p>
+    <div class="about-tags">
+      <span class="tag">Emotional Intelligence</span>
+      <span class="tag">Leadership</span>
+      <span class="tag">Project Risk</span>
+      <span class="tag">IT Communication</span>
+      <span class="tag">Coaching 1-1</span>
+      <span class="tag">Group Facilitation</span>
+    </div>
+  </div>
+
+  <div class="about-right reveal">
+    <ul class="credentials-list">
+      <li>
+        <span class="cred-year">2023 –<br>nay</span>
+        <div>
+          <div class="cred-role">Solo Expert · Trainer & Coach</div>
+          Crestcom, EIY, Innotech · Leading with Ownership, Teamwork with EQ, Business Communication for IT
+        </div>
+      </li>
+      <li>
+        <span class="cred-year">2021–<br>2023</span>
+        <div>
+          <div class="cred-role">Product Manager — Flow Networks</div>
+          Fintech · Định nghĩa product vision, dẫn dắt nhiều scrum team
+        </div>
+      </li>
+      <li>
+        <span class="cred-year">2019–<br>2021</span>
+        <div>
+          <div class="cred-role">Senior Business Analyst — Manulife</div>
+          Quản lý phạm vi sản phẩm và delivery
+        </div>
+      </li>
+      <li>
+        <span class="cred-year">2006–<br>2019</span>
+        <div>
+          <div class="cred-role">PM · BA · Dev Manager — ELCA</div>
+          13 năm · Xây dựng nhóm BA & Tester · Quản lý rủi ro dự án
+        </div>
+      </li>
+      <li>
+        <span class="cred-year">Chứng chỉ</span>
+        <div>
+          <div class="cred-role">Certified Crestcom Facilitator</div>
+          Certified Climate Fresk Facilitator · MBA ĐH Kinh tế
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="cases-header reveal">
+    <div>
+      <div class="section-label">Kết quả thực tế</div>
+      <h2 class="section-title">Case Studies</h2>
+    </div>
+  </div>
+
+  <div class="cases-grid">
+    <div class="case-card reveal">
+      <div class="case-num">01</div>
+      <h3 class="case-title">Từ "giấu lỗi" sang văn hoá tương trợ</h3>
+      <p class="case-context">Đội ngũ IT với Fixed Mindset, ngại báo cáo khó khăn, từ chối hỗ trợ vì "không phải việc của mình".</p>
+      <ul class="case-results">
+        <li>Ownership tăng từ <span class="result-num">2.7 → 6.4/10</span></li>
+        <li>Kỹ năng báo cáo sự cố tăng từ <span class="result-num">4.5 → 7.5/10</span></li>
+        <li>Các vấn đề được báo cáo và giải quyết nhanh hơn rõ rệt</li>
+      </ul>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-num">02</div>
+      <h3 class="case-title">Team Lead "bottleneck" — Junior tự lập trong 30 ngày</h3>
+      <p class="case-context">Lead ôm đồm DevOps, Junior thụ động chỉ xem — cả team bị kẹt theo một người.</p>
+      <ul class="case-results">
+        <li>Kỹ năng nhân sự kế cận tăng từ <span class="result-num">10% → 40%</span> sau 1 tháng</li>
+        <li>Junior tự xử lý vấn đề độc lập</li>
+        <li>Lead giải phóng thời gian cho việc chiến lược</li>
+      </ul>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-num">03</div>
+      <h3 class="case-title">Khách hàng phàn nàn dù team làm đúng thoả thuận</h3>
+      <p class="case-context">Sprint trễ vì Change Request ngoài phạm vi. Khách hàng không nhớ đã thoả thuận gì.</p>
+      <ul class="case-results">
+        <li>Coachee tự tin và "nhẹ nhõm" xử lý tình huống thực tế</li>
+        <li>Khách hàng hài lòng hơn về giao tiếp minh bạch</li>
+        <li>Áp dụng công thức CLEAR-CARE-CLUE hiệu quả</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MINI CASE STUDY / STORY -->
+<section id="story">
+  <div class="story-left">
+    <div class="section-label reveal">Câu chuyện điển hình</div>
+    <blockquote class="story-pull-quote reveal">
+      "AI giỏi tạo ra <em>cấu trúc</em>. Con người cần mang vào <em>góc nhìn</em> của khách hàng."
+    </blockquote>
+  </div>
+
+  <div class="story-right reveal">
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Khi mockup AI đẹp nhưng khách không chịu duyệt</h2>
+
+    <div class="story-body">
+      <p>Trong chương trình <strong>The Future Leaders – Leading with Ownership</strong>, tôi làm việc với một mentee kỹ sư IT. Vì công ty không có designer full-time, em dùng AI tạo mockup Landing Page rất nhanh — nhưng khách hàng từ chối suốt nhiều tuần với nhận xét: <em>"Thiết kế AI quá, thiếu trải nghiệm người dùng."</em></p>
+
+      <p>Điều khiến mentee bối rối: khách hàng nói "chưa đúng" nhưng không chỉ ra sai ở đâu. Khi cùng phân tích, chúng tôi nhận ra sự khác biệt trong góc nhìn:</p>
+
+      <p><strong>Kỹ sư nhìn Landing Page như:</strong> bố cục, text box, button, layout.<br>
+      <strong>Khách hàng nhìn Landing Page như:</strong> câu trả lời cho vấn đề họ đang tìm kiếm.</p>
+
+      <p>Chúng tôi thay đổi cách đặt câu hỏi — từ góc độ tính năng sang góc độ người dùng: <em>Đối tượng trọng tâm là ai? Họ tìm gì đầu tiên? Câu chữ nào khiến họ cảm thấy được thấu hiểu?</em></p>
+
+      <div class="story-result-box">
+        "Chị ơi, dự án bàn giao rồi. Mockup của em đã được chấp nhận. Anh khách hàng thì cởi mở hơn khi trả lời câu hỏi mới của em."
+      </div>
+
+      <div class="story-lesson">
+        <div class="story-lesson-title">Bài học rút ra</div>
+        <p>AI có thể giúp bạn làm rất nhanh. Nhưng để AI giúp bạn làm <strong>đúng</strong> và làm <strong>xong</strong>, bạn phải là người hiểu khách hàng trước.</p>
+        <p>Không cần thêm tính năng mới — chỉ cần thay đổi cách hiểu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="cases-header reveal">
+    <div>
+      <div class="section-label">Chương trình đào tạo</div>
+      <h2 class="section-title">Khoá Học</h2>
+    </div>
+  </div>
+  <p class="courses-intro reveal">Tất cả các chương trình được thiết kế riêng cho môi trường IT — kết hợp lý thuyết với thực hành ngay tình huống thật của đội ngũ.</p>
+
+  <div class="courses-grid reveal">
+    <div class="course-card">
+      <div class="course-content">
+        <span class="course-tag">Flagship Program</span>
+        <h3 class="course-title">Leading with Ownership</h3>
+        <p class="course-desc">Phát triển tư duy làm chủ cho kỹ sư và nhân sự tiềm năng trong công ty IT. 4 ngày training + group coaching + theo dõi 1 tháng.</p>
+        <ul class="course-outcomes">
+          <li>Chủ động báo cáo tiến độ và rủi ro sớm</li>
+          <li>Đề xuất phương án thay vì chỉ báo vấn đề</li>
+          <li>Tự lập kế hoạch và cam kết thời hạn thực tế</li>
+          <li>Làm rõ yêu cầu và phạm vi trước khi bắt đầu</li>
+        </ul>
+        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-content">
+        <span class="course-tag">Soft Skills</span>
+        <h3 class="course-title">Teamwork with Emotional Intelligence</h3>
+        <p class="course-desc">Xây dựng nền tảng EQ cho đội ngũ kỹ thuật — giúp cải thiện giao tiếp nội bộ, giảm xung đột và tăng sự gắn kết.</p>
+        <ul class="course-outcomes">
+          <li>Nhận biết và điều tiết cảm xúc trong áp lực dự án</li>
+          <li>Giao tiếp đồng cảm với đồng nghiệp và khách hàng</li>
+          <li>Xây dựng tâm lý an toàn trong team</li>
+        </ul>
+        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-content">
+        <span class="course-tag">Wellbeing</span>
+        <h3 class="course-title">From STRESS to STRENGTH</h3>
+        <p class="course-desc">Giúp kỹ sư và nhà quản lý IT chuyển hoá căng thẳng thành năng lượng làm việc bền vững.</p>
+        <ul class="course-outcomes">
+          <li>Nhận diện nguồn gốc stress trong môi trường IT</li>
+          <li>Xây dựng thói quen phục hồi năng lượng</li>
+          <li>Tăng sức bền tinh thần trong dự án dài hạn</li>
+        </ul>
+        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-content">
+        <span class="course-tag">Communication</span>
+        <h3 class="course-title">Business Communication for IT Professionals</h3>
+        <p class="course-desc">Kỹ năng giao tiếp chuyên nghiệp dành riêng cho người làm kỹ thuật — với khách hàng, với lãnh đạo, với stakeholder.</p>
+        <ul class="course-outcomes">
+          <li>Trình bày vấn đề kỹ thuật cho người non-tech</li>
+          <li>Quản lý kỳ vọng và thương lượng scope</li>
+          <li>Viết email và báo cáo rõ ràng, thuyết phục</li>
+        </ul>
+        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left reveal">
+    <div class="section-label">Bắt đầu từ đây</div>
+    <h2 class="section-title">Đặt lịch<br><em style="font-family:var(--serif);font-style:italic;font-weight:300;">Executive Overview</em><br>45 phút</h2>
+    <p class="contact-desc">
+      Buổi trao đổi miễn phí để khám phá những thách thức hiện tại của đội ngũ bạn — và xác định liệu chương trình có phù hợp không.
+    </p>
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <span class="contact-info-label">Email</span>
+        <span class="contact-info-value"><a href="/cdn-cgi/l/email-protection#59383737303c77373b382d312c193e34383035773a3634"><span class="__cf_email__" data-cfemail="0c6d6262656922626e6d7864794c6b616d6560226f6361">[email&#160;protected]</span></a></span>
+      </div>
+      <div class="contact-info-item">
+        <span class="contact-info-label">Zalo</span>
+        <span class="contact-info-value"><a href="tel:0989975149">0989 975 149</a></span>
+      </div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/thu-annie-nguyen/" target="_blank" class="social-link">LinkedIn →</a>
+      <a href="https://www.facebook.com/Nguyen.Ba.Anh.Thu" target="_blank" class="social-link">Facebook →</a>
+    </div>
+  </div>
+
+  <div class="contact-right reveal">
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <label class="form-label" for="name">Họ tên</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Nguyễn Văn A" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="email@congty.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="company">Công ty</label>
+        <input class="form-input" type="text" id="company" name="company" placeholder="Tên công ty của bạn">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="role">Vai trò</label>
+        <select class="form-select form-input" id="role" name="role">
+          <option value="" disabled selected>Chọn vai trò của bạn</option>
+          <option>CEO / Founder</option>
+          <option>HR / L&D Manager</option>
+          <option>Team Lead / Manager</option>
+          <option>Khác</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">Thách thức đang gặp</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="Mô tả ngắn gọn vấn đề của đội ngũ bạn..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="submit-btn" id="submit-btn">Gửi yêu cầu <span>→</span></button>
+        <p class="submit-note">Tôi sẽ phản hồi trong vòng 24 giờ.</p>
+      </div>
+      <div id="form-success" style="display:none; margin-top:1.5rem; font-size:1rem; color:var(--accent-light); font-style:italic; font-family:var(--serif);">
+        ✓ Cảm ơn bạn! Tôi sẽ liên hệ trong vòng 24 giờ.
+      </div>
+      <div id="form-error" style="display:none; margin-top:1.5rem; font-size:0.9rem; color:#e07070;">
+        Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua email trực tiếp.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Thư Annie Nguyễn. All rights reserved.</span>
+  <span class="footer-name">Trainer · Coach · Facilitator</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Formspree form submission
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+
+    btn.textContent = 'Đang gửi...';
+    btn.disabled = true;
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xlgployv', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        form.reset();
+        btn.textContent = 'Đã gửi ✓';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      errorMsg.style.display = 'block';
+      btn.textContent = 'Gửi yêu cầu →';
+      btn.disabled = false;
+    }
+  });
+</script>
