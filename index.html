@@ -835,12 +835,13 @@
     .nav-links a { font-size: 0.75rem; }
 
     #hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 5rem 2rem 3rem; }
-    .hero-right { height: 50vw; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    /* Tăng chiều cao khung ảnh trên mobile để thấy đủ mặt hơn */
+    .hero-right { height: 55vh; min-height: 220px; }
     .hero-bg-text { display: none; }
     /* Ưu tiên hiển thị phần mặt (trên) của ảnh trên mobile, tránh bị crop mất đầu */
     .hero-image-frame { align-items: center; }
-    .hero-image-frame .hero-photo { object-position: center top; }
+    .hero-image-frame .hero-photo { object-position: center 5%; }
 
     #about, #story, #contact {
       grid-template-columns: 1fr;
