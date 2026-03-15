@@ -89,6 +89,27 @@
 
   .nav-links a:hover { color: var(--ink); }
 
+  .lang-switcher {
+    display: flex;
+    gap: 0.25rem;
+    margin-left: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .lang-switcher button {
+    background: none;
+    border: none;
+    font-family: var(--sans);
+    color: var(--warm-mid);
+    cursor: pointer;
+    padding: 0.35rem 0.5rem;
+    transition: color 0.3s;
+  }
+  .lang-switcher button:hover { color: var(--ink); }
+  .lang-switcher button.active { color: var(--ink); font-weight: 500; }
+  .lang-switcher span { color: var(--line); pointer-events: none; }
+
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
@@ -823,39 +844,44 @@
 <nav>
   <a href="#hero" class="nav-logo">Thư Annie Nguyễn</a>
   <ul class="nav-links">
-    <li><a href="#about">Profile</a></li>
-    <li><a href="#cases">Case Studies</a></li>
-    <li><a href="#courses">Khoá Học</a></li>
-    <li><a href="#contact">Liên Hệ</a></li>
+    <li><a href="#about" data-i18n="nav_profile">Profile</a></li>
+    <li><a href="#cases" data-i18n="nav_cases">Case Studies</a></li>
+    <li><a href="#courses" data-i18n="nav_courses">Khoá Học</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Liên Hệ</a></li>
+    <li class="lang-switcher">
+      <button type="button" data-lang="en" aria-label="English">EN</button>
+      <span>|</span>
+      <button type="button" data-lang="vi" aria-label="Tiếng Việt">VI</button>
+    </li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow fade-up">Trainer · Coach · Facilitator</div>
+    <div class="hero-eyebrow fade-up" data-i18n="hero_eyebrow">Trainer · Coach · Facilitator</div>
     <h1 class="hero-name fade-up delay-1">
       Thư<br><em>Annie</em><br>Nguyễn
     </h1>
-    <p class="hero-headline fade-up delay-2">
+    <p class="hero-headline fade-up delay-2" data-i18n="hero_headline">
       Giúp đội ngũ IT hiểu khách hàng và giao tiếp rõ ràng trong dự án để tạo ra sản phẩm chất lượng.
     </p>
     <div class="hero-stats fade-up delay-3">
       <div>
         <div class="stat-num">17+</div>
-        <div class="stat-label">Năm trong ngành IT</div>
+        <div class="stat-label" data-i18n="stat_years">Năm trong ngành IT</div>
       </div>
       <div>
         <div class="stat-num">MBA</div>
-        <div class="stat-label">ĐH Kinh tế</div>
+        <div class="stat-label" data-i18n="stat_mba">ĐH Kinh tế</div>
       </div>
       <div>
         <div class="stat-num">4+</div>
-        <div class="stat-label">Khoá học tự thiết kế</div>
+        <div class="stat-label" data-i18n="stat_courses">Khoá học tự thiết kế</div>
       </div>
     </div>
     <a href="#contact" class="hero-cta fade-up delay-4">
-      Đặt lịch Executive Overview <span class="hero-cta-arrow">→</span>
+      <span data-i18n="hero_cta">Đặt lịch Executive Overview</span> <span class="hero-cta-arrow">→</span>
     </a>
   </div>
 
@@ -870,12 +896,12 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-left reveal">
-    <div class="section-label">Profile</div>
-    <h2 class="section-title">17 năm trong ngành.<br>Hiểu kỹ thuật.<br>Hiểu con người.</h2>
-    <p class="about-bio">
+    <div class="section-label" data-i18n="about_label">Profile</div>
+    <h2 class="section-title" data-i18n-html="about_title">17 năm trong ngành.<br>Hiểu kỹ thuật.<br>Hiểu con người.</h2>
+    <p class="about-bio" data-i18n-html="about_bio1">
       Xuất phát là developer rồi trải qua Project Manager, Product Manager — tôi đã sống qua đủ mọi góc nhìn trong một dự án IT. Nhờ vậy, tôi <strong>hiểu sâu những khó khăn thật sự</strong> mà các đội ngũ kỹ thuật đang đối mặt mỗi ngày: giao tiếp rối, ownership thấp, khách hàng phàn nàn.
     </p>
-    <p class="about-bio" style="margin-top:1rem;">
+    <p class="about-bio" style="margin-top:1rem;" data-i18n-html="about_bio2">
       Hiện tôi tập trung vào <strong>đào tạo và coaching</strong> cho nhà quản lý và kỹ sư IT, giúp họ phát triển kỹ năng giao tiếp, trí tuệ cảm xúc và năng lực lãnh đạo.
     </p>
     <div class="about-tags">
@@ -893,43 +919,40 @@
       <li>
         <span class="cred-year">2023 –<br>nay</span>
         <div>
-          <div class="cred-role">Solo Expert · Trainer & Coach</div>
-          Hợp tác cùng Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT
+          <div class="cred-role" data-i18n="cred1_role">Solo Expert · Trainer & Coach</div>
+          <span data-i18n="cred1_desc">Hợp tác cùng Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT</span>
         </div>
       </li>
       <li>
         <span class="cred-year">2021–<br>2023</span>
         <div>
-          <div class="cred-role">Product Manager — Flow Networks</div>
-          Fintech · Định nghĩa product vision, dẫn dắt nhiều scrum team
+          <div class="cred-role" data-i18n="cred2_role">Product Manager — Flow Networks</div>
+          <span data-i18n="cred2_desc">Fintech · Định nghĩa product vision, dẫn dắt nhiều scrum team</span>
         </div>
       </li>
       <li>
         <span class="cred-year">2019–<br>2021</span>
         <div>
-          <div class="cred-role">Senior Business Analyst — Manulife</div>
-          Quản lý phạm vi sản phẩm và delivery
+          <div class="cred-role" data-i18n="cred3_role">Senior Business Analyst — Manulife</div>
+          <span data-i18n="cred3_desc">Quản lý phạm vi sản phẩm và delivery</span>
         </div>
       </li>
       <li>
         <span class="cred-year">2006–<br>2019</span>
         <div>
-          <div class="cred-role">PM · BA · Dev Manager — ELCA</div>
-          13 năm · Xây dựng nhóm BA & Tester · Quản lý rủi ro dự án
+          <div class="cred-role" data-i18n="cred4_role">PM · BA · Dev Manager — ELCA</div>
+          <span data-i18n="cred4_desc">13 năm · Xây dựng nhóm BA & Tester · Quản lý rủi ro dự án</span>
         </div>
       </li>
       <li>
-        <span class="cred-year">Chứng chỉ</span>
+        <span class="cred-year" data-i18n="cred5_year">Chứng chỉ</span>
         <div>
-         
-            <div>MBA ĐH Kinh tế</div>
-            <div>Cử nhân CNTT ĐH Khoa Học Tự Nhiên</div>
-           <div>Certified Crestcom Facilitator</div>
-           <div>Tâm lý học chuyển hoá - TS Lê Nguyên Phương</div>
-           <div>Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP</div>
-            <div>Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao</div>
-
- 
+          <div data-i18n="cred5_1">MBA ĐH Kinh tế</div>
+          <div data-i18n="cred5_2">Cử nhân CNTT ĐH Khoa Học Tự Nhiên</div>
+          <div data-i18n="cred5_3">Certified Crestcom Facilitator</div>
+          <div data-i18n="cred5_4">Tâm lý học chuyển hoá - TS Lê Nguyên Phương</div>
+          <div data-i18n="cred5_5">Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP</div>
+          <div data-i18n="cred5_6">Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao</div>
         </div>
       </li>
     </ul>
@@ -940,42 +963,42 @@
 <section id="cases">
   <div class="cases-header reveal">
     <div>
-      <div class="section-label">Kết quả thực tế</div>
-      <h2 class="section-title">Case Studies</h2>
+      <div class="section-label" data-i18n="cases_label">Kết quả thực tế</div>
+      <h2 class="section-title" data-i18n="cases_title">Case Studies</h2>
     </div>
   </div>
 
   <div class="cases-grid">
     <div class="case-card reveal">
       <div class="case-num">01</div>
-      <h3 class="case-title">Từ "giấu lỗi" sang văn hoá tương trợ</h3>
-      <p class="case-context">Đội ngũ IT với Fixed Mindset, ngại báo cáo khó khăn, từ chối hỗ trợ vì "không phải việc của mình".</p>
+      <h3 class="case-title" data-i18n="case1_title">Từ "giấu lỗi" sang văn hoá tương trợ</h3>
+      <p class="case-context" data-i18n="case1_context">Đội ngũ IT với Fixed Mindset, ngại báo cáo khó khăn, từ chối hỗ trợ vì "không phải việc của mình".</p>
       <ul class="case-results">
-        <li>Ownership tăng từ <span class="result-num">2.7 → 6.4/10</span></li>
-        <li>Kỹ năng báo cáo sự cố tăng từ <span class="result-num">4.5 → 7.5/10</span></li>
-        <li>Các vấn đề được báo cáo và giải quyết nhanh hơn rõ rệt</li>
+        <li data-i18n-html="case1_r1">Ownership tăng từ <span class="result-num">2.7 → 6.4/10</span></li>
+        <li data-i18n-html="case1_r2">Kỹ năng báo cáo sự cố tăng từ <span class="result-num">4.5 → 7.5/10</span></li>
+        <li data-i18n="case1_r3">Các vấn đề được báo cáo và giải quyết nhanh hơn rõ rệt</li>
       </ul>
     </div>
 
     <div class="case-card reveal">
       <div class="case-num">02</div>
-      <h3 class="case-title">Team Lead "bottleneck" — Junior tự lập trong 30 ngày</h3>
-      <p class="case-context">Lead ôm đồm DevOps, Junior thụ động — cả team bị kẹt theo một người.</p>
+      <h3 class="case-title" data-i18n="case2_title">Team Lead "bottleneck" — Junior tự lập trong 30 ngày</h3>
+      <p class="case-context" data-i18n="case2_context">Lead ôm đồm DevOps, Junior thụ động — cả team bị kẹt theo một người.</p>
       <ul class="case-results">
-        <li>Kỹ năng nhân sự kế cận tăng từ <span class="result-num">10% → 40%</span> sau 1 tháng</li>
-        <li>Junior tự xử lý vấn đề độc lập</li>
-        <li>Lead giải phóng thời gian cho việc chiến lược</li>
+        <li data-i18n-html="case2_r1">Kỹ năng nhân sự kế cận tăng từ <span class="result-num">10% → 40%</span> sau 1 tháng</li>
+        <li data-i18n="case2_r2">Junior tự xử lý vấn đề độc lập</li>
+        <li data-i18n="case2_r3">Lead giải phóng thời gian cho việc chiến lược</li>
       </ul>
     </div>
 
     <div class="case-card reveal">
       <div class="case-num">03</div>
-      <h3 class="case-title">Khách hàng phàn nàn dù team làm đúng thoả thuận</h3>
-      <p class="case-context">Sprint trễ vì Change Request ngoài phạm vi. Khách hàng không nhớ đã thoả thuận gì.</p>
+      <h3 class="case-title" data-i18n="case3_title">Khách hàng phàn nàn dù team làm đúng thoả thuận</h3>
+      <p class="case-context" data-i18n="case3_context">Sprint trễ vì Change Request ngoài phạm vi. Khách hàng không nhớ đã thoả thuận gì.</p>
       <ul class="case-results">
-        <li>Coachee tự tin và "nhẹ nhõm" xử lý tình huống thực tế</li>
-        <li>Khách hàng hài lòng hơn về giao tiếp minh bạch</li>
-        <li>Áp dụng công thức CLEAR-CARE-CLUE hiệu quả</li>
+        <li data-i18n="case3_r1">Coachee tự tin và "nhẹ nhõm" xử lý tình huống thực tế</li>
+        <li data-i18n="case3_r2">Khách hàng hài lòng hơn về giao tiếp minh bạch</li>
+        <li data-i18n="case3_r3">Áp dụng công thức CLEAR-CARE-CLUE hiệu quả</li>
       </ul>
     </div>
   </div>
@@ -984,33 +1007,33 @@
 <!-- MINI CASE STUDY / STORY -->
 <section id="story">
   <div class="story-left">
-    <div class="section-label reveal">Câu chuyện điển hình</div>
-    <blockquote class="story-pull-quote reveal">
+    <div class="section-label reveal" data-i18n="story_label">Câu chuyện điển hình</div>
+    <blockquote class="story-pull-quote reveal" data-i18n-html="story_quote">
       "AI giỏi tạo ra <em>cấu trúc</em>. Con người cần mang vào <em>góc nhìn</em> của khách hàng."
     </blockquote>
   </div>
 
   <div class="story-right reveal">
-    <h2 class="section-title" style="margin-bottom:1.5rem;">Khi mockup AI đẹp nhưng khách không chịu duyệt</h2>
+    <h2 class="section-title" style="margin-bottom:1.5rem;" data-i18n="story_title">Khi mockup AI đẹp nhưng khách không chịu duyệt</h2>
 
     <div class="story-body">
-      <p>Trong chương trình <strong>The Future Leaders – Leading with Ownership</strong>, tôi làm việc với một mentee kỹ sư IT. Vì công ty không có designer full-time, em dùng AI tạo mockup Landing Page rất nhanh — nhưng khách hàng từ chối suốt nhiều tuần với nhận xét: <em>"Thiết kế AI quá, thiếu trải nghiệm người dùng."</em></p>
+      <p data-i18n-html="story_p1">Trong chương trình <strong>The Future Leaders – Leading with Ownership</strong>, tôi làm việc với một mentee kỹ sư IT. Vì công ty không có designer full-time, em dùng AI tạo mockup Landing Page rất nhanh — nhưng khách hàng từ chối suốt nhiều tuần với nhận xét: <em>"Thiết kế AI quá, thiếu trải nghiệm người dùng."</em></p>
 
-      <p>Điều khiến mentee bối rối: khách hàng nói "chưa đúng" nhưng không chỉ ra sai ở đâu. Khi cùng phân tích, chúng tôi nhận ra sự khác biệt trong góc nhìn:</p>
+      <p data-i18n="story_p2">Điều khiến mentee bối rối: khách hàng nói "chưa đúng" nhưng không chỉ ra sai ở đâu. Khi cùng phân tích, chúng tôi nhận ra sự khác biệt trong góc nhìn:</p>
 
-      <p><strong>Kỹ sư nhìn Landing Page như:</strong> bố cục, text box, button, layout.<br>
+      <p data-i18n-html="story_p3"><strong>Kỹ sư nhìn Landing Page như:</strong> bố cục, text box, button, layout.<br>
       <strong>Khách hàng nhìn Landing Page như:</strong> câu trả lời cho vấn đề họ đang tìm kiếm.</p>
 
-      <p>Chúng tôi thay đổi cách đặt câu hỏi — từ góc độ tính năng sang góc độ người dùng: <em>Đối tượng trọng tâm là ai? Họ tìm gì đầu tiên? Câu chữ nào khiến họ cảm thấy được thấu hiểu?</em></p>
+      <p data-i18n-html="story_p4">Chúng tôi thay đổi cách đặt câu hỏi — từ góc độ tính năng sang góc độ người dùng: <em>Đối tượng trọng tâm là ai? Họ tìm gì đầu tiên? Câu chữ nào khiến họ cảm thấy được thấu hiểu?</em></p>
 
-      <div class="story-result-box">
+      <div class="story-result-box" data-i18n="story_result">
         "Chị ơi, dự án bàn giao rồi. Mockup của em đã được chấp nhận. Anh khách hàng thì cởi mở hơn khi trả lời câu hỏi mới của em."
       </div>
 
       <div class="story-lesson">
-        <div class="story-lesson-title">Bài học rút ra</div>
-        <p>AI có thể giúp bạn làm rất nhanh. Nhưng để AI giúp bạn làm <strong>đúng</strong> và làm <strong>xong</strong>, bạn phải là người hiểu khách hàng trước.</p>
-        <p>Không cần thêm tính năng mới — chỉ cần thay đổi cách hiểu.</p>
+        <div class="story-lesson-title" data-i18n="story_lesson_title">Bài học rút ra</div>
+        <p data-i18n-html="story_lesson_p1">AI có thể giúp bạn làm rất nhanh. Nhưng để AI giúp bạn làm <strong>đúng</strong> và làm <strong>xong</strong>, bạn phải là người hiểu khách hàng trước.</p>
+        <p data-i18n="story_lesson_p2">Không cần thêm tính năng mới — chỉ cần thay đổi cách hiểu.</p>
       </div>
     </div>
   </div>
@@ -1020,67 +1043,67 @@
 <section id="courses">
   <div class="cases-header reveal">
     <div>
-      <div class="section-label">Chương trình đào tạo</div>
-      <h2 class="section-title">Khoá Học</h2>
+      <div class="section-label" data-i18n="courses_label">Chương trình đào tạo</div>
+      <h2 class="section-title" data-i18n="courses_title">Khoá Học</h2>
     </div>
   </div>
-  <p class="courses-intro reveal">Tất cả các chương trình được thiết kế riêng cho môi trường IT — kết hợp lý thuyết với thực hành ngay tình huống thật của đội ngũ.</p>
+  <p class="courses-intro reveal" data-i18n="courses_intro">Tất cả các chương trình được thiết kế riêng cho môi trường IT — kết hợp lý thuyết với thực hành ngay tình huống thật của đội ngũ.</p>
 
   <div class="courses-grid reveal">
     <div class="course-card">
       <div class="course-content">
-        <span class="course-tag">Flagship Program</span>
-        <h3 class="course-title">Leading with Ownership</h3>
-        <p class="course-desc">Phát triển tư duy làm chủ cho quản lý, kỹ sư và nhân sự tiềm năng trong công ty IT. 4 ngày training + group coaching + theo dõi 1 tháng.</p>
+        <span class="course-tag" data-i18n="c1_tag">Flagship Program</span>
+        <h3 class="course-title" data-i18n="c1_title">Leading with Ownership</h3>
+        <p class="course-desc" data-i18n="c1_desc">Phát triển tư duy làm chủ cho quản lý, kỹ sư và nhân sự tiềm năng trong công ty IT. 4 ngày training + group coaching + theo dõi 1 tháng.</p>
         <ul class="course-outcomes">
-          <li>Chủ động báo cáo tiến độ và rủi ro sớm</li>
-          <li>Đề xuất phương án thay vì chỉ báo vấn đề</li>
-          <li>Tự lập kế hoạch và cam kết thời hạn thực tế</li>
-          <li>Làm rõ yêu cầu và phạm vi trước khi bắt đầu</li>
+          <li data-i18n="c1_o1">Chủ động báo cáo tiến độ và rủi ro sớm</li>
+          <li data-i18n="c1_o2">Đề xuất phương án thay vì chỉ báo vấn đề</li>
+          <li data-i18n="c1_o3">Tự lập kế hoạch và cam kết thời hạn thực tế</li>
+          <li data-i18n="c1_o4">Làm rõ yêu cầu và phạm vi trước khi bắt đầu</li>
         </ul>
-        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+        <a href="#contact" class="course-cta" data-i18n="course_cta">Tìm hiểu thêm →</a>
       </div>
     </div>
 
     <div class="course-card">
       <div class="course-content">
-        <span class="course-tag">Soft Skills</span>
-        <h3 class="course-title">Teamwork with Emotional Intelligence</h3>
-        <p class="course-desc">Xây dựng nền tảng EQ cho đội ngũ kỹ thuật — giúp cải thiện giao tiếp nội bộ, giảm xung đột và tăng sự gắn kết.</p>
+        <span class="course-tag" data-i18n="c2_tag">Soft Skills</span>
+        <h3 class="course-title" data-i18n="c2_title">Teamwork with Emotional Intelligence</h3>
+        <p class="course-desc" data-i18n="c2_desc">Xây dựng nền tảng EQ cho đội ngũ kỹ thuật — giúp cải thiện giao tiếp nội bộ, giảm xung đột và tăng sự gắn kết.</p>
         <ul class="course-outcomes">
-          <li>Nhận biết và điều tiết cảm xúc trong áp lực dự án</li>
-          <li>Giao tiếp đồng cảm với đồng nghiệp và khách hàng</li>
-          <li>Xây dựng tâm lý an toàn trong team</li>
+          <li data-i18n="c2_o1">Nhận biết và điều tiết cảm xúc trong áp lực dự án</li>
+          <li data-i18n="c2_o2">Giao tiếp đồng cảm với đồng nghiệp và khách hàng</li>
+          <li data-i18n="c2_o3">Xây dựng tâm lý an toàn trong team</li>
         </ul>
-        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+        <a href="#contact" class="course-cta" data-i18n="course_cta">Tìm hiểu thêm →</a>
       </div>
     </div>
 
     <div class="course-card">
       <div class="course-content">
-        <span class="course-tag">Wellbeing</span>
-        <h3 class="course-title">From STRESS to STRENGTH</h3>
-        <p class="course-desc">Giúp kỹ sư và nhà quản lý IT chuyển hoá căng thẳng thành năng lượng làm việc bền vững.</p>
+        <span class="course-tag" data-i18n="c3_tag">Wellbeing</span>
+        <h3 class="course-title" data-i18n="c3_title">From STRESS to STRENGTH</h3>
+        <p class="course-desc" data-i18n="c3_desc">Giúp kỹ sư và nhà quản lý IT chuyển hoá căng thẳng thành năng lượng làm việc bền vững.</p>
         <ul class="course-outcomes">
-          <li>Nhận diện nguồn gốc stress trong môi trường IT</li>
-          <li>Xây dựng thói quen phục hồi năng lượng</li>
-          <li>Tăng sức bền tinh thần trong dự án dài hạn</li>
+          <li data-i18n="c3_o1">Nhận diện nguồn gốc stress trong môi trường IT</li>
+          <li data-i18n="c3_o2">Xây dựng thói quen phục hồi năng lượng</li>
+          <li data-i18n="c3_o3">Tăng sức bền tinh thần trong dự án dài hạn</li>
         </ul>
-        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+        <a href="#contact" class="course-cta" data-i18n="course_cta">Tìm hiểu thêm →</a>
       </div>
     </div>
 
     <div class="course-card">
       <div class="course-content">
-        <span class="course-tag">Communication</span>
-        <h3 class="course-title">Business Communication for IT Professionals</h3>
-        <p class="course-desc">Kỹ năng giao tiếp chuyên nghiệp dành riêng cho người làm kỹ thuật — với khách hàng, với lãnh đạo, với stakeholder.</p>
+        <span class="course-tag" data-i18n="c4_tag">Communication</span>
+        <h3 class="course-title" data-i18n="c4_title">Business Communication for IT Professionals</h3>
+        <p class="course-desc" data-i18n="c4_desc">Kỹ năng giao tiếp chuyên nghiệp dành riêng cho người làm kỹ thuật — với khách hàng, với lãnh đạo, với stakeholder.</p>
         <ul class="course-outcomes">
-          <li>Trình bày vấn đề kỹ thuật cho người non-tech</li>
-          <li>Quản lý kỳ vọng và thương lượng scope</li>
-          <li>Viết email và báo cáo rõ ràng, thuyết phục</li>
+          <li data-i18n="c4_o1">Trình bày vấn đề kỹ thuật cho người non-tech</li>
+          <li data-i18n="c4_o2">Quản lý kỳ vọng và thương lượng scope</li>
+          <li data-i18n="c4_o3">Viết email và báo cáo rõ ràng, thuyết phục</li>
         </ul>
-        <a href="#contact" class="course-cta">Tìm hiểu thêm →</a>
+        <a href="#contact" class="course-cta" data-i18n="course_cta">Tìm hiểu thêm →</a>
       </div>
     </div>
   </div>
@@ -1089,9 +1112,9 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left reveal">
-    <div class="section-label">Bắt đầu từ đây</div>
-    <h2 class="section-title">Đặt lịch<br><em style="font-family:var(--serif);font-style:italic;font-weight:300;">Executive Overview</em><br>45 phút</h2>
-    <p class="contact-desc">
+    <div class="section-label" data-i18n="contact_label">Bắt đầu từ đây</div>
+    <h2 class="section-title" data-i18n-html="contact_title">Đặt lịch<br><em style="font-family:var(--serif);font-style:italic;font-weight:300;">Executive Overview</em><br>45 phút</h2>
+    <p class="contact-desc" data-i18n="contact_desc">
       Buổi trao đổi miễn phí để khám phá những thách thức hiện tại của đội ngũ bạn — và xác định liệu chương trình có phù hợp không.
     </p>
     <div class="contact-info">
@@ -1110,39 +1133,39 @@
   <div class="contact-right reveal">
     <form class="contact-form" id="contact-form">
       <div class="form-group">
-        <label class="form-label" for="name">Họ tên</label>
-        <input class="form-input" type="text" id="name" name="name" placeholder="Nguyễn Văn A" required>
+        <label class="form-label" for="name" data-i18n="form_name">Họ tên</label>
+        <input class="form-input" type="text" id="name" name="name" data-i18n-placeholder="form_name_ph" placeholder="Nguyễn Văn A" required>
       </div>
       <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-input" type="email" id="email" name="email" placeholder="email@congty.com" required>
+        <label class="form-label" for="email" data-i18n="form_email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" data-i18n-placeholder="form_email_ph" placeholder="email@congty.com" required>
       </div>
       <div class="form-group">
-        <label class="form-label" for="company">Công ty</label>
-        <input class="form-input" type="text" id="company" name="company" placeholder="Tên công ty của bạn">
+        <label class="form-label" for="company" data-i18n="form_company">Công ty</label>
+        <input class="form-input" type="text" id="company" name="company" data-i18n-placeholder="form_company_ph" placeholder="Tên công ty của bạn">
       </div>
       <div class="form-group">
-        <label class="form-label" for="role">Vai trò</label>
+        <label class="form-label" for="role" data-i18n="form_role">Vai trò</label>
         <select class="form-select form-input" id="role" name="role">
-          <option value="" disabled selected>Chọn vai trò của bạn</option>
-          <option>CEO / Founder</option>
-          <option>HR / L&D Manager</option>
-          <option>Team Lead / Manager</option>
-          <option>Khác</option>
+          <option value="" disabled selected data-i18n="form_role_ph">Chọn vai trò của bạn</option>
+          <option value="CEO / Founder" data-i18n="form_role_ceo">CEO / Founder</option>
+          <option value="HR / L&D Manager" data-i18n="form_role_hr">HR / L&D Manager</option>
+          <option value="Team Lead / Manager" data-i18n="form_role_lead">Team Lead / Manager</option>
+          <option value="Khác" data-i18n="form_role_other">Khác</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label" for="message">Thách thức đang gặp</label>
-        <textarea class="form-textarea" id="message" name="message" placeholder="Mô tả ngắn gọn vấn đề của đội ngũ bạn..."></textarea>
+        <label class="form-label" for="message" data-i18n="form_message">Thách thức đang gặp</label>
+        <textarea class="form-textarea" id="message" name="message" data-i18n-placeholder="form_message_ph" placeholder="Mô tả ngắn gọn vấn đề của đội ngũ bạn..."></textarea>
       </div>
       <div class="form-submit">
-        <button type="submit" class="submit-btn" id="submit-btn">Gửi yêu cầu <span>→</span></button>
-        <p class="submit-note">Tôi sẽ phản hồi trong vòng 24 giờ.</p>
+        <button type="submit" class="submit-btn" id="submit-btn"><span data-i18n="form_submit">Gửi yêu cầu</span> <span>→</span></button>
+        <p class="submit-note" data-i18n="submit_note">Tôi sẽ phản hồi trong vòng 24 giờ.</p>
       </div>
-      <div id="form-success" style="display:none; margin-top:1.5rem; font-size:1rem; color:var(--accent-light); font-style:italic; font-family:var(--serif);">
+      <div id="form-success" style="display:none; margin-top:1.5rem; font-size:1rem; color:var(--accent-light); font-style:italic; font-family:var(--serif);" data-i18n="form_success">
         ✓ Cảm ơn bạn! Tôi sẽ liên hệ trong vòng 24 giờ.
       </div>
-      <div id="form-error" style="display:none; margin-top:1.5rem; font-size:0.9rem; color:#e07070;">
+      <div id="form-error" style="display:none; margin-top:1.5rem; font-size:0.9rem; color:#e07070;" data-i18n="form_error">
         Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua email trực tiếp.
       </div>
     </form>
@@ -1151,11 +1174,287 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2025 Thư Annie Nguyễn. All rights reserved.</span>
-  <span class="footer-name">Trainer · Coach · Facilitator</span>
+  <span class="footer-copy" data-i18n="footer_copy">© 2025 Thư Annie Nguyễn. All rights reserved.</span>
+  <span class="footer-name" data-i18n="footer_name">Trainer · Coach · Facilitator</span>
 </footer>
 
 <script>
+  // ── i18n: EN / VI ──
+  const L = {
+    en: {
+      page_title: 'Thư Annie Nguyễn — Trainer & Coach for IT',
+      nav_profile: 'Profile',
+      nav_cases: 'Case Studies',
+      nav_courses: 'Courses',
+      nav_contact: 'Contact',
+      hero_eyebrow: 'Trainer · Coach · Facilitator',
+      hero_headline: 'Helping IT teams understand customers and communicate clearly on projects to deliver quality products.',
+      stat_years: 'Years in IT',
+      stat_mba: 'Economics',
+      stat_courses: 'Custom-designed courses',
+      hero_cta: 'Book an Executive Overview',
+      about_label: 'Profile',
+      about_title: '17 years in the industry.<br>Understanding tech.<br>Understanding people.',
+      about_bio1: 'Starting as a developer, then Project Manager, Product Manager — I\'ve lived every angle of an IT project. That\'s why I <strong>deeply understand the real challenges</strong> tech teams face every day: messy communication, low ownership, unhappy clients.',
+      about_bio2: 'I now focus on <strong>training and coaching</strong> for IT managers and engineers, helping them develop communication skills, emotional intelligence, and leadership.',
+      cred1_role: 'Solo Expert · Trainer & Coach',
+      cred1_desc: 'Partnering with Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT',
+      cred2_role: 'Product Manager — Flow Networks',
+      cred2_desc: 'Fintech · Defining product vision, leading multiple scrum teams',
+      cred3_role: 'Senior Business Analyst — Manulife',
+      cred3_desc: 'Product scope and delivery management',
+      cred4_role: 'PM · BA · Dev Manager — ELCA',
+      cred4_desc: '13 years · Built BA & Tester teams · Project risk management',
+      cred5_year: 'Certifications',
+      cred5_1: 'MBA, University of Economics',
+      cred5_2: 'BSc Computer Science, University of Natural Sciences',
+      cred5_3: 'Certified Crestcom Facilitator',
+      cred5_4: 'Transformational Psychology — Dr. Lê Nguyên Phương',
+      cred5_5: 'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
+      cred5_6: 'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+      cases_label: 'Real outcomes',
+      cases_title: 'Case Studies',
+      case1_title: 'From "hiding mistakes" to a culture of support',
+      case1_context: 'IT team with fixed mindset, reluctant to report issues, refusing to help because "not my job".',
+      case1_r1: 'Ownership increased from <span class="result-num">2.7 → 6.4/10</span>',
+      case1_r2: 'Incident reporting skills from <span class="result-num">4.5 → 7.5/10</span>',
+      case1_r3: 'Issues reported and resolved noticeably faster',
+      case2_title: 'Team Lead as bottleneck — Juniors self-sufficient in 30 days',
+      case2_context: 'Lead overloaded with DevOps, passive juniors — whole team stuck behind one person.',
+      case2_r1: 'Succession readiness increased from <span class="result-num">10% → 40%</span> in 1 month',
+      case2_r2: 'Juniors handling issues independently',
+      case2_r3: 'Lead freed up for strategic work',
+      case3_title: 'Client complaints despite team delivering on agreement',
+      case3_context: 'Sprint delayed by out-of-scope change requests. Client didn\'t remember what was agreed.',
+      case3_r1: 'Coachee confident and at ease handling the real situation',
+      case3_r2: 'Client more satisfied with transparent communication',
+      case3_r3: 'Applied CLEAR-CARE-CLUE framework effectively',
+      story_label: 'Typical story',
+      story_quote: '"AI is great at creating <em>structure</em>. People bring the <em>customer\'s perspective</em>."',
+      story_title: 'When AI mockups look good but the client won\'t approve',
+      story_p1: 'In <strong>The Future Leaders – Leading with Ownership</strong>, I worked with an IT engineer mentee. With no full-time designer, they used AI to create a landing page mockup quickly — but the client kept rejecting it for weeks, saying: <em>"Too AI-looking, lacks user experience."</em>',
+      story_p2: 'What confused the mentee: the client said "not right" but wouldn\'t say what was wrong. When we analysed it together, we saw the gap in perspective:',
+      story_p3: '<strong>Engineers see a landing page as:</strong> layout, text boxes, buttons.<br><strong>Clients see it as:</strong> the answer to the problem they\'re trying to solve.',
+      story_p4: 'We changed how we asked questions — from features to users: <em>Who is the main audience? What do they look for first? What words make them feel understood?</em>',
+      story_result: '"The project is done. My mockup was accepted. The client is more open to my new questions now."',
+      story_lesson_title: 'Takeaway',
+      story_lesson_p1: 'AI can help you work fast. But for AI to help you get it <strong>right</strong> and <strong>done</strong>, you must understand the customer first.',
+      story_lesson_p2: 'No need for new features — just a shift in understanding.',
+      courses_label: 'Training programs',
+      courses_title: 'Courses',
+      courses_intro: 'All programs are designed for IT environments — combining theory with practice in real team situations.',
+      c1_tag: 'Flagship Program',
+      c1_title: 'Leading with Ownership',
+      c1_desc: 'Develop ownership mindset for managers, engineers and high-potential staff in IT. 4-day training + group coaching + 1-month follow-up.',
+      c1_o1: 'Proactively report progress and risks early',
+      c1_o2: 'Propose solutions instead of just reporting problems',
+      c1_o3: 'Plan and commit to realistic deadlines',
+      c1_o4: 'Clarify requirements and scope before starting',
+      c2_tag: 'Soft Skills',
+      c2_title: 'Teamwork with Emotional Intelligence',
+      c2_desc: 'Build an EQ foundation for tech teams — improve internal communication, reduce conflict and increase cohesion.',
+      c2_o1: 'Recognise and regulate emotions under project pressure',
+      c2_o2: 'Communicate with empathy to colleagues and clients',
+      c2_o3: 'Build psychological safety in the team',
+      c3_tag: 'Wellbeing',
+      c3_title: 'From STRESS to STRENGTH',
+      c3_desc: 'Help IT engineers and managers turn stress into sustainable energy.',
+      c3_o1: 'Identify sources of stress in IT environments',
+      c3_o2: 'Build habits to recover energy',
+      c3_o3: 'Build mental stamina for long projects',
+      c4_tag: 'Communication',
+      c4_title: 'Business Communication for IT Professionals',
+      c4_desc: 'Professional communication skills for technical people — with clients, leadership and stakeholders.',
+      c4_o1: 'Explain technical issues to non-tech audiences',
+      c4_o2: 'Manage expectations and negotiate scope',
+      c4_o3: 'Write clear, persuasive emails and reports',
+      course_cta: 'Learn more →',
+      contact_label: 'Start here',
+      contact_title: 'Book an<br><em style="font-family:var(--serif);font-style:italic;font-weight:300;">Executive Overview</em><br>45 min',
+      contact_desc: 'A free session to explore your team\'s current challenges — and see if the program is a fit.',
+      form_name: 'Full name',
+      form_name_ph: 'Your name',
+      form_email: 'Email',
+      form_email_ph: 'email@company.com',
+      form_company: 'Company',
+      form_company_ph: 'Your company name',
+      form_role: 'Role',
+      form_role_ph: 'Select your role',
+      form_role_ceo: 'CEO / Founder',
+      form_role_hr: 'HR / L&D Manager',
+      form_role_lead: 'Team Lead / Manager',
+      form_role_other: 'Other',
+      form_message: 'Challenges you\'re facing',
+      form_message_ph: 'Briefly describe your team\'s situation...',
+      form_submit: 'Send request',
+      form_sending: 'Sending...',
+      form_sent: 'Sent ✓',
+      submit_note: 'I\'ll reply within 24 hours.',
+      form_success: '✓ Thank you! I\'ll get back to you within 24 hours.',
+      form_error: 'Something went wrong. Please try again or email me directly.',
+      footer_copy: '© 2025 Thư Annie Nguyễn. All rights reserved.',
+      footer_name: 'Trainer · Coach · Facilitator'
+    },
+    vi: {
+      page_title: 'Thư Annie Nguyễn — Trainer & Coach cho IT',
+      nav_profile: 'Profile',
+      nav_cases: 'Case Studies',
+      nav_courses: 'Khoá Học',
+      nav_contact: 'Liên Hệ',
+      hero_eyebrow: 'Trainer · Coach · Facilitator',
+      hero_headline: 'Giúp đội ngũ IT hiểu khách hàng và giao tiếp rõ ràng trong dự án để tạo ra sản phẩm chất lượng.',
+      stat_years: 'Năm trong ngành IT',
+      stat_mba: 'ĐH Kinh tế',
+      stat_courses: 'Khoá học tự thiết kế',
+      hero_cta: 'Đặt lịch Executive Overview',
+      about_label: 'Profile',
+      about_title: '17 năm trong ngành.<br>Hiểu kỹ thuật.<br>Hiểu con người.',
+      about_bio1: 'Xuất phát là developer rồi trải qua Project Manager, Product Manager — tôi đã sống qua đủ mọi góc nhìn trong một dự án IT. Nhờ vậy, tôi <strong>hiểu sâu những khó khăn thật sự</strong> mà các đội ngũ kỹ thuật đang đối mặt mỗi ngày: giao tiếp rối, ownership thấp, khách hàng phàn nàn.',
+      about_bio2: 'Hiện tôi tập trung vào <strong>đào tạo và coaching</strong> cho nhà quản lý và kỹ sư IT, giúp họ phát triển kỹ năng giao tiếp, trí tuệ cảm xúc và năng lực lãnh đạo.',
+      cred1_role: 'Solo Expert · Trainer & Coach',
+      cred1_desc: 'Hợp tác cùng Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT',
+      cred2_role: 'Product Manager — Flow Networks',
+      cred2_desc: 'Fintech · Định nghĩa product vision, dẫn dắt nhiều scrum team',
+      cred3_role: 'Senior Business Analyst — Manulife',
+      cred3_desc: 'Quản lý phạm vi sản phẩm và delivery',
+      cred4_role: 'PM · BA · Dev Manager — ELCA',
+      cred4_desc: '13 năm · Xây dựng nhóm BA & Tester · Quản lý rủi ro dự án',
+      cred5_year: 'Chứng chỉ',
+      cred5_1: 'MBA ĐH Kinh tế',
+      cred5_2: 'Cử nhân CNTT ĐH Khoa Học Tự Nhiên',
+      cred5_3: 'Certified Crestcom Facilitator',
+      cred5_4: 'Tâm lý học chuyển hoá - TS Lê Nguyên Phương',
+      cred5_5: 'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
+      cred5_6: 'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+      cases_label: 'Kết quả thực tế',
+      cases_title: 'Case Studies',
+      case1_title: 'Từ "giấu lỗi" sang văn hoá tương trợ',
+      case1_context: 'Đội ngũ IT với Fixed Mindset, ngại báo cáo khó khăn, từ chối hỗ trợ vì "không phải việc của mình".',
+      case1_r1: 'Ownership tăng từ <span class="result-num">2.7 → 6.4/10</span>',
+      case1_r2: 'Kỹ năng báo cáo sự cố tăng từ <span class="result-num">4.5 → 7.5/10</span>',
+      case1_r3: 'Các vấn đề được báo cáo và giải quyết nhanh hơn rõ rệt',
+      case2_title: 'Team Lead "bottleneck" — Junior tự lập trong 30 ngày',
+      case2_context: 'Lead ôm đồm DevOps, Junior thụ động — cả team bị kẹt theo một người.',
+      case2_r1: 'Kỹ năng nhân sự kế cận tăng từ <span class="result-num">10% → 40%</span> sau 1 tháng',
+      case2_r2: 'Junior tự xử lý vấn đề độc lập',
+      case2_r3: 'Lead giải phóng thời gian cho việc chiến lược',
+      case3_title: 'Khách hàng phàn nàn dù team làm đúng thoả thuận',
+      case3_context: 'Sprint trễ vì Change Request ngoài phạm vi. Khách hàng không nhớ đã thoả thuận gì.',
+      case3_r1: 'Coachee tự tin và "nhẹ nhõm" xử lý tình huống thực tế',
+      case3_r2: 'Khách hàng hài lòng hơn về giao tiếp minh bạch',
+      case3_r3: 'Áp dụng công thức CLEAR-CARE-CLUE hiệu quả',
+      story_label: 'Câu chuyện điển hình',
+      story_quote: '"AI giỏi tạo ra <em>cấu trúc</em>. Con người cần mang vào <em>góc nhìn</em> của khách hàng."',
+      story_title: 'Khi mockup AI đẹp nhưng khách không chịu duyệt',
+      story_p1: 'Trong chương trình <strong>The Future Leaders – Leading with Ownership</strong>, tôi làm việc với một mentee kỹ sư IT. Vì công ty không có designer full-time, em dùng AI tạo mockup Landing Page rất nhanh — nhưng khách hàng từ chối suốt nhiều tuần với nhận xét: <em>"Thiết kế AI quá, thiếu trải nghiệm người dùng."</em>',
+      story_p2: 'Điều khiến mentee bối rối: khách hàng nói "chưa đúng" nhưng không chỉ ra sai ở đâu. Khi cùng phân tích, chúng tôi nhận ra sự khác biệt trong góc nhìn:',
+      story_p3: '<strong>Kỹ sư nhìn Landing Page như:</strong> bố cục, text box, button, layout.<br><strong>Khách hàng nhìn Landing Page như:</strong> câu trả lời cho vấn đề họ đang tìm kiếm.',
+      story_p4: 'Chúng tôi thay đổi cách đặt câu hỏi — từ góc độ tính năng sang góc độ người dùng: <em>Đối tượng trọng tâm là ai? Họ tìm gì đầu tiên? Câu chữ nào khiến họ cảm thấy được thấu hiểu?</em>',
+      story_result: '"Chị ơi, dự án bàn giao rồi. Mockup của em đã được chấp nhận. Anh khách hàng thì cởi mở hơn khi trả lời câu hỏi mới của em."',
+      story_lesson_title: 'Bài học rút ra',
+      story_lesson_p1: 'AI có thể giúp bạn làm rất nhanh. Nhưng để AI giúp bạn làm <strong>đúng</strong> và làm <strong>xong</strong>, bạn phải là người hiểu khách hàng trước.',
+      story_lesson_p2: 'Không cần thêm tính năng mới — chỉ cần thay đổi cách hiểu.',
+      courses_label: 'Chương trình đào tạo',
+      courses_title: 'Khoá Học',
+      courses_intro: 'Tất cả các chương trình được thiết kế riêng cho môi trường IT — kết hợp lý thuyết với thực hành ngay tình huống thật của đội ngũ.',
+      c1_tag: 'Flagship Program',
+      c1_title: 'Leading with Ownership',
+      c1_desc: 'Phát triển tư duy làm chủ cho quản lý, kỹ sư và nhân sự tiềm năng trong công ty IT. 4 ngày training + group coaching + theo dõi 1 tháng.',
+      c1_o1: 'Chủ động báo cáo tiến độ và rủi ro sớm',
+      c1_o2: 'Đề xuất phương án thay vì chỉ báo vấn đề',
+      c1_o3: 'Tự lập kế hoạch và cam kết thời hạn thực tế',
+      c1_o4: 'Làm rõ yêu cầu và phạm vi trước khi bắt đầu',
+      c2_tag: 'Soft Skills',
+      c2_title: 'Teamwork with Emotional Intelligence',
+      c2_desc: 'Xây dựng nền tảng EQ cho đội ngũ kỹ thuật — giúp cải thiện giao tiếp nội bộ, giảm xung đột và tăng sự gắn kết.',
+      c2_o1: 'Nhận biết và điều tiết cảm xúc trong áp lực dự án',
+      c2_o2: 'Giao tiếp đồng cảm với đồng nghiệp và khách hàng',
+      c2_o3: 'Xây dựng tâm lý an toàn trong team',
+      c3_tag: 'Wellbeing',
+      c3_title: 'From STRESS to STRENGTH',
+      c3_desc: 'Giúp kỹ sư và nhà quản lý IT chuyển hoá căng thẳng thành năng lượng làm việc bền vững.',
+      c3_o1: 'Nhận diện nguồn gốc stress trong môi trường IT',
+      c3_o2: 'Xây dựng thói quen phục hồi năng lượng',
+      c3_o3: 'Tăng sức bền tinh thần trong dự án dài hạn',
+      c4_tag: 'Communication',
+      c4_title: 'Business Communication for IT Professionals',
+      c4_desc: 'Kỹ năng giao tiếp chuyên nghiệp dành riêng cho người làm kỹ thuật — với khách hàng, với lãnh đạo, với stakeholder.',
+      c4_o1: 'Trình bày vấn đề kỹ thuật cho người non-tech',
+      c4_o2: 'Quản lý kỳ vọng và thương lượng scope',
+      c4_o3: 'Viết email và báo cáo rõ ràng, thuyết phục',
+      course_cta: 'Tìm hiểu thêm →',
+      contact_label: 'Bắt đầu từ đây',
+      contact_title: 'Đặt lịch<br><em style="font-family:var(--serif);font-style:italic;font-weight:300;">Executive Overview</em><br>45 phút',
+      contact_desc: 'Buổi trao đổi miễn phí để khám phá những thách thức hiện tại của đội ngũ bạn — và xác định liệu chương trình có phù hợp không.',
+      form_name: 'Họ tên',
+      form_name_ph: 'Nguyễn Văn A',
+      form_email: 'Email',
+      form_email_ph: 'email@congty.com',
+      form_company: 'Công ty',
+      form_company_ph: 'Tên công ty của bạn',
+      form_role: 'Vai trò',
+      form_role_ph: 'Chọn vai trò của bạn',
+      form_role_ceo: 'CEO / Founder',
+      form_role_hr: 'HR / L&D Manager',
+      form_role_lead: 'Team Lead / Manager',
+      form_role_other: 'Khác',
+      form_message: 'Thách thức đang gặp',
+      form_message_ph: 'Mô tả ngắn gọn vấn đề của đội ngũ bạn...',
+      form_submit: 'Gửi yêu cầu',
+      form_sending: 'Đang gửi...',
+      form_sent: 'Đã gửi ✓',
+      submit_note: 'Tôi sẽ phản hồi trong vòng 24 giờ.',
+      form_success: '✓ Cảm ơn bạn! Tôi sẽ liên hệ trong vòng 24 giờ.',
+      form_error: 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua email trực tiếp.',
+      footer_copy: '© 2025 Thư Annie Nguyễn. All rights reserved.',
+      footer_name: 'Trainer · Coach · Facilitator'
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'vi';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang === 'en' ? 'en' : 'vi';
+    document.title = L[lang].page_title;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (L[lang][k] != null) el.textContent = L[lang][k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const k = el.getAttribute('data-i18n-html');
+      if (L[lang][k] != null) el.innerHTML = L[lang][k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const k = el.getAttribute('data-i18n-placeholder');
+      if (L[lang][k] != null) el.placeholder = L[lang][k];
+    });
+    document.querySelectorAll('.lang-switcher [data-lang]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Update select first option text
+    const roleSelect = document.getElementById('role');
+    if (roleSelect) {
+      const firstOpt = roleSelect.querySelector('option[disabled]');
+      if (firstOpt && L[lang].form_role_ph) firstOpt.textContent = L[lang].form_role_ph;
+      roleSelect.querySelectorAll('option:not([disabled])').forEach((opt, i) => {
+        const keys = ['form_role_ceo', 'form_role_hr', 'form_role_lead', 'form_role_other'];
+        if (L[lang][keys[i]]) opt.textContent = L[lang][keys[i]];
+      });
+    }
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn && !submitBtn.disabled) submitBtn.innerHTML = L[lang].form_submit + ' <span>→</span>';
+  }
+
+  document.querySelectorAll('.lang-switcher [data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+
+  applyLang(currentLang);
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1175,7 +1474,7 @@
     const successMsg = document.getElementById('form-success');
     const errorMsg = document.getElementById('form-error');
 
-    btn.textContent = 'Đang gửi...';
+    btn.innerHTML = L[currentLang].form_sending;
     btn.disabled = true;
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
@@ -1191,14 +1490,16 @@
 
       if (response.ok) {
         successMsg.style.display = 'block';
+        successMsg.textContent = L[currentLang].form_success;
         form.reset();
-        btn.textContent = 'Đã gửi ✓';
+        btn.innerHTML = L[currentLang].form_sent;
       } else {
         throw new Error('Server error');
       }
     } catch (err) {
       errorMsg.style.display = 'block';
-      btn.textContent = 'Gửi yêu cầu →';
+      errorMsg.textContent = L[currentLang].form_error;
+      btn.innerHTML = L[currentLang].form_submit + ' <span>→</span>';
       btn.disabled = false;
     }
   });
