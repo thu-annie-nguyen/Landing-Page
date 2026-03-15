@@ -187,6 +187,13 @@
     padding-bottom: 0;
   }
 
+  .hero-image-frame .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   /* Placeholder for Annie's photo — replace src with real photo */
   .hero-photo-placeholder {
     width: 100%;
@@ -775,6 +782,9 @@
     .hero-left { padding: 5rem 2rem 3rem; }
     .hero-right { height: 50vw; }
     .hero-bg-text { display: none; }
+    /* Ưu tiên hiển thị phần mặt (trên) của ảnh trên mobile, tránh bị crop mất đầu */
+    .hero-image-frame { align-items: center; }
+    .hero-image-frame .hero-photo { object-position: center top; }
 
     #about, #story, #contact {
       grid-template-columns: 1fr;
@@ -840,7 +850,7 @@
 
   <div class="hero-right">
     <div class="hero-image-frame">
-      <img src="photo.jpg" alt="Thư Annie Nguyễn" style="width:100%;height:100%;object-fit:cover;">
+      <img src="photo.png" alt="Thư Annie Nguyễn" class="hero-photo">
     </div>
     <div class="hero-bg-text">Annie</div>
   </div>
