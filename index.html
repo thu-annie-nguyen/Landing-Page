@@ -91,11 +91,13 @@
 
   .lang-switcher {
     display: flex;
+    align-items: center;
     gap: 0.25rem;
     margin-left: 1rem;
     font-size: 0.78rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    flex-shrink: 0;
   }
   .lang-switcher button {
     background: none;
@@ -191,7 +193,10 @@
   }
 
   .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
     background: var(--ink);
     color: var(--cream);
     font-size: 0.85rem;
@@ -202,6 +207,7 @@
     padding: 1.1rem 2.2rem;
     transition: background 0.3s, gap 0.3s;
     width: fit-content;
+    text-align: center;
   }
 
   .hero-cta:hover { background: var(--accent); gap: 1.2rem; }
@@ -807,8 +813,26 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
-    .nav-links { gap: 1.5rem; }
+    nav {
+      padding: 1rem 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .nav-logo { order: 1; }
+    .lang-switcher {
+      order: 2;
+      margin-left: auto;
+    }
+    .nav-links {
+      order: 3;
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem 1.25rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .nav-links a { font-size: 0.75rem; }
 
     #hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 5rem 2rem 3rem; }
@@ -848,12 +872,12 @@
     <li><a href="#cases" data-i18n="nav_cases">Case Studies</a></li>
     <li><a href="#courses" data-i18n="nav_courses">Khoá Học</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Liên Hệ</a></li>
-    <li class="lang-switcher">
-      <button type="button" data-lang="en" aria-label="English">EN</button>
-      <span>|</span>
-      <button type="button" data-lang="vi" aria-label="Tiếng Việt">VI</button>
-    </li>
   </ul>
+  <div class="lang-switcher">
+    <button type="button" data-lang="en" aria-label="English">EN</button>
+    <span>|</span>
+    <button type="button" data-lang="vi" aria-label="Tiếng Việt">VI</button>
+  </div>
 </nav>
 
 <!-- HERO -->
