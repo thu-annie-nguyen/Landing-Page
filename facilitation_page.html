@@ -58,16 +58,22 @@ section{padding:6rem 5rem;}
 .section-label::after{content:'';flex:1;max-width:2.5rem;height:1px;background:var(--blue);}
 .section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;line-height:1.15;margin-bottom:1rem;}
 
-#about{background:#fff;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
-.about-photo-wrap{position:relative;}
-.about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;}
-.about-photo-placeholder{width:100%;aspect-ratio:3/4;background:#E8EDF5;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.6rem;}
-.about-bio{font-size:0.95rem;line-height:1.9;color:#3A3A3A;margin-top:1.2rem;}
+#about{background:var(--ink);color:var(--cream);display:grid;grid-template-columns:1fr 1.35fr;gap:5rem;align-items:start;}
+#about .section-label{color:#60A5FA;}
+#about .section-label::after{background:#60A5FA;}
+#about .section-title{color:#fff;}
+.about-bio{font-size:0.95rem;line-height:1.9;color:rgba(255,255,255,0.78);margin-top:1.2rem;}
 .about-bio p{margin-bottom:1rem;}
-.about-bio strong{color:var(--ink);font-weight:500;}
-.caps{margin-top:2rem;display:flex;flex-direction:column;gap:0.5rem;}
-.cap{display:flex;align-items:center;gap:0.7rem;font-size:0.85rem;color:#3A3A3A;}
-.cap-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+.about-bio strong{color:#A9C4FF;font-weight:500;}
+.caps{margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.6rem;}
+.cap{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid rgba(169,196,255,0.28);color:rgba(206,221,250,0.78);padding:0.35rem 0.8rem;}
+.cap-dot{width:5px;height:5px;border-radius:50%;background:#60A5FA;flex-shrink:0;}
+.credentials-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.credentials-list li{display:flex;gap:1.5rem;align-items:flex-start;padding:1.35rem 0;border-bottom:1px solid rgba(169,196,255,0.14);font-size:0.92rem;color:rgba(215,227,252,0.76);}
+.cred-year{font-family:var(--serif);font-size:0.88rem;color:#60A5FA;min-width:4.6rem;padding-top:0.1rem;font-style:italic;line-height:1.4;}
+.cred-role{font-size:0.95rem;font-weight:500;color:#fff;margin-bottom:0.2rem;}
+.cert-bullets{margin:0;padding-left:1.1rem;list-style:disc;}
+.cert-bullets li{display:list-item;border-bottom:none;padding:0;margin:0.18rem 0;color:rgba(232,240,255,0.88);font-size:0.9rem;}
 
 /* ── CAROUSEL ── */
 #gallery{background:var(--ink);padding:5rem 0;}
@@ -100,27 +106,6 @@ section{padding:6rem 5rem;}
 .cbtn:hover{background:var(--blue);border-color:var(--blue);}
 .cbtn svg{width:16px;height:16px;}
 
-#credentials{background:var(--ink);color:#fff;}
-#credentials .section-label{color:#60A5FA;}
-#credentials .section-label::after{background:#60A5FA;}
-#credentials .section-title{color:#fff;}
-.creds-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;}
-.cred-timeline{display:flex;flex-direction:column;gap:0;}
-.cred-item{display:flex;gap:1.4rem;padding:1.4rem 0;border-bottom:1px solid var(--line);}
-.cred-item:last-child{border-bottom:none;}
-.cred-date{font-family:var(--serif);font-size:0.82rem;color:#60A5FA;font-style:italic;min-width:5rem;padding-top:0.1rem;line-height:1.4;}
-.cred-role{font-size:0.95rem;font-weight:500;color:#fff;margin-bottom:0.2rem;}
-.cred-desc{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;}
-.cred-badge{display:inline-block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);padding:0.25rem 0.7rem;border-radius:20px;margin-top:0.5rem;margin-right:0.3rem;}
-.topics-wrap{margin-top:1rem;}
-.topics-label{font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:#60A5FA;margin-bottom:1.2rem;}
-.topics-list{display:flex;flex-direction:column;gap:0;}
-.topic{display:flex;gap:1rem;padding:0.7rem 0;border-bottom:1px solid var(--line);}
-.topic:last-child{border-bottom:none;}
-.t-num{font-size:0.75rem;color:#378ADD;font-weight:500;min-width:1.4rem;flex-shrink:0;padding-top:0.1rem;}
-.t-vi{font-size:0.88rem;color:#fff;font-weight:400;line-height:1.3;}
-.t-en{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:1px;}
-.t-more{font-size:0.8rem;color:rgba(255,255,255,0.25);font-style:italic;padding-top:0.8rem;}
 
 #contact{background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
 .contact-intro{font-size:0.88rem;color:#5A5A5A;line-height:1.85;margin-top:1.2rem;max-width:34ch;}
@@ -165,9 +150,8 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
   .hero-right{height:60vw;min-height:260px;}
   .hero-photo-placeholder{min-height:260px;}
   .trust-bar,.open-signal{padding:1rem 1.8rem;flex-direction:column;align-items:flex-start;gap:0.8rem;}
-  section,#about,#contact,#credentials{padding:4rem 1.8rem;}
+  section,#about,#contact{padding:4rem 1.8rem;}
   #about,#contact{grid-template-columns:1fr;gap:2.5rem;}
-  .creds-grid{grid-template-columns:1fr;gap:2.5rem;}
   #gallery{padding:4rem 0;}
   .gallery-header,.carousel-nav{padding-left:1.8rem;padding-right:1.8rem;}
   .carousel-track-outer{padding:0 1.8rem;}
@@ -236,15 +220,7 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-photo-wrap reveal">
-    <img src="about.png" alt="Annie facilitating a workshop" class="about-photo"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-    <div class="about-photo-placeholder" style="display:none;">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span style="font-size:0.75rem;color:#9CA3AF;">about.png</span>
-    </div>
-  </div>
-  <div class="reveal">
+  <div class="about-left reveal">
     <div class="section-label" data-i18n="about_label">About</div>
     <h2 class="section-title" data-i18n="about_title">Where global programs meet local context.</h2>
     <div class="about-bio">
@@ -258,62 +234,50 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
       <div class="cap"><span class="cap-dot"></span><span data-i18n="cap4">Experienced in group coaching and 1-1 coaching</span></div>
     </div>
   </div>
-</section>
-
-
-
-<!-- CREDENTIALS -->
-<section id="credentials">
-  <div class="reveal">
-    <div class="section-label" data-i18n="cred_label">Experience & credentials</div>
-    <h2 class="section-title" data-i18n="cred_title">Partnered programs</h2>
-  </div>
-  <div class="creds-grid">
-    <div class="cred-timeline reveal">
-      <div class="cred-item">
-        <div class="cred-date">Apr 2024<br>– Present</div>
+  <div class="about-right reveal" id="credentials">
+    <ul class="credentials-list">
+      <li>
+        <span class="cred-year">2023 –<br>now</span>
         <div>
-          <div class="cred-role" data-i18n="cr1_role">Facilitator — Crestcom International</div>
-          <div class="cred-desc" data-i18n="cr1_desc">Facilitating a global leadership development program. Delivered in both Vietnamese and English across 13+ topics — and growing.</div>
-          <span class="cred-badge">VI &amp; EN</span><span class="cred-badge">Leadership</span>
+          <div class="cred-role" data-i18n="cred1_role">Solo Expert · Trainer & Coach</div>
+          <span data-i18n="cred1_desc">Partnering with Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT</span>
         </div>
-      </div>
-      <div class="cred-item">
-        <div class="cred-date">May 2025<br>– Present</div>
+      </li>
+      <li>
+        <span class="cred-year">2021–<br>2023</span>
         <div>
-          <div class="cred-role" data-i18n="cr2_role">Facilitator — EIY Program</div>
-          <div class="cred-desc" data-i18n="cr2_desc">Public Speaking in Workplace Contexts — helping professionals present and communicate with confidence.</div>
-          <span class="cred-badge">Communication</span>
+          <div class="cred-role" data-i18n="cred2_role">Product Manager — Flow Networks</div>
+          <span data-i18n="cred2_desc">Fintech · Defining product vision, leading multiple scrum teams</span>
         </div>
-      </div>
-      <div class="cred-item">
-        <div class="cred-date">Climate<br>Fresk</div>
+      </li>
+      <li>
+        <span class="cred-year">2019–<br>2021</span>
         <div>
-          <div class="cred-role" data-i18n="cr3_role">Orange Belt Facilitator — Climate Fresk</div>
-          <div class="cred-desc" data-i18n="cr3_desc">50+ workshops facilitated using the international Climate Fresk methodology for organizations and teams.</div>
-          <span class="cred-badge" style="background:rgba(251,191,36,0.15);color:#F59E0B;">Orange Belt</span>
+          <div class="cred-role" data-i18n="cred3_role">Senior Business Analyst — Manulife</div>
+          <span data-i18n="cred3_desc">Product scope and delivery management</span>
         </div>
-      </div>
-    </div>
-    <div class="topics-wrap reveal">
-      <div class="topics-label" data-i18n="topics_label">Crestcom leadership topics facilitated</div>
-      <div class="topics-list">
-        <div class="topic"><span class="t-num">01</span><div><div class="t-vi">Đạt thành quả ngay lần đầu</div><div class="t-en">Deliver Results the First Time</div></div></div>
-        <div class="topic"><span class="t-num">02</span><div><div class="t-vi">Làm chủ trên bàn đàm phán</div><div class="t-en">Mastering Negotiation</div></div></div>
-        <div class="topic"><span class="t-num">03</span><div><div class="t-vi">Thích nghi với sự biến động</div><div class="t-en">Change How You Manage Change</div></div></div>
-        <div class="topic"><span class="t-num">04</span><div><div class="t-vi">Tác phong lãnh đạo</div><div class="t-en">Leadership Presence</div></div></div>
-        <div class="topic"><span class="t-num">05</span><div><div class="t-vi">Chủ động tạo ảnh hưởng</div><div class="t-en">Influence With Intention</div></div></div>
-        <div class="topic"><span class="t-num">06</span><div><div class="t-vi">Lòng tin: Lãnh đạo tạo nên khác biệt</div><div class="t-en">Trust: The Leadership Differentiator</div></div></div>
-        <div class="topic"><span class="t-num">07</span><div><div class="t-vi">Thấu hiểu trí tuệ cảm xúc</div><div class="t-en">Dialing Into Emotional Intelligence</div></div></div>
-        <div class="topic"><span class="t-num">08</span><div><div class="t-vi">Hình thành văn hóa trách nhiệm</div><div class="t-en">Ignite a Culture of Accountability</div></div></div>
-        <div class="topic"><span class="t-num">09</span><div><div class="t-vi">Kích thích góc nhìn sáng tạo</div><div class="t-en">Stimulate Creative Perspectives</div></div></div>
-        <div class="topic"><span class="t-num">10</span><div><div class="t-vi">Sự linh hoạt và tinh thần bền bỉ</div><div class="t-en">Shift: Into Mental Agility and Resilience</div></div></div>
-        <div class="topic"><span class="t-num">11</span><div><div class="t-vi">Hợp nhất đội ngũ</div><div class="t-en">Team Fusion</div></div></div>
-        <div class="topic"><span class="t-num">12</span><div><div class="t-vi">Xây dựng và phát triển văn hoá doanh nghiệp</div><div class="t-en">Activate the On-Ramp</div></div></div>
-        <div class="topic"><span class="t-num">13</span><div><div class="t-vi">An toàn tâm lý và kết nối đội nhóm</div><div class="t-en">Managing and Appreciating Team Dynamics</div></div></div>
-        <div class="t-more" data-i18n="topics_more">··· More topics being added</div>
-      </div>
-    </div>
+      </li>
+      <li>
+        <span class="cred-year">2006–<br>2019</span>
+        <div>
+          <div class="cred-role" data-i18n="cred4_role">PM · BA · Dev Manager — ELCA</div>
+          <span data-i18n="cred4_desc">13 years · Built BA & Tester teams · Project risk management</span>
+        </div>
+      </li>
+      <li>
+        <span class="cred-year" data-i18n="cred5_year">Certifications</span>
+        <div>
+          <ul class="cert-bullets">
+            <li data-i18n="cred5_1">MBA, University of Economics</li>
+            <li data-i18n="cred5_2">BSc Computer Science, University of Natural Sciences</li>
+            <li data-i18n="cred5_3">Certified Crestcom Facilitator</li>
+            <li data-i18n="cred5_4">Transformational Psychology — Dr. Lê Nguyên Phương</li>
+            <li data-i18n="cred5_5">Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP</li>
+            <li data-i18n="cred5_6">Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -476,15 +440,21 @@ const L = {
     cap3:'Applies instructional design for interactive, hands-on learning',
     cap4:'Experienced in group coaching and 1-1 coaching',
     gallery_label:'In action', gallery_title:'Facilitation moments',
-    cred_label:'Experience & credentials', cred_title:'Partnered programs',
-    cr1_role:'Facilitator — Crestcom International',
-    cr1_desc:'Facilitating a global leadership development program. Delivered in both Vietnamese and English across 13+ topics — and growing.',
-    cr2_role:'Facilitator — EIY Program',
-    cr2_desc:'Public Speaking in Workplace Contexts — helping professionals present and communicate with confidence.',
-    cr3_role:'Orange Belt Facilitator — Climate Fresk',
-    cr3_desc:'10+ workshops facilitated using the international Climate Fresk methodology for organizations and teams.',
-    topics_label:'Crestcom leadership topics facilitated',
-    topics_more:'··· More topics being added',
+    cred1_role:'Solo Expert · Trainer & Coach',
+    cred1_desc:'Partnering with Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT',
+    cred2_role:'Product Manager — Flow Networks',
+    cred2_desc:'Fintech · Defining product vision, leading multiple scrum teams',
+    cred3_role:'Senior Business Analyst — Manulife',
+    cred3_desc:'Product scope and delivery management',
+    cred4_role:'PM · BA · Dev Manager — ELCA',
+    cred4_desc:'13 years · Built BA & Tester teams · Project risk management',
+    cred5_year:'Certifications',
+    cred5_1:'MBA, University of Economics',
+    cred5_2:'BSc Computer Science, University of Natural Sciences',
+    cred5_3:'Certified Crestcom Facilitator',
+    cred5_4:'Transformational Psychology — Dr. Lê Nguyên Phương',
+    cred5_5:'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
+    cred5_6:'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
     contact_label:'Get in touch', contact_title:"Let's discuss a collaboration",
     contact_intro:"If you're looking for an experienced bilingual facilitator for your upcoming training programs in Vietnam, I'd love to hear from you.",
     f_name:'Full name', f_email:'Email', f_org:'Organization',
@@ -513,15 +483,21 @@ const L = {
     cap3:'Thiết kế đào tạo để tạo trải nghiệm học tập tương tác, thực hành trực tiếp',
     cap4:'Kinh nghiệm group coaching và 1-1 coaching',
     gallery_label:'Hoạt động thực tế', gallery_title:'Khoảnh khắc facilitation',
-    cred_label:'Kinh nghiệm & chứng chỉ', cred_title:'Chương trình đã hợp tác',
-    cr1_role:'Facilitator — Crestcom International',
-    cr1_desc:'Dẫn chương trình phát triển lãnh đạo toàn cầu. Triển khai bằng cả tiếng Việt và tiếng Anh với 13+ chuyên đề — và đang tiếp tục tăng.',
-    cr2_role:'Facilitator — Chương trình EIY',
-    cr2_desc:'Public Speaking in Workplace Contexts — giúp chuyên gia thuyết trình và giao tiếp tự tin.',
-    cr3_role:'Orange Belt Facilitator — Climate Fresk',
-    cr3_desc:'10+ workshop đã được thực hiện theo phương pháp Climate Fresk quốc tế.',
-    topics_label:'Các chuyên đề Crestcom đã facilitated',
-    topics_more:'··· Đang tiếp tục cập nhật thêm',
+    cred1_role:'Solo Expert · Trainer & Coach',
+    cred1_desc:'Hợp tác cùng Crestcom, EIY, Innotech · Leadership skills, Leading with Ownership, Teamwork with EQ, Business Communication for IT',
+    cred2_role:'Product Manager — Flow Networks',
+    cred2_desc:'Fintech · Định nghĩa product vision, dẫn dắt nhiều scrum team',
+    cred3_role:'Senior Business Analyst — Manulife',
+    cred3_desc:'Quản lý phạm vi sản phẩm và delivery',
+    cred4_role:'PM · BA · Dev Manager — ELCA',
+    cred4_desc:'13 năm · Xây dựng nhóm BA & Tester · Quản lý rủi ro dự án',
+    cred5_year:'Chứng chỉ',
+    cred5_1:'MBA ĐH Kinh tế',
+    cred5_2:'Cử nhân CNTT ĐH Khoa Học Tự Nhiên',
+    cred5_3:'Certified Crestcom Facilitator',
+    cred5_4:'Tâm lý học chuyển hoá - TS Lê Nguyên Phương',
+    cred5_5:'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
+    cred5_6:'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
     contact_label:'Liên hệ', contact_title:'Hãy cùng trao đổi và hợp tác',
     contact_intro:'Nếu tổ chức của bạn đang tìm facilitator song ngữ có kinh nghiệm cho chương trình đào tạo sắp tới tại Việt Nam, tôi rất vui được lắng nghe.',
     f_name:'Họ tên', f_email:'Email', f_org:'Tổ chức',
