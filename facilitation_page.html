@@ -75,6 +75,16 @@ section{padding:6rem 5rem;}
 .cert-bullets{margin:0;padding-left:1.1rem;list-style:disc;}
 .cert-bullets li{display:list-item;border-bottom:none;padding:0;margin:0.18rem 0;color:rgba(232,240,255,0.88);font-size:0.9rem;}
 
+/* ── TOPICS ── */
+#topics{background:var(--cream);padding:6rem 5rem;}
+.topics-intro{font-size:0.92rem;color:#5A5A5A;line-height:1.75;max-width:42ch;margin-bottom:2.8rem;}
+.topics-grid{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.topics-grid li{display:flex;gap:1.1rem;align-items:baseline;padding:1.15rem 1.5rem 1.15rem 0;border-bottom:1px solid var(--line-light);}
+.topics-grid li:nth-child(odd){padding-right:2rem;}
+.topics-grid li:nth-child(even){padding-left:2rem;border-left:1px solid var(--line-light);}
+.topic-num{font-family:var(--serif);font-size:0.95rem;font-style:italic;color:var(--blue);min-width:1.6rem;flex-shrink:0;}
+.topic-name{font-size:0.95rem;color:var(--ink);line-height:1.45;font-weight:400;}
+
 /* ── CAROUSEL ── */
 #gallery{background:var(--ink);padding:5rem 0;}
 .gallery-header{padding:0 5rem 2.5rem;}
@@ -156,6 +166,10 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
   .gallery-header,.carousel-nav{padding-left:1.8rem;padding-right:1.8rem;}
   .carousel-track-outer{padding:0 1.8rem;}
   .carousel-slide{flex:0 0 calc(80% - 0.75rem);}
+  #topics{padding:4rem 1.8rem;}
+  .topics-grid{grid-template-columns:1fr;}
+  .topics-grid li:nth-child(odd){padding-right:0;}
+  .topics-grid li:nth-child(even){padding-left:0;border-left:none;}
   footer{flex-direction:column;gap:0.5rem;padding:1.5rem 1.8rem;text-align:center;}
 }
 </style>
@@ -166,6 +180,7 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
   <a href="https://thuannienguyen.com" class="nav-logo">Thư Annie Nguyễn</a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_about">About</a></li>
+    <li><a href="#topics" data-i18n="nav_topics">Topics</a></li>
     <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
     <li><a href="#credentials" data-i18n="nav_creds">Experience</a></li>
     <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
@@ -281,6 +296,30 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
   </div>
 </section>
 
+<!-- TOPICS -->
+<section id="topics">
+  <div class="reveal">
+    <div class="section-label" data-i18n="topics_label">Leadership topics</div>
+    <h2 class="section-title" data-i18n="topics_title">Programs I have delivered</h2>
+    <p class="topics-intro" data-i18n="topics_intro">Leadership and workplace topics facilitated for managers and teams — in Vietnamese and English.</p>
+  </div>
+  <ol class="topics-grid reveal">
+    <li><span class="topic-num">01</span><span class="topic-name" data-i18n="topic_1">Deliver Results the First Time</span></li>
+    <li><span class="topic-num">02</span><span class="topic-name" data-i18n="topic_2">Mastering Negotiation</span></li>
+    <li><span class="topic-num">03</span><span class="topic-name" data-i18n="topic_3">Change How You Manage Change</span></li>
+    <li><span class="topic-num">04</span><span class="topic-name" data-i18n="topic_4">Leadership Presence</span></li>
+    <li><span class="topic-num">05</span><span class="topic-name" data-i18n="topic_5">Influence With Intention</span></li>
+    <li><span class="topic-num">06</span><span class="topic-name" data-i18n="topic_6">Trust: The Leadership Differentiator</span></li>
+    <li><span class="topic-num">07</span><span class="topic-name" data-i18n="topic_7">Dialing Into Emotional Intelligence</span></li>
+    <li><span class="topic-num">08</span><span class="topic-name" data-i18n="topic_8">Ignite a Culture of Accountability</span></li>
+    <li><span class="topic-num">09</span><span class="topic-name" data-i18n="topic_9">Stimulate Creative Perspectives</span></li>
+    <li><span class="topic-num">10</span><span class="topic-name" data-i18n="topic_10">Shift: Into Mental Agility and Resilience</span></li>
+    <li><span class="topic-num">11</span><span class="topic-name" data-i18n="topic_11">Team Fusion</span></li>
+    <li><span class="topic-num">12</span><span class="topic-name" data-i18n="topic_12">Activate the on-ramp</span></li>
+    <li><span class="topic-num">13</span><span class="topic-name" data-i18n="topic_13">Managing and Appreciating Team Dynamics</span></li>
+    <li><span class="topic-num">14</span><span class="topic-name" data-i18n="topic_14">Power Up The Customer Experience</span></li>
+  </ol>
+</section>
 
 <!-- ── GALLERY CAROUSEL ── -->
 <div id="gallery">
@@ -445,7 +484,7 @@ footer{background:var(--ink);padding:1.8rem 5rem;display:flex;justify-content:sp
 <script>
 const L = {
   en: {
-    nav_about:'About', nav_gallery:'Gallery', nav_creds:'Experience', nav_contact:'Contact',
+    nav_about:'About', nav_topics:'Topics', nav_gallery:'Gallery', nav_creds:'Experience', nav_contact:'Contact',
     hero_eyebrow:'Bilingual Training Facilitator',
     hero_tag:'Bridging global training content with Vietnamese business culture — in English and Vietnamese.',
     stat_topics:'Topics facilitated', stat_workshops:'Workshops delivered', stat_lang:'Bilingual',
@@ -477,6 +516,23 @@ const L = {
     cred5_4:'Transformational Psychology — Dr. Lê Nguyên Phương',
     cred5_5:'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
     cred5_6:'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+    topics_label:'Leadership topics',
+    topics_title:'Programs I have delivered',
+    topics_intro:'Leadership and workplace topics facilitated for managers and teams — in Vietnamese and English.',
+    topic_1:'Deliver Results the First Time',
+    topic_2:'Mastering Negotiation',
+    topic_3:'Change How You Manage Change',
+    topic_4:'Leadership Presence',
+    topic_5:'Influence With Intention',
+    topic_6:'Trust: The Leadership Differentiator',
+    topic_7:'Dialing Into Emotional Intelligence',
+    topic_8:'Ignite a Culture of Accountability',
+    topic_9:'Stimulate Creative Perspectives',
+    topic_10:'Shift: Into Mental Agility and Resilience',
+    topic_11:'Team Fusion',
+    topic_12:'Activate the on-ramp',
+    topic_13:'Managing and Appreciating Team Dynamics',
+    topic_14:'Power Up The Customer Experience',
     contact_label:'Get in touch', contact_title:"Let's discuss a collaboration",
     contact_intro:"If you're looking for an experienced bilingual facilitator for your upcoming training programs in Vietnam, I'd love to hear from you.",
     f_name:'Full name', f_email:'Email', f_org:'Organization',
@@ -488,7 +544,7 @@ const L = {
     footer_back:'← Back to main site', footer_copy:'© 2025 · Bilingual Training Facilitator'
   },
   vi: {
-    nav_about:'Giới thiệu', nav_gallery:'Ảnh', nav_creds:'Kinh nghiệm', nav_contact:'Liên hệ',
+    nav_about:'Giới thiệu', nav_topics:'Chuyên đề', nav_gallery:'Ảnh', nav_creds:'Kinh nghiệm', nav_contact:'Liên hệ',
     hero_eyebrow:'Facilitator song ngữ',
     hero_tag:'Kết nối chương trình đào tạo quốc tế với văn hoá doanh nghiệp Việt Nam — bằng cả tiếng Việt và tiếng Anh.',
     stat_topics:'Chuyên đề đã dẫn', stat_workshops:'Workshop đã thực hiện', stat_lang:'Song ngữ',
@@ -520,6 +576,23 @@ const L = {
     cred5_4:'Tâm lý học chuyển hoá - TS Lê Nguyên Phương',
     cred5_5:'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
     cred5_6:'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+    topics_label:'Chuyên đề lãnh đạo',
+    topics_title:'Các chương trình tôi đã dẫn',
+    topics_intro:'Các chuyên đề lãnh đạo và kỹ năng làm việc đã facilitation cho quản lý và đội ngũ — bằng tiếng Việt và tiếng Anh.',
+    topic_1:'Đạt thành quả ngay lần đầu',
+    topic_2:'Làm chủ trên bàn đàm phán',
+    topic_3:'Thích nghi với sự biến động',
+    topic_4:'Tác phong lãnh đạo',
+    topic_5:'Chủ động tạo ảnh hưởng',
+    topic_6:'Lòng tin: Lãnh đạo tạo nên khác biệt',
+    topic_7:'Thấu hiểu trí tuệ cảm xúc',
+    topic_8:'Hình thành văn hóa trách nhiệm',
+    topic_9:'Kích thích góc nhìn sáng tạo',
+    topic_10:'Sự linh hoạt và tinh thần bền bỉ',
+    topic_11:'Hợp nhất đội ngũ',
+    topic_12:'Xây dựng và phát triển văn hoá doanh nghiệp',
+    topic_13:'An toàn tâm lý và kết nối đội nhóm',
+    topic_14:'Nâng tầm trải nghiệm khách hàng',
     contact_label:'Liên hệ', contact_title:'Hãy cùng trao đổi và hợp tác',
     contact_intro:'Nếu tổ chức của bạn đang tìm facilitator song ngữ có kinh nghiệm cho chương trình đào tạo sắp tới tại Việt Nam, tôi rất vui được lắng nghe.',
     f_name:'Họ tên', f_email:'Email', f_org:'Tổ chức',
