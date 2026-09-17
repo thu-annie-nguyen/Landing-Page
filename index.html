@@ -374,6 +374,90 @@
     font-size: 0.95rem;
   }
 
+  /* ── TOPICS ── */
+  #topics {
+    background: #fff;
+    padding: 7rem 6rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topics-intro {
+    font-size: 1.05rem;
+    color: var(--warm-mid);
+    line-height: 1.75;
+    max-width: 52ch;
+    margin-bottom: 2.8rem;
+  }
+
+  .topics-brand {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(45, 102, 245, 0.35);
+    color: var(--accent);
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .topics-footer {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .topics-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.3s, color 0.3s;
+  }
+
+  .topics-link:hover {
+    color: #0C447C;
+    gap: 1rem;
+  }
+
+  .topics-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .topics-grid li {
+    display: flex;
+    gap: 1.1rem;
+    align-items: baseline;
+    padding: 1.15rem 1.5rem 1.15rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topics-grid li:nth-child(odd) { padding-right: 2rem; }
+  .topics-grid li:nth-child(even) { padding-left: 2rem; border-left: 1px solid var(--line); }
+
+  .topic-num {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--accent);
+    min-width: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .topic-name {
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
   /* ── CASE STUDIES ── */
   #cases {
     padding: 7rem 6rem;
@@ -862,9 +946,13 @@
       gap: 3rem;
     }
 
-    section, #about, #story, #contact, #cases, #courses {
+    section, #about, #story, #contact, #cases, #courses, #topics {
       padding: 5rem 2rem;
     }
+
+    .topics-grid { grid-template-columns: 1fr; }
+    .topics-grid li:nth-child(odd) { padding-right: 0; }
+    .topics-grid li:nth-child(even) { padding-left: 0; border-left: none; }
 
     .cases-grid { grid-template-columns: 1fr; }
     .case-card { border-right: none; border-bottom: 1px solid var(--line); }
@@ -886,6 +974,7 @@
     <li><a href="#about" data-i18n="nav_profile">Profile</a></li>
     <li><a href="#cases" data-i18n="nav_cases">Case Studies</a></li>
     <li><a href="#courses" data-i18n="nav_courses">Khoá Học</a></li>
+    <li><a href="#topics" data-i18n="nav_topics">Topics</a></li>
     <li><a href="facilitation_page.html" data-i18n="nav_facilitation">Facilitation</a></li>
     <li><a href="#contact" data-i18n="nav_contact">Liên Hệ</a></li>
   </ul>
@@ -1151,6 +1240,35 @@
   </div>
 </section>
 
+<!-- CRESTCOM TOPICS -->
+<section id="topics">
+  <div class="reveal">
+    <span class="topics-brand" data-i18n="topics_brand">Crestcom Leadership</span>
+    <div class="section-label" data-i18n="topics_label">Facilitation programs</div>
+    <h2 class="section-title" data-i18n="topics_title">Programs I have delivered</h2>
+    <p class="topics-intro" data-i18n="topics_intro">As a Certified Crestcom Facilitator, I deliver Crestcom Leadership programs for managers and teams — in Vietnamese and English. These are international leadership curricula suited to diverse industries and roles.</p>
+  </div>
+  <ol class="topics-grid reveal">
+    <li><span class="topic-num">01</span><span class="topic-name" data-i18n="topic_1">Deliver Results the First Time</span></li>
+    <li><span class="topic-num">02</span><span class="topic-name" data-i18n="topic_2">Mastering Negotiation</span></li>
+    <li><span class="topic-num">03</span><span class="topic-name" data-i18n="topic_3">Change How You Manage Change</span></li>
+    <li><span class="topic-num">04</span><span class="topic-name" data-i18n="topic_4">Leadership Presence</span></li>
+    <li><span class="topic-num">05</span><span class="topic-name" data-i18n="topic_5">Influence With Intention</span></li>
+    <li><span class="topic-num">06</span><span class="topic-name" data-i18n="topic_6">Trust: The Leadership Differentiator</span></li>
+    <li><span class="topic-num">07</span><span class="topic-name" data-i18n="topic_7">Dialing Into Emotional Intelligence</span></li>
+    <li><span class="topic-num">08</span><span class="topic-name" data-i18n="topic_8">Ignite a Culture of Accountability</span></li>
+    <li><span class="topic-num">09</span><span class="topic-name" data-i18n="topic_9">Stimulate Creative Perspectives</span></li>
+    <li><span class="topic-num">10</span><span class="topic-name" data-i18n="topic_10">Shift: Into Mental Agility and Resilience</span></li>
+    <li><span class="topic-num">11</span><span class="topic-name" data-i18n="topic_11">Team Fusion</span></li>
+    <li><span class="topic-num">12</span><span class="topic-name" data-i18n="topic_12">Activate the on-ramp</span></li>
+    <li><span class="topic-num">13</span><span class="topic-name" data-i18n="topic_13">Managing and Appreciating Team Dynamics</span></li>
+    <li><span class="topic-num">14</span><span class="topic-name" data-i18n="topic_14">Power Up The Customer Experience</span></li>
+  </ol>
+  <div class="topics-footer reveal">
+    <a href="facilitation_page.html" class="topics-link"><span data-i18n="topics_link">View facilitation profile</span> <span>→</span></a>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-left reveal">
@@ -1228,6 +1346,7 @@
     en: {
       page_title: 'Thư Annie Nguyễn — Trainer & Coach for IT',
       nav_profile: 'Profile',
+      nav_topics: 'Topics',
       nav_cases: 'Case Studies',
       nav_courses: 'Courses',
       nav_facilitation: 'Facilitation',
@@ -1257,6 +1376,25 @@
       cred5_4: 'Transformational Psychology — Dr. Lê Nguyên Phương',
       cred5_5: 'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
       cred5_6: 'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+      topics_brand: 'Crestcom Leadership',
+      topics_label: 'Facilitation programs',
+      topics_title: 'Programs I have delivered',
+      topics_intro: 'As a Certified Crestcom Facilitator, I deliver Crestcom Leadership programs for managers and teams — in Vietnamese and English. These are international leadership curricula suited to diverse industries and roles.',
+      topics_link: 'View facilitation profile',
+      topic_1: 'Deliver Results the First Time',
+      topic_2: 'Mastering Negotiation',
+      topic_3: 'Change How You Manage Change',
+      topic_4: 'Leadership Presence',
+      topic_5: 'Influence With Intention',
+      topic_6: 'Trust: The Leadership Differentiator',
+      topic_7: 'Dialing Into Emotional Intelligence',
+      topic_8: 'Ignite a Culture of Accountability',
+      topic_9: 'Stimulate Creative Perspectives',
+      topic_10: 'Shift: Into Mental Agility and Resilience',
+      topic_11: 'Team Fusion',
+      topic_12: 'Activate the on-ramp',
+      topic_13: 'Managing and Appreciating Team Dynamics',
+      topic_14: 'Power Up The Customer Experience',
       cases_label: 'Real outcomes',
       cases_title: 'Case Studies',
       case1_title: 'From "hiding mistakes" to a culture of support',
@@ -1343,6 +1481,7 @@
     vi: {
       page_title: 'Thư Annie Nguyễn — Trainer & Coach cho IT',
       nav_profile: 'Profile',
+      nav_topics: 'Chuyên đề',
       nav_cases: 'Case Studies',
       nav_courses: 'Khoá Học',
       nav_facilitation: 'Facilitation',
@@ -1372,6 +1511,25 @@
       cred5_4: 'Tâm lý học chuyển hoá - TS Lê Nguyên Phương',
       cred5_5: 'Certified Practitioner of Neuro-Linguistic Programming (NLP) - ABNLP',
       cred5_6: 'Rapid Instructional Design & Learning Activity Design & Learning Science - GameDaoTao',
+      topics_brand: 'Crestcom Leadership',
+      topics_label: 'Chương trình facilitation',
+      topics_title: 'Các chương trình tôi đã dẫn',
+      topics_intro: 'Với tư cách Certified Crestcom Facilitator, tôi dẫn các chương trình Crestcom Leadership cho quản lý và đội ngũ — bằng tiếng Việt và tiếng Anh. Đây là chương trình lãnh đạo quốc tế, khác với các khoá học tự thiết kế cho IT ở trên.',
+      topics_link: 'Xem trang Facilitation',
+      topic_1: 'Đạt thành quả ngay lần đầu',
+      topic_2: 'Làm chủ trên bàn đàm phán',
+      topic_3: 'Thích nghi với sự biến động',
+      topic_4: 'Tác phong lãnh đạo',
+      topic_5: 'Chủ động tạo ảnh hưởng',
+      topic_6: 'Lòng tin: Lãnh đạo tạo nên khác biệt',
+      topic_7: 'Thấu hiểu trí tuệ cảm xúc',
+      topic_8: 'Hình thành văn hóa trách nhiệm',
+      topic_9: 'Kích thích góc nhìn sáng tạo',
+      topic_10: 'Sự linh hoạt và tinh thần bền bỉ',
+      topic_11: 'Hợp nhất đội ngũ',
+      topic_12: 'Xây dựng và phát triển văn hoá doanh nghiệp',
+      topic_13: 'An toàn tâm lý và kết nối đội nhóm',
+      topic_14: 'Nâng tầm trải nghiệm khách hàng',
       cases_label: 'Kết quả thực tế',
       cases_title: 'Case Studies',
       case1_title: 'Từ "giấu lỗi" sang văn hoá tương trợ',
