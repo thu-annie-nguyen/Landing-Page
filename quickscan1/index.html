@@ -3,11 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec">
+  <meta name="referrer" content="no-referrer-when-downgrade">
   <title>Quick Scan</title>
-  <script>
-    window.location.replace('https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec');
-  </script>
+  <style>
+    :root {
+      --cream: #F6F8FC;
+      --ink: #050A16;
+      --accent: #2D66F5;
+      --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .wrap { max-width: 22rem; }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      font-size: 0.95rem;
+      color: #5E6C86;
+      margin-bottom: 1.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1e4fd4; }
+    .hint {
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      color: #8a96ab;
+    }
+  </style>
 </head>
-<body></body>
+<body>
+  <div class="wrap">
+    <h1>Quick Scan</h1>
+    <p id="msg">Đang chuyển bạn tới biểu mẫu…</p>
+    <a id="go" class="btn" href="https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec">Bắt đầu →</a>
+    <p class="hint" id="hint" hidden>Bấm nút phía trên để mở biểu mẫu trên Safari hoặc iPhone.</p>
+  </div>
+  <script>
+    (function () {
+      var APP_URL = 'https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec';
+      var ua = navigator.userAgent || '';
+      var isIOS = /iPad|iPhone|iPod/.test(ua);
+      var isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS|OPR|Opera/.test(ua);
+      var isInApp = /FBAN|FBAV|Instagram|Line\//.test(ua);
+      var needsTap = isIOS || isSafari || isInApp;
+
+      var msg = document.getElementById('msg');
+      var hint = document.getElementById('hint');
+      var go = document.getElementById('go');
+      go.href = APP_URL;
+
+      if (needsTap) {
+        msg.textContent = 'Bấm nút bên dưới để bắt đầu Quick Scan.';
+        hint.hidden = false;
+        return;
+      }
+
+      window.location.replace(APP_URL);
+      setTimeout(function () {
+        msg.textContent = 'Nếu trang chưa chuyển, bấm nút bên dưới.';
+        hint.hidden = false;
+      }, 2500);
+    })();
+  </script>
+</body>
 </html>
