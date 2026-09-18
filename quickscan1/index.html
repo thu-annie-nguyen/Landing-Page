@@ -1,98 +1,1134 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  <title>Quick Scan</title>
-  <style>
-    :root {
-      --cream: #F6F8FC;
-      --ink: #050A16;
-      --accent: #2D66F5;
-      --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-weight: 400;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .wrap { max-width: 22rem; }
-    h1 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    p {
-      font-size: 0.95rem;
-      color: #5E6C86;
-      margin-bottom: 1.75rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 1rem 1.25rem;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .btn:hover { background: #1e4fd4; }
-    .hint {
-      margin-top: 1.25rem;
-      font-size: 0.82rem;
-      color: #8a96ab;
-    }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Quick Scan: Xác Định Điểm Mù Cho BA, Tester & Product Owner</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <style>
+ :root {
+ --primary: #2563eb;
+ --primary-dark: #1d4ed8;
+ --primary-light: #dbeafe;
+ --primary-50: #eff6ff;
+ --slate-900: #0f172a;
+ --slate-800: #1e293b;
+ --slate-700: #334155;
+ --slate-600: #475569;
+ --slate-500: #64748b;
+ --slate-200: #e2e8f0;
+ --slate-100: #f1f5f9;
+ --slate-50: #f8fafc;
+ --danger: #ef4444;
+ --danger-light: #fee2e2;
+ --danger-dark: #b91c1c;
+ --warning: #f59e0b;
+ --warning-light: #fef3c7;
+ --warning-dark: #b45309;
+ --success: #10b981;
+ --success-light: #d1fae5;
+ --success-dark: #047857;
+ --radius-lg: 16px;
+ --radius-md: 10px;
+ --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+ --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+ --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+ }
+
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+ body {
+ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+ background: #f8fafc;
+ color: var(--slate-800);
+ line-height: 1.6;
+ padding-bottom: 60px;
+ }
+
+ .container {
+ max-width: 800px;
+ margin: 0 auto;
+ padding: 24px 16px;
+ }
+
+ 
+ .hero-card {
+ background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%);
+ color: #fff;
+ padding: 36px 28px;
+ border-radius: var(--radius-lg);
+ box-shadow: var(--shadow-lg);
+ margin-bottom: 28px;
+ position: relative;
+ overflow: hidden;
+ }
+ .hero-card::after {
+ content: '';
+ position: absolute;
+ top: -50px;
+ right: -50px;
+ width: 200px;
+ height: 200px;
+ background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+ border-radius: 50%;
+ }
+ .badge {
+ display: inline-block;
+ padding: 4px 12px;
+ border-radius: 9999px;
+ font-size: 12px;
+ font-weight: 700;
+ letter-spacing: 0.5px;
+ text-transform: uppercase;
+ background: rgba(255, 255, 255, 0.2);
+ backdrop-filter: blur(4px);
+ margin-bottom: 12px;
+ }
+ .hero-title {
+ font-size: 26px;
+ font-weight: 800;
+ line-height: 1.3;
+ margin-bottom: 12px;
+ }
+ .hero-desc {
+ font-size: 14.5px;
+ color: #e0e7ff;
+ margin-bottom: 18px;
+ }
+ .scale-guide {
+ background: rgba(15, 23, 42, 0.35);
+ border: 1px solid rgba(255, 255, 255, 0.15);
+ border-radius: var(--radius-md);
+ padding: 12px 16px;
+ font-size: 13px;
+ }
+ .scale-guide strong { color: #93c5fd; }
+ .scale-chips {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin-top: 8px;
+ }
+ .chip {
+ background: rgba(255, 255, 255, 0.12);
+ padding: 3px 8px;
+ border-radius: 6px;
+ font-size: 12px;
+ }
+
+ 
+ .section-card {
+ background: #fff;
+ border-radius: var(--radius-lg);
+ border: 1px solid var(--slate-200);
+ box-shadow: var(--shadow-sm);
+ margin-bottom: 24px;
+ padding: 24px;
+ transition: all 0.2s ease;
+ }
+ .section-card:hover {
+ box-shadow: var(--shadow);
+ }
+ .section-header {
+ display: flex;
+ align-items: flex-start;
+ gap: 12px;
+ margin-bottom: 20px;
+ padding-bottom: 14px;
+ border-bottom: 1px solid var(--slate-100);
+ }
+ .section-icon {
+ width: 38px;
+ height: 38px;
+ background: var(--primary-50);
+ color: var(--primary);
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 800;
+ font-size: 16px;
+ flex-shrink: 0;
+ }
+ .section-title {
+ font-size: 17px;
+ font-weight: 700;
+ color: var(--slate-900);
+ line-height: 1.35;
+ }
+ .section-sub {
+ font-size: 13px;
+ color: var(--slate-500);
+ margin-top: 3px;
+ }
+
+ 
+ .question-box {
+ margin-bottom: 22px;
+ padding-bottom: 18px;
+ border-bottom: 1px dashed var(--slate-200);
+ }
+ .question-box:last-child {
+ margin-bottom: 0;
+ padding-bottom: 0;
+ border-bottom: none;
+ }
+ .question-text {
+ font-size: 14.5px;
+ font-weight: 600;
+ color: var(--slate-800);
+ margin-bottom: 12px;
+ }
+
+ 
+ .rating-group {
+ display: grid;
+ grid-template-columns: repeat(5, 1fr);
+ gap: 8px;
+ }
+ .rating-btn {
+ position: relative;
+ }
+ .rating-btn input {
+ position: absolute;
+ opacity: 0;
+ width: 0;
+ height: 0;
+ }
+ .rating-btn label {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ padding: 10px 4px;
+ background: var(--slate-50);
+ border: 1.5px solid var(--slate-200);
+ border-radius: 8px;
+ cursor: pointer;
+ transition: all 0.15s ease;
+ text-align: center;
+ }
+ .rating-btn label .num {
+ font-size: 16px;
+ font-weight: 700;
+ color: var(--slate-700);
+ }
+ .rating-btn label .desc {
+ font-size: 10px;
+ color: var(--slate-500);
+ margin-top: 2px;
+ line-height: 1.1;
+ }
+ .rating-btn input:checked + label {
+ background: var(--primary);
+ border-color: var(--primary);
+ color: #fff;
+ transform: translateY(-2px);
+ box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
+ }
+ .rating-btn input:checked + label .num,
+ .rating-btn input:checked + label .desc {
+ color: #fff;
+ }
+ .rating-btn:hover label {
+ border-color: var(--primary);
+ background: var(--primary-50);
+ }
+
+ 
+ .form-group {
+ margin-bottom: 18px;
+ }
+ .form-group label {
+ display: block;
+ font-size: 14px;
+ font-weight: 600;
+ color: var(--slate-800);
+ margin-bottom: 6px;
+ }
+ .form-group .hint {
+ font-size: 12.5px;
+ color: var(--slate-500);
+ margin-bottom: 8px;
+ white-space: pre-line;
+ }
+ .form-control {
+ width: 100%;
+ padding: 11px 14px;
+ font-family: inherit;
+ font-size: 14px;
+ border: 1.5px solid var(--slate-200);
+ border-radius: var(--radius-md);
+ background: #fff;
+ color: var(--slate-800);
+ transition: border-color 0.15s ease;
+ }
+ .form-control:focus {
+ outline: none;
+ border-color: var(--primary);
+ box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+ }
+ textarea.form-control {
+ min-height: 90px;
+ resize: vertical;
+ }
+
+ 
+ .radio-option {
+ display: flex;
+ align-items: flex-start;
+ gap: 10px;
+ padding: 10px 14px;
+ border: 1.5px solid var(--slate-200);
+ border-radius: var(--radius-md);
+ margin-bottom: 8px;
+ cursor: pointer;
+ background: var(--slate-50);
+ transition: all 0.15s ease;
+ }
+ .radio-option:hover {
+ border-color: var(--primary);
+ background: var(--primary-50);
+ }
+ .radio-option input {
+ margin-top: 3px;
+ }
+ .radio-option span {
+ font-size: 13.5px;
+ color: var(--slate-800);
+ font-weight: 500;
+ }
+
+ 
+ .btn-submit {
+ width: 100%;
+ padding: 16px;
+ background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+ color: #fff;
+ border: none;
+ border-radius: var(--radius-md);
+ font-size: 16px;
+ font-weight: 700;
+ cursor: pointer;
+ box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+ transition: all 0.2s ease;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ }
+ .btn-submit:hover {
+ background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+ transform: translateY(-1px);
+ box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+ }
+
+ 
+ #resultsView {
+ display: none;
+ animation: fadeIn 0.3s ease-in-out;
+ }
+ @keyframes fadeIn {
+ from { opacity: 0; transform: translateY(8px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+
+ .result-hero {
+ background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+ color: #fff;
+ padding: 32px 24px;
+ border-radius: var(--radius-lg);
+ margin-bottom: 24px;
+ box-shadow: var(--shadow-lg);
+ text-align: center;
+ }
+ .result-hero h2 {
+ font-size: 24px;
+ font-weight: 800;
+ margin-bottom: 6px;
+ }
+ .result-hero p {
+ color: #94a3b8;
+ font-size: 14px;
+ }
+ .overall-score-pill {
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+ background: rgba(255, 255, 255, 0.1);
+ padding: 8px 18px;
+ border-radius: 9999px;
+ margin-top: 14px;
+ font-weight: 700;
+ font-size: 15px;
+ color: #60a5fa;
+ }
+
+ 
+ .top-spot-card {
+ background: #fff;
+ border-radius: var(--radius-lg);
+ border: 2px solid #f87171;
+ box-shadow: var(--shadow);
+ padding: 24px;
+ margin-bottom: 24px;
+ position: relative;
+ }
+ .top-spot-badge {
+ display: inline-block;
+ background: #fee2e2;
+ color: #b91c1c;
+ padding: 4px 12px;
+ border-radius: 9999px;
+ font-size: 12px;
+ font-weight: 800;
+ text-transform: uppercase;
+ margin-bottom: 10px;
+ }
+ .top-spot-title {
+ font-size: 20px;
+ font-weight: 800;
+ color: var(--slate-900);
+ margin-bottom: 12px;
+ }
+ .diagnosis-block {
+ background: var(--slate-50);
+ border-radius: var(--radius-md);
+ padding: 16px;
+ margin-bottom: 16px;
+ font-size: 14px;
+ line-height: 1.6;
+ border-left: 4px solid #ef4444;
+ }
+ .diagnosis-block h4 {
+ font-size: 14px;
+ font-weight: 700;
+ color: var(--slate-900);
+ margin-bottom: 6px;
+ }
+ .actions-list {
+ list-style: none;
+ padding: 0;
+ margin: 12px 0 0 0;
+ }
+ .actions-list li {
+ position: relative;
+ padding-left: 24px;
+ margin-bottom: 10px;
+ font-size: 13.5px;
+ color: var(--slate-700);
+ line-height: 1.5;
+ }
+ .actions-list li::before {
+ content: '✓';
+ position: absolute;
+ left: 0;
+ top: 0;
+ color: var(--success-dark);
+ font-weight: 800;
+ }
+
+ 
+ .breakdown-card {
+ background: #fff;
+ border-radius: var(--radius-lg);
+ border: 1px solid var(--slate-200);
+ padding: 24px;
+ margin-bottom: 24px;
+ }
+ .breakdown-title {
+ font-size: 17px;
+ font-weight: 700;
+ color: var(--slate-900);
+ margin-bottom: 16px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+ .section-row {
+ margin-bottom: 18px;
+ }
+ .section-row:last-child {
+ margin-bottom: 0;
+ }
+ .row-header {
+ display: flex;
+ justify-content: space-between;
+ font-size: 14px;
+ font-weight: 600;
+ margin-bottom: 6px;
+ }
+ .row-score {
+ font-weight: 700;
+ }
+ .progress-bar-bg {
+ height: 10px;
+ background: var(--slate-100);
+ border-radius: 9999px;
+ overflow: hidden;
+ display: flex;
+ }
+ .progress-fill {
+ height: 100%;
+ border-radius: 9999px;
+ transition: width 0.6s ease;
+ }
+
+ 
+ .risk-high { color: var(--danger-dark); }
+ .fill-high { background: #ef4444; }
+ .risk-med { color: var(--warning-dark); }
+ .fill-med { background: #f59e0b; }
+ .risk-low { color: var(--success-dark); }
+ .fill-low { background: #10b981; }
+
+ .tag-pill {
+ font-size: 11px;
+ padding: 2px 8px;
+ border-radius: 9999px;
+ font-weight: 700;
+ margin-left: 6px;
+ }
+ .tag-high { background: #fee2e2; color: #b91c1c; }
+ .tag-med { background: #fef3c7; color: #b45309; }
+ .tag-low { background: #d1fae5; color: #047857; }
+
+ 
+ .btn-group {
+ display: flex;
+ gap: 12px;
+ margin-top: 24px;
+ }
+ .btn-secondary {
+ flex: 1;
+ padding: 14px;
+ background: #fff;
+ color: var(--slate-700);
+ border: 1.5px solid var(--slate-300);
+ border-radius: var(--radius-md);
+ font-weight: 700;
+ font-size: 14px;
+ cursor: pointer;
+ text-align: center;
+ text-decoration: none;
+ }
+ .btn-secondary:hover {
+ background: var(--slate-50);
+ border-color: var(--slate-400);
+ }
+ .btn-primary {
+ flex: 1;
+ padding: 14px;
+ background: var(--primary);
+ color: #fff;
+ border: none;
+ border-radius: var(--radius-md);
+ font-weight: 700;
+ font-size: 14px;
+ cursor: pointer;
+ text-align: center;
+ text-decoration: none;
+ }
+ .btn-primary:hover {
+ background: var(--primary-dark);
+ }
+
+ 
+ .contact-card {
+ background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+ border: 1px solid #bfdbfe;
+ border-radius: var(--radius-lg);
+ padding: 22px;
+ margin-top: 24px;
+ text-align: center;
+ }
+ .contact-card h4 {
+ font-size: 16px;
+ font-weight: 800;
+ color: var(--slate-900);
+ margin-bottom: 6px;
+ }
+ .contact-card p {
+ font-size: 13.5px;
+ color: var(--slate-700);
+ margin-bottom: 14px;
+ }
+
+ .home-link {
+ display: inline-block;
+ margin-bottom: 16px;
+ font-size: 13px;
+ font-weight: 600;
+ color: var(--slate-500);
+ text-decoration: none;
+ }
+ .home-link:hover { color: var(--primary); }
+
+ @media (max-width: 600px) {
+ .hero-title { font-size: 21px; }
+ .rating-btn label { padding: 8px 2px; }
+ .rating-btn label .desc { display: none; }
+ .rating-btn label .num { font-size: 15px; }
+ .btn-group { flex-direction: column; }
+ }
+ </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Quick Scan</h1>
-    <p id="msg">Đang chuyển bạn tới biểu mẫu…</p>
-    <a id="go" class="btn" href="https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec">Bắt đầu →</a>
-    <p class="hint" id="hint" hidden>Bấm nút phía trên để mở biểu mẫu trên Safari hoặc iPhone.</p>
-  </div>
-  <script>
-    (function () {
-      var APP_URL = 'https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec';
-      var ua = navigator.userAgent || '';
-      var isIOS = /iPad|iPhone|iPod/.test(ua);
-      var isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS|OPR|Opera/.test(ua);
-      var isInApp = /FBAN|FBAV|Instagram|Line\//.test(ua);
-      var needsTap = isIOS || isSafari || isInApp;
 
-      var msg = document.getElementById('msg');
-      var hint = document.getElementById('hint');
-      var go = document.getElementById('go');
-      go.href = APP_URL;
+<div class="container">
+ <a class="home-link" href="/">← Thư Annie Nguyễn</a>
+ <div id="scanFormView">
+ <div class="hero-card">
+ <span class="badge">Assessment Tool</span>
+ <h1 class="hero-title">Quick Scan: Xác Định Điểm Mù Của BA, Tester & Product Owner</h1>
+ <p class="hero-desc">
+ Giúp bạn nhận diện tình huống nào đang làm bạn mất nhiều thời gian, năng lượng hoặc khiến công việc bị kẹt nhất. Nhận kết quả chẩn đoán và phân tích điểm mù ngay lập tức sau khi hoàn thành.
+ </p>
+ <div class="scale-guide">
+ <strong>Thang điểm đánh giá (1 - 5):</strong>
+ <div class="scale-chips">
+ <span class="chip">1: Hoàn toàn không đúng</span>
+ <span class="chip">2: Ít đúng</span>
+ <span class="chip">3: Đúng một phần</span>
+ <span class="chip">4: Khá đúng</span>
+ <span class="chip">5: Rất đúng với tôi</span>
+ </div>
+ </div>
+ </div>
 
-      if (needsTap) {
-        msg.textContent = 'Bấm nút bên dưới để bắt đầu Quick Scan.';
-        hint.hidden = false;
-        return;
-      }
+ <form id="scanForm">
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon">A</div>
+ <div>
+ <h3 class="section-title">Nhận Diện & Khoanh Vùng Vấn Đề Cốt Lõi</h3>
+ <p class="section-sub">Khả năng phân biệt nguyên nhân gốc rễ vs triệu chứng bề mặt</p>
+ </div>
+ </div>
 
-      window.location.replace(APP_URL);
-      setTimeout(function () {
-        msg.textContent = 'Nếu trang chưa chuyển, bấm nút bên dưới.';
-        hint.hidden = false;
-      }, 2500);
-    })();
-  </script>
+ <div class="question-box">
+ <p class="question-text">1. Khi một vấn đề xảy ra, tôi mất thời gian phân biệt giữa biểu hiện bề mặt và vấn đề cốt lõi thực sự cần xử lý.</p>
+ <div class="rating-group" data-q="q1">
+ <div class="rating-btn"><input type="radio" name="q1" id="q1_1" value="1" required><label for="q1_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q1" id="q1_4" value="4"><label for="q1_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q1" id="q1_5" value="5"><label for="q1_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">2. Khi một tình huống có nhiều vấn đề đan xen, tôi khó xác định nên bắt đầu xử lý từ đâu trước.</p>
+ <div class="rating-group" data-q="q2">
+ <div class="rating-btn"><input type="radio" name="q2" id="q2_1" value="1" required><label for="q2_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q2" id="q2_2" value="2"><label for="q2_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q2" id="q2_4" value="4"><label for="q2_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q2" id="q2_5" value="5"><label for="q2_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">3. Tôi đôi khi xử lý triệu chứng trước, rồi sau đó vấn đề tương tự lại tiếp tục xảy ra.</p>
+ <div class="rating-group" data-q="q3">
+ <div class="rating-btn"><input type="radio" name="q3" id="q3_1" value="1" required><label for="q3_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q3" id="q3_4" value="4"><label for="q3_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q3" id="q3_5" value="5"><label for="q3_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon">B</div>
+ <div>
+ <h3 class="section-title">Quản Lý Ưu Tiên & Đánh Đổi Cam Kết</h3>
+ <p class="section-sub">Kiểm soát tiến độ, deadline và phạm vi cam kết</p>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">4. Khi nhiều việc cùng được gọi là \u201cgấp\u201d, tôi khó xác định việc nào thực sự cần ưu tiên.</p>
+ <div class="rating-group" data-q="q4">
+ <div class="rating-btn"><input type="radio" name="q4" id="q4_1" value="1" required><label for="q4_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q4" id="q4_4" value="4"><label for="q4_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q4" id="q4_5" value="5"><label for="q4_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">5. Tôi thường cố giữ tất cả deadline thay vì chủ động làm rõ việc nào cần lùi, giảm phạm vi hoặc đổi nguồn lực.</p>
+ <div class="rating-group" data-q="q5">
+ <div class="rating-btn"><input type="radio" name="q5" id="q5_1" value="1" required><label for="q5_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q5" id="q5_2" value="2"><label for="q5_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q5" id="q5_4" value="4"><label for="q5_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q5" id="q5_5" value="5"><label for="q5_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">6. Khi nhận thêm một yêu cầu mới, tôi chưa luôn đánh giá rõ việc đó sẽ ảnh hưởng đến những cam kết hiện tại như thế nào.</p>
+ <div class="rating-group" data-q="q6">
+ <div class="rating-btn"><input type="radio" name="q6" id="q6_1" value="1" required><label for="q6_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q6" id="q6_4" value="4"><label for="q6_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q6" id="q6_5" value="5"><label for="q6_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon">C</div>
+ <div>
+ <h3 class="section-title">Ranh Giới Vai Trò & Trách Nhiệm</h3>
+ <p class="section-sub">Phân quyền, ủy thác và tránh bẫy ôm đồm công việc</p>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">7. Tôi thường nhận thêm việc vì nếu không làm, tôi lo công việc sẽ bị chậm hoặc chất lượng không đạt.</p>
+ <div class="rating-group" data-q="q7">
+ <div class="rating-btn"><input type="radio" name="q7" id="q7_1" value="1" required><label for="q7_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q7" id="q7_2" value="2"><label for="q7_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q7" id="q7_4" value="4"><label for="q7_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q7" id="q7_5" value="5"><label for="q7_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">8. Có những việc tôi đang xử lý nhưng tôi không chắc mình thực sự là người chịu trách nhiệm chính.</p>
+ <div class="rating-group" data-q="q8">
+ <div class="rating-btn"><input type="radio" name="q8" id="q8_1" value="1" required><label for="q8_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q8" id="q8_2" value="2"><label for="q8_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q8" id="q8_4" value="4"><label for="q8_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q8" id="q8_5" value="5"><label for="q8_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">9. Tôi thấy khó nói rõ với người khác đâu là phần tôi có thể hỗ trợ và đâu là phần họ cần tự chịu trách nhiệm.</p>
+ <div class="rating-group" data-q="q9">
+ <div class="rating-btn"><input type="radio" name="q9" id="q9_1" value="1" required><label for="q9_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q9" id="q9_2" value="2"><label for="q9_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q9" id="q9_4" value="4"><label for="q9_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q9" id="q9_5" value="5"><label for="q9_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon">D</div>
+ <div>
+ <h3 class="section-title">Giao Tiếp Trong Các Cuộc Trao Đổi Khó</h3>
+ <p class="section-sub">Phản biện, từ chối, escalation và nói thẳng vấn đề</p>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">10. Tôi biết mình cần nói gì với sếp, đồng nghiệp hoặc team member nhưng khi bắt đầu cuộc trao đổi, tôi lại khó nói thẳng vào vấn đề.</p>
+ <div class="rating-group" data-q="q10">
+ <div class="rating-btn"><input type="radio" name="q10" id="q10_1" value="1" required><label for="q10_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q10" id="q10_2" value="2"><label for="q10_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q10" id="q10_4" value="4"><label for="q10_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q10" id="q10_5" value="5"><label for="q10_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">11. Khi cần phản biện, từ chối, escalation hoặc yêu cầu hỗ trợ, tôi lo người khác sẽ nghĩ mình thiếu năng lực hoặc không hợp tác.</p>
+ <div class="rating-group" data-q="q11">
+ <div class="rating-btn"><input type="radio" name="q11" id="q11_1" value="1" required><label for="q11_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q11" id="q11_4" value="4"><label for="q11_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q11" id="q11_5" value="5"><label for="q11_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">12. Tôi thường bước vào những cuộc trao đổi khó mà chưa chuẩn bị trước mục tiêu, thông điệp chính và điều mình muốn người kia cam kết.</p>
+ <div class="rating-group" data-q="q12">
+ <div class="rating-btn"><input type="radio" name="q12" id="q12_1" value="1" required><label for="q12_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q12" id="q12_4" value="4"><label for="q12_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q12" id="q12_5" value="5"><label for="q12_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon">E</div>
+ <div>
+ <h3 class="section-title">Điều Phối Cuộc Họp & Trình Bày Stakeholder</h3>
+ <p class="section-sub">Dẫn dắt cuộc họp ra quyết định và giao tiếp tạo tác động</p>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">13. Một số meeting tôi tổ chức có nhiều trao đổi nhưng cuối cùng chưa rõ quyết định hoặc bước tiếp theo.</p>
+ <div class="rating-group" data-q="q13">
+ <div class="rating-btn"><input type="radio" name="q13" id="q13_1" value="1" required><label for="q13_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q13" id="q13_2" value="2"><label for="q13_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q13" id="q13_3" value="3"><label for="q13_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q13" id="q13_4" value="4"><label for="q13_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q13" id="q13_5" value="5"><label for="q13_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">14. Khi trình bày với stakeholder, tôi có xu hướng tập trung vào việc mình đã làm hơn là giá trị, tác động hoặc quyết định cần họ đưa ra.</p>
+ <div class="rating-group" data-q="q14">
+ <div class="rating-btn"><input type="radio" name="q14" id="q14_1" value="1" required><label for="q14_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q14" id="q14_2" value="2"><label for="q14_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q14" id="q14_3" value="3"><label for="q14_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q14" id="q14_4" value="4"><label for="q14_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q14" id="q14_5" value="5"><label for="q14_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+
+ <div class="question-box">
+ <p class="question-text">15. Tôi thường sa vào chi tiết, khiến cuộc họp gần hết thời gian mà vấn đề chính vẫn chưa được làm rõ.</p>
+ <div class="rating-group" data-q="q15">
+ <div class="rating-btn"><input type="radio" name="q15" id="q15_1" value="1" required><label for="q15_1"><span class="num">1</span><span class="desc">Không đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q15" id="q15_2" value="2"><label for="q15_2"><span class="num">2</span><span class="desc">Ít đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q15" id="q15_3" value="3"><label for="q15_3"><span class="num">3</span><span class="desc">Một phần</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q15" id="q15_4" value="4"><label for="q15_4"><span class="num">4</span><span class="desc">Khá đúng</span></label></div>
+ <div class="rating-btn"><input type="radio" name="q15" id="q15_5" value="5"><label for="q15_5"><span class="num">5</span><span class="desc">Rất đúng</span></label></div>
+ </div>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon" style="background:#fef3c7; color:#b45309;">★</div>
+ <div>
+ <h3 class="section-title">Câu Hỏi Quan Trọng Nhất</h3>
+ <p class="section-sub">Tình huống thực tế bạn đang muốn tháo gỡ nhất</p>
+ </div>
+ </div>
+
+ <div class="form-group">
+ <label>Nếu chỉ được mang MỘT tình huống để cùng phân tích và thực hành, bạn muốn giải quyết vấn đề nào nhất? <span style="color:var(--danger)">*</span></label>
+ <label class="radio-option">
+ <input type="radio" name="priorityIssue" value="Tôi chưa biết khoanh đúng vấn đề và bắt đầu từ đâu." required>
+ <span>Tôi chưa biết khoanh đúng vấn đề và bắt đầu từ đâu.</span>
+ </label>
+ <label class="radio-option">
+ <input type="radio" name="priorityIssue" value="Quá nhiều việc cùng ưu tiên, tôi khó quyết định việc nào làm trước và việc nào phải đánh đổi.">
+ <span>Quá nhiều việc cùng ưu tiên, tôi khó quyết định việc nào làm trước và việc nào phải đánh đổi.</span>
+ </label>
+ <label class="radio-option">
+ <input type="radio" name="priorityIssue" value="Tôi đang chịu trách nhiệm về kết quả nhưng ranh giới vai trò và trách nhiệm với người khác chưa rõ.">
+ <span>Tôi đang chịu trách nhiệm về kết quả nhưng ranh giới vai trò và trách nhiệm với người khác chưa rõ.</span>
+ </label>
+ <label class="radio-option">
+ <input type="radio" name="priorityIssue" value="Tôi có một cuộc trao đổi khó cần thực hiện nhưng chưa biết nên nói thế nào.">
+ <span>Tôi có một cuộc trao đổi khó cần thực hiện nhưng chưa biết nên nói thế nào.</span>
+ </label>
+ <label class="radio-option">
+ <input type="radio" name="priorityIssue" value="Tôi cần tổ chức một meeting hoặc trình bày với stakeholder sao cho đi đến quyết định và hành động rõ ràng.">
+ <span>Tôi cần tổ chức một meeting hoặc trình bày với stakeholder sao cho đi đến quyết định và hành động rõ ràng.</span>
+ </label>
+ </div>
+
+ <div class="form-group">
+ <label>Tình huống cụ thể của bạn là gì? (Tùy chọn)</label>
+ <p class="hint">Viết trong 2 đến 4 câu. Không cần kể toàn bộ bối cảnh, chỉ cần cho biết:
+- Điều gì đang xảy ra?
+- Bạn muốn đạt được kết quả gì?
+- Điều gì đang khiến bạn bị kẹt?</p>
+ <textarea class="form-control" name="situationDetail" placeholder="Chia sẻ ngắn gọn tình huống của bạn..."></textarea>
+ </div>
+ </div>
+
+ 
+ <div class="section-card">
+ <div class="section-header">
+ <div class="section-icon" style="background:#e0e7ff; color:#3730a3;">👤</div>
+ <div>
+ <h3 class="section-title">Thông Tin Kết Nối (Hoàn Toàn Tùy Chọn)</h3>
+ <p class="section-sub">Điền nếu bạn muốn Thư hỗ trợ gỡ rối tình huống hoặc nhận báo cáo chi tiết. Bạn hoàn toàn có thể để trống để giữ ẩn danh.</p>
+ </div>
+ </div>
+
+ <div class="form-group">
+ <label>Họ và tên của bạn:</label>
+ <input type="text" class="form-control" name="fullName" placeholder="Ví dụ: Nguyễn Văn A">
+ </div>
+
+ <div class="form-group">
+ <label>Email của bạn:</label>
+ <input type="email" class="form-control" name="email" placeholder="Ví dụ: name@company.com">
+ </div>
+
+ <div class="form-group">
+ <label>Vị trí / Chức danh hiện tại:</label>
+ <input type="text" class="form-control" name="jobTitle" placeholder="Ví dụ: Business Analyst (BA), QA/QC Tester, Product Owner (PO), Product Manager...">
+ </div>
+ </div>
+
+ <button type="submit" class="btn-submit">
+ <span>Xem Kết Quả Chẩn Đoán Ngay</span>
+ <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+ </button>
+ </form>
+ </div>
+
+ 
+ <div id="resultsView">
+ <div class="result-hero">
+ <h2>Báo Cáo Chẩn Đoán Điểm Mù Cho BA, Tester & Product Owner</h2>
+ <p id="resultUserGreeting">Kết quả phân tích dựa trên 15 chỉ số đánh giá thực tế của bạn</p>
+ <div class="overall-score-pill">
+ <span>Tổng điểm mức độ rủi ro:</span>
+ <strong id="totalScoreText">0/75</strong>
+ </div>
+ </div>
+
+ 
+ <div class="top-spot-card" id="topSpotCard">
+ <span class="top-spot-badge">⚠️ Điểm Mù Cần Chú Ý Nhất</span>
+ <h3 class="top-spot-title" id="topSpotTitle">Đang phân tích...</h3>
+ 
+ <div class="diagnosis-block">
+ <h4>🔍 Bản chất điểm mù & Vì sao bạn bị kẹt:</h4>
+ <p id="topSpotWhy">Đang tải phân tích...</p>
+ </div>
+
+ <div class="diagnosis-block" style="border-left-color: #10b981;">
+ <h4 style="color: #065f46;">🚀 3 Hành động cụ thể để tháo gỡ ngay trong tuần này:</h4>
+ <ul class="actions-list" id="topSpotActions">
+ 
+ </ul>
+ </div>
+ </div>
+
+ 
+ <div class="breakdown-card">
+ <h3 class="breakdown-title">
+ <span>Tổng Kết Điểm Theo 5 Section</span>
+ <span style="font-size: 13px; font-weight: 500; color: var(--slate-500);">Thang 3 - 15 điểm / nhóm</span>
+ </h3>
+
+ <div id="sectionsList">
+ 
+ </div>
+ </div>
+
+ 
+ <div class="contact-card" id="contactOutcomeBox">
+ <h4 id="contactHeading">Kết Nối Cùng Thư Để Gỡ Rối Tình Huống</h4>
+ <p id="contactBody">
+ Nếu bạn đã điền thông tin và tình huống cụ thể, Thư sẽ xem xét và phản hồi cùng bạn trong vòng 24 giờ nhé!
+ </p>
+ <div class="btn-group">
+ <button type="button" class="btn-secondary" onclick="window.print()">In / Lưu PDF Kết Quả</button>
+ <button type="button" class="btn-primary" onclick="restartScan()">Làm Lại Bài Scan</button>
+ </div>
+ </div>
+ </div>
+</div>
+
+<script>
+ const DIAGNOSIS_DATA = {
+ A: {
+ name: "Phần A: Nhận diện & Khoanh vùng vấn đề cốt lõi",
+ shortName: "Khoanh vùng vấn đề cốt lõi",
+ why: "Điểm mù phổ biến của BA, Tester và PO là dễ bị cuốn vào 'yêu cầu giải pháp bề mặt' (Solution-first) từ phía stakeholder hoặc khách hàng, thay vì đào sâu tìm đúng Business Problem cốt lõi. Với Tester, điểm mù là chỉ tập trung bắt lỗi giao diện bề mặt mà không nhìn ra lỗi logic luồng nghiệp vụ. Với PO/BA, việc vội vã đưa yêu cầu chưa rõ nguyên nhân vào backlog khiến team dev phải sửa đi sửa lại nhiều lần.",
+ actions: [
+ "Áp dụng kỹ thuật '5 Whys' và 'Problem Framing': Luôn tự hỏi ít nhất 3 lần 'Vấn đề kinh doanh thực sự cần giải quyết ở đây là gì?' trước khi viết User Story hay Test Case.",
+ "Đối với Tester & BA: Vẽ sơ đồ luồng dữ liệu (Data Flow) hoặc State Machine Diagram trước khi thiết kế kịch bản test/đặc tả, giúp phát hiện sớm các lỗ hổng logic tiềm ẩn.",
+ "Tách bạch rõ ràng giữa 'Yêu cầu của người dùng' (User Request) và 'Nhu cầu thực sự của bài toán' (Underlying Need)."
+ ]
+ },
+ B: {
+ name: "Phần B: Quản lý ưu tiên & Đánh đổi cam kết",
+ shortName: "Quản lý ưu tiên & Đánh đổi",
+ why: "PO và BA thường bị kẹp ở giữa áp lực 'tính năng nào cũng gấp' từ kinh doanh/khách hàng và giới hạn nguồn lực của Dev team. Tâm lý sợ từ chối hoặc sợ làm mất lòng stakeholder khiến bạn nhận thêm yêu cầu vào sprint/release mà không dám đàm phán cắt giảm phạm vi (Scope Trade-off), dẫn đến trễ hạn phát hành và chất lượng sản phẩm giảm sút.",
+ actions: [
+ "Áp dụng phương pháp phân loại ưu tiên rõ ràng (như MoSCoW hoặc RICE) và công khai ma trận đánh đổi cho Stakeholder cùng nhìn thấy.",
+ "Luôn đặt câu hỏi đàm phán phạm vi: 'Để bổ sung tính năng mới này vào release, chúng ta sẽ dời User Story nào sang sprint sau?'.",
+ "Học cách nói 'Không' mang tính xây dựng: Đề xuất giải pháp MVP (Minimum Viable Product) để đáp ứng nhu cầu khẩn cấp trước thay vì cố nhồi nhét toàn bộ giải pháp lớn."
+ ]
+ },
+ C: {
+ name: "Phần C: Ranh giới vai trò & Trách nhiệm",
+ shortName: "Ranh giới vai trò & Trách nhiệm",
+ why: "Ranh giới vai trò trong tam giác BA - PO - QA rất dễ bị mờ nhạt và chồng chéo. BA thường gánh thay việc ra quyết định của PO; QA bị coi là 'người duy nhất chịu trách nhiệm về chất lượng sản phẩm' thay vì chất lượng là trách nhiệm của cả team; hoặc bạn phải ôm đồm việc kiểm tra, giải thích yêu cầu nhiều lần do thiếu quy trình nghiệm thu rõ ràng.",
+ actions: [
+ "Thống nhất định nghĩa Definition of Ready (DoR) và Definition of Done (DoD) với toàn bộ team để ranh giới bàn giao công việc luôn minh bạch.",
+ "Làm rõ vai trò: QA tập trung vào Quality Assurance (phòng ngừa rủi ro chất lượng sớm từ khâu spec) chứ không chỉ đơn thuần là Quality Control (chờ dev xong mới test).",
+ "Tránh bẫy ôm đồm làm thay: Khi có vướng mắc về yêu cầu, hướng dẫn team cùng tham gia làm rõ thay vì bạn tự mình làm hết mọi tài liệu chi tiết."
+ ]
+ },
+ D: {
+ name: "Phần D: Giao tiếp trong các cuộc trao đổi khó",
+ shortName: "Giao tiếp trong trao đổi khó",
+ why: "Khi cần từ chối một yêu cầu vô lý từ sếp/stakeholder, khi QA cần reject một bản build vì lỗi nghiêm trọng trước ngày release, hoặc khi BA cần phản biện giải pháp kỹ thuật của Dev team. Nỗi sợ xung đột hoặc sợ bị đánh giá là 'làm khó tiến độ' khiến bạn ngại nói thẳng, trì hoãn thông báo rủi ro hoặc nói vòng vo thiếu dứt khoát.",
+ actions: [
+ "Sử dụng dữ liệu và tác động thực tế (Data & Impact): Khi phản biện hoặc từ chối, hãy chỉ rõ rủi ro kinh doanh, rủi ro bảo mật hoặc chi phí sửa lỗi nếu phát hành tính năng chưa hoàn thiện.",
+ "Áp dụng công thức SBI (Situation - Behavior - Impact) để trao đổi khách quan, tránh cảm tính cá nhân trong các buổi bug triage hoặc refinement.",
+ "Escalate sớm kèm phương án dự phòng: Khi phát hiện rủi ro trễ hạn hoặc lỗi chặn, báo cáo ngay cho Lead/Stakeholder kèm theo ít nhất 2 phương án xử lý khả thi."
+ ]
+ },
+ E: {
+ name: "Phần E: Điều phối cuộc họp & Trình bày Stakeholder",
+ shortName: "Điều phối họp & Stakeholder",
+ why: "Các buổi họp Requirement, Refinement/Grooming hoặc Sprint Demo thường kéo dài lê thê mà không chốt được quyết định. Điểm mù là quá sa đà vào các chi tiết kỹ thuật/trường thông tin nhỏ nhặt thay vì tập trung vào Giá trị kinh doanh (Business Value) và Trải nghiệm người dùng (User Journey). Điều này khiến Stakeholder và team mất tập trung, không đồng thuận được giải pháp.",
+ actions: [
+ "Áp dụng nguyên tắc 'User Journey First': Luôn bắt đầu buổi họp bằng bức tranh toàn cảnh về luồng trải nghiệm của người dùng trước khi đi vào chi tiết từng trường dữ liệu hoặc edge cases.",
+ "Thiết lập mục tiêu cuộc họp rõ ràng (Meeting Goal) và nguyên tắc 'Timebox' cho việc thảo luận từng User Story; các vấn đề phát sinh chưa chốt được cần đưa vào Parking Lot để làm rõ riêng.",
+ "Dành 5 phút cuối buổi để tổng kết lại danh sách quyết định (Decisions Made) và hành động tiếp theo (Next Steps)."
+ ]
+ }
+ };
+
+ document.getElementById('scanForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+
+ const formData = new FormData(this);
+ const getScore = (name) => parseInt(formData.get(name) || 0, 10);
+
+ 
+ const scoreA = getScore('q1') + getScore('q2') + getScore('q3');
+ const scoreB = getScore('q4') + getScore('q5') + getScore('q6');
+ const scoreC = getScore('q7') + getScore('q8') + getScore('q9');
+ const scoreD = getScore('q10') + getScore('q11') + getScore('q12');
+ const scoreE = getScore('q13') + getScore('q14') + getScore('q15');
+ const totalScore = scoreA + scoreB + scoreC + scoreD + scoreE;
+
+ const sections = [
+ { key: 'A', score: scoreA, ...DIAGNOSIS_DATA.A },
+ { key: 'B', score: scoreB, ...DIAGNOSIS_DATA.B },
+ { key: 'C', score: scoreC, ...DIAGNOSIS_DATA.C },
+ { key: 'D', score: scoreD, ...DIAGNOSIS_DATA.D },
+ { key: 'E', score: scoreE, ...DIAGNOSIS_DATA.E }
+ ];
+
+ 
+ const sorted = [...sections].sort((a, b) => b.score - a.score);
+ const topSpot = sorted[0];
+
+ 
+ const fullName = formData.get('fullName')?.trim();
+ if (fullName) {
+ document.getElementById('resultUserGreeting').textContent = `Báo cáo chẩn đoán dành riêng cho: ${fullName}`;
+ } else {
+ document.getElementById('resultUserGreeting').textContent = `Báo cáo chẩn đoán điểm mù cá nhân (Ẩn danh)`;
+ }
+
+ document.getElementById('totalScoreText').textContent = `${totalScore}/75`;
+
+ // Populate Top Spot
+ document.getElementById('topSpotTitle').textContent = `${topSpot.name} (${topSpot.score}/15 điểm)`;
+ document.getElementById('topSpotWhy').textContent = topSpot.why;
+
+ const actionsListEl = document.getElementById('topSpotActions');
+ actionsListEl.innerHTML = '';
+ topSpot.actions.forEach(action => {
+ const li = document.createElement('li');
+ li.textContent = action;
+ actionsListEl.appendChild(li);
+ });
+
+ // Populate Breakdown
+ const sectionsListEl = document.getElementById('sectionsList');
+ sectionsListEl.innerHTML = '';
+
+ sections.forEach(sec => {
+ let riskClass = 'risk-low';
+ let fillClass = 'fill-low';
+ let tagText = 'Kiểm soát tốt';
+ let tagClass = 'tag-low';
+
+ if (sec.score >= 12) {
+ riskClass = 'risk-high';
+ fillClass = 'fill-high';
+ tagText = 'Điểm mù nghiêm trọng';
+ tagClass = 'tag-high';
+ } else if (sec.score >= 8) {
+ riskClass = 'risk-med';
+ fillClass = 'fill-med';
+ tagText = 'Cần lưu ý';
+ tagClass = 'tag-med';
+ }
+
+ const percent = Math.round((sec.score / 15) * 100);
+
+ const row = document.createElement('div');
+ row.className = 'section-row';
+ row.innerHTML = `
+ <div class="row-header">
+ <span>${sec.shortName} <span class="tag-pill ${tagClass}">${tagText}</span></span>
+ <span class="row-score ${riskClass}">${sec.score}/15 điểm</span>
+ </div>
+ <div class="progress-bar-bg">
+ <div class="progress-fill ${fillClass}" style="width: ${percent}%;"></div>
+ </div>
+ `;
+ sectionsListEl.appendChild(row);
+ });
+
+ // Contact Box adjustment
+ const email = formData.get('email')?.trim();
+ if (email) {
+ document.getElementById('contactHeading').textContent = `Cảm ơn bạn đã chia sẻ thông tin!`;
+ document.getElementById('contactBody').innerHTML = `Thư đã nhận được tình huống của bạn và sẽ phản hồi qua email <strong>${email}</strong> trong vòng 24 giờ tới nhé.`;
+ }
+
+ try {
+ fetch('https://script.google.com/macros/s/AKfycbzAcgZTBcaGEi4dGJ8X11HFv8H56Qpfe_rEl4WBOyc01xBOMxsbpVHCn3Y4t5C1S8f4Xw/exec', {
+ method: 'POST',
+ mode: 'no-cors',
+ headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+ body: JSON.stringify({
+ fullName: fullName || '(Ẩn danh)',
+ email: email || '(Ẩn danh)',
+ jobTitle: formData.get('jobTitle') ? formData.get('jobTitle').trim() : '',
+ priorityIssue: formData.get('priorityIssue') || '',
+ situationDetail: formData.get('situationDetail') ? formData.get('situationDetail').trim() : '',
+ scoreA: scoreA, scoreB: scoreB, scoreC: scoreC, scoreD: scoreD, scoreE: scoreE,
+ topBlindSpot: topSpot.name
+ })
+ });
+ } catch (syncErr) {
+ console.log('Sheet sync:', syncErr);
+ }
+
+
+ document.getElementById('scanFormView').style.display = 'none';
+ document.getElementById('resultsView').style.display = 'block';
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+
+ function restartScan() {
+ document.getElementById('scanForm').reset();
+ document.getElementById('resultsView').style.display = 'none';
+ document.getElementById('scanFormView').style.display = 'block';
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ }
+</script>
+
 </body>
 </html>
