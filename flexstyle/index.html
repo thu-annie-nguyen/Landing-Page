@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Style (Phong cách linh hoạt)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1F5C;
+      --navy-deep: #07163F;
+      --gold: #F5C400;
+      --gold-hover: #E0B200;
+      --page: #F3F5F8;
+      --white: #fff;
+      --ink: #0B1F5C;
+      --mid: #5B6478;
+      --line: rgba(11, 31, 92, 0.12);
+      --sans: 'DM Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--page);
+      color: var(--ink);
+      font-weight: 400;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 2rem 1.4rem 4rem; }
+    .home {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--mid);
+      text-decoration: none;
+      margin-bottom: 1.4rem;
+    }
+    .home:hover { color: var(--navy); }
+    .badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.32rem 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: clamp(1.55rem, 3.6vw, 2.15rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+      color: var(--navy);
+    }
+    .lead { color: var(--mid); margin-bottom: 1.2rem; font-size: 1.02rem; }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem 1.4rem;
+      margin: 1.1rem 0;
+    }
+    .card h2 {
+      font-weight: 700;
+      font-size: 1.08rem;
+      margin-bottom: 0.6rem;
+      color: var(--navy);
+    }
+    .card ul { padding-left: 1.15rem; color: var(--mid); }
+    .card li { margin: 0.35rem 0; }
+    .grid-hint {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .style-chip {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+      font-size: 0.88rem;
+      background: var(--page);
+    }
+    .style-chip strong { display: block; font-weight: 700; margin-bottom: 0.15rem; color: var(--navy); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.85rem 1.35rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--gold-hover); }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--line);
+    }
+    .btn-ghost:hover { background: var(--white); border-color: var(--navy); }
+    .btn-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .progress-wrap { margin-bottom: 1.4rem; }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.45rem;
+    }
+    .bar { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: var(--gold); width: 0; transition: width 0.25s; }
+    .q-num {
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .choice {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 1.05rem 1.1rem;
+      margin: 0.65rem 0;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .choice:hover { border-color: var(--navy); background: #EEF1F8; }
+    .choice.selected {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(11, 31, 92, 0.18);
+    }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .result-hero {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .result-hero .kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .result-hero h2 {
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 0.4rem;
+    }
+    .scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1.1rem 0;
+    }
+    .score-box { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 0.9rem 1rem; }
+    .score-box span { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+    .score-box strong { font-size: 1.5rem; font-weight: 700; color: var(--navy); }
+    .meter { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
+    .meter > i { display: block; height: 100%; background: var(--gold); }
+    .option-list label.pick {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      border: 1.5px solid var(--line);
+      background: var(--white);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+    .option-list label.pick:hover { border-color: var(--navy); }
+    .option-list label.pick.selected { border-color: var(--navy); background: #EEF1F8; }
+    .note { font-size: 0.88rem; color: var(--mid); margin-top: 0.6rem; }
+    .status { font-size: 0.88rem; color: var(--mid); margin-top: 0.8rem; }
+    .status.ok { color: #0f766e; }
+    .status.err { color: #b91c1c; }
+    .chart-card { overflow: hidden; }
+    .chart-wrap { width: 100%; max-width: 520px; margin: 0 auto; }
+    .chart-wrap svg { width: 100%; height: auto; display: block; }
+    .blend-note {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--navy);
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .flex-recap {
+      display: none;
+      background: #FFF8DE;
+      border: 1px solid rgba(245, 196, 0, 0.45);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-top: 1rem;
+    }
+    .flex-recap p { margin: 0.35rem 0; font-size: 0.92rem; }
+    .flex-recap strong { color: var(--navy); }
+    .flex-recap .advice { margin-top: 0.7rem; color: var(--ink); }
+    @media (max-width: 600px) {
+      .grid-hint, .scores { grid-template-columns: 1fr; }
+      .result-hero h2 { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="home" href="/">← Thư Annie Nguyễn</a>
+
+    <div id="intro" class="screen active">
+      <div class="badge">Flex Style (Phong cách linh hoạt)</div>
+      <h1>Bài trắc nghiệm Flex Style (Phong cách linh hoạt) — Bạn là người như thế nào?</h1>
+      <p class="lead">18 cặp câu hỏi giúp nhận diện phong cách giao tiếp mà người khác thường thấy ở bạn: Analytic (Người Phân tích), Driver (Người Dẫn dắt), Expressive (Người Biểu cảm) hoặc Amiable (Người Hòa đồng). Bài làm hoàn toàn ẩn danh — không hỏi tên, email hay công ty.</p>
+
+      <div class="card">
+        <h2>Cách làm bài</h2>
+        <ul>
+          <li>Mỗi lần hiện <strong>một cặp</strong>. Chọn câu mà bạn nghĩ người khác thấy và cảm nhận về bạn.</li>
+          <li>Trả lời khách quan, chân thật. Nếu cả hai đều chưa đúng hẳn, chọn câu <strong>gần đúng nhất</strong>.</li>
+          <li>Chỉ chọn một câu ở mỗi cặp. Cần trả lời đủ 18 cặp.</li>
+        </ul>
+        <div class="grid-hint">
+          <div class="style-chip"><strong>Analytic (Người Phân tích)</strong>Thận trọng, logic, chính xác</div>
+          <div class="style-chip"><strong>Driver (Người Dẫn dắt)</strong>Nhanh, quả quyết, hướng kết quả</div>
+          <div class="style-chip"><strong>Expressive (Người Biểu cảm)</strong>Nhiệt tình, linh hoạt, truyền cảm hứng</div>
+          <div class="style-chip"><strong>Amiable (Người Hòa đồng)</strong>Hòa đồng, kiên nhẫn, đề cao quan hệ</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="startBtn">Bắt đầu bài test →</button>
+      </div>
+    </div>
+
+    <div id="quiz" class="screen">
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span>Câu <span id="qIndex">1</span> / 18</span>
+        </div>
+        <div class="bar"><span id="qBar"></span></div>
+      </div>
+      <p class="q-num" id="qLabel">Cặp 1</p>
+      <p class="lead">Người khác thường thấy bạn như thế nào?</p>
+      <button type="button" class="choice" id="choiceA"></button>
+      <button type="button" class="choice" id="choiceB"></button>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="prevBtn">← Câu trước</button>
+        <button class="btn" id="nextBtn" disabled>Câu tiếp →</button>
+      </div>
+    </div>
+
+    <div id="result" class="screen">
+      <div class="result-hero">
+        <div class="kicker">Phong cách của bạn</div>
+        <h2 id="styleName">—</h2>
+        <p id="styleTagline"></p>
+      </div>
+      <div class="card chart-card">
+        <h2>Bạn đang ở đâu trên sơ đồ phong cách</h2>
+        <p class="note" style="margin-bottom:1rem;">Một người có thể nghiêng giữa hai phong cách. Điểm vàng là vị trí của bạn — càng gần tâm, càng cân bằng; càng sát một góc, phong cách đó càng rõ.</p>
+        <div class="chart-wrap" id="styleChart"></div>
+        <p class="blend-note" id="blendNote"></p>
+      </div>
+      <div class="card">
+        <h2>Bạn thể hiện ra bên ngoài như thế nào</h2>
+        <p id="styleDesc"></p>
+      </div>
+      <div class="card">
+        <h2>Điểm mạnh</h2>
+        <ul id="styleStrengths"></ul>
+      </div>
+      <div class="card">
+        <h2>Khi quá đà, người khác có thể thấy</h2>
+        <ul id="styleShadows"></ul>
+      </div>
+
+      <div class="card" id="flexCard">
+        <h2>Bước kế tiếp để phát triển bản thân</h2>
+        <p class="note" style="margin-bottom:1rem;">Biết phong cách của mình chưa đủ. Hãy chọn <strong>một</strong> điều bạn chưa hài lòng về cách mình đang thể hiện, rồi chọn <strong>một</strong> thói quen từ phong cách <span id="oppName"></span> để khơi dậy khi đang bị kẹt. Không cần đổi con người — chỉ cần một chỗ điều chỉnh.</p>
+        <p style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);font-weight:700;margin-bottom:0.4rem;">Điều bạn chưa hài lòng về mình lúc này</p>
+        <div class="option-list" id="dislikeList"></div>
+        <p style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);font-weight:700;margin:1rem 0 0.4rem;">Thói quen bạn muốn khơi dậy</p>
+        <div class="option-list" id="leverageList"></div>
+        <div class="btn-row" id="flexBtns">
+          <button class="btn" id="flexSaveBtn">Xem gợi ý của tôi →</button>
+          <button class="btn btn-ghost" id="skipFlexBtn">Bỏ qua</button>
+        </div>
+        <div class="flex-recap" id="flexRecap"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="restartBtn">Làm lại bài test</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+const QUESTIONS = [
+  { axis: 'R', a: { text: 'Dùng nhiều cử chỉ, điệu bộ để diễn tả khi giao tiếp.', pole: 'U' }, b: { text: 'Ít dùng cử chỉ, điệu bộ để diễn tả khi giao tiếp.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Nói chuyện nhỏ nhẹ.', pole: 'L' }, b: { text: 'Nói chuyện lớn tiếng.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Cử động thoải mái, không để ý nhiều đến các cử động trong giao tiếp.', pole: 'U' }, b: { text: 'Để ý và điều chỉnh các cử động trong giao tiếp.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Nói chuyện chậm rãi / tốc độ nói chậm.', pole: 'L' }, b: { text: 'Nói chuyện nhanh / tốc độ nói nhanh.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Dùng nét mặt để thể hiện tình cảm và thái độ trong giao tiếp.', pole: 'U' }, b: { text: 'Ít dùng nét mặt để thể hiện tình cảm và thái độ trong giao tiếp.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Cử chỉ và động tác nhanh nhẹn.', pole: 'R' }, b: { text: 'Cử chỉ và động tác chậm rãi.', pole: 'L' } },
+  { axis: 'R', a: { text: 'Lên xuống giọng khi nói.', pole: 'U' }, b: { text: 'Ít lên xuống giọng khi nói.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Có khuynh hướng ngồi dựa về phía sau khi nói chuyện.', pole: 'L' }, b: { text: 'Có khuynh hướng ngồi hướng về phía trước khi nói chuyện.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Sử dụng thời gian linh hoạt / dễ dàng thay đổi lịch làm việc.', pole: 'U' }, b: { text: 'Sử dụng thời gian khá nguyên tắc / ít muốn thay đổi lịch làm việc.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Có thái độ thăm dò khi trình bày sự thật và đưa ra ý kiến.', pole: 'L' }, b: { text: 'Có thái độ quả quyết khi trình bày sự thật và đưa ra ý kiến.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Thiên về khía cạnh con người khi giải quyết vấn đề.', pole: 'U' }, b: { text: 'Thiên về khía cạnh công việc khi giải quyết vấn đề.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Cần có thời gian để ra quyết định.', pole: 'L' }, b: { text: 'Quyết định nhanh chóng.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Cách nói chuyện vui nhộn, khôi hài.', pole: 'U' }, b: { text: 'Cách nói chuyện nghiêm túc, nghiêm trang.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Không chấp nhận rủi ro, ít nắm bắt các cơ hội.', pole: 'L' }, b: { text: 'Tận dụng các cơ hội, chấp nhận rủi ro.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Ra quyết định dựa trên cảm tính.', pole: 'U' }, b: { text: 'Ra quyết định dựa trên cơ sở thực tế.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Ít tạo áp lực lên các quyết định của người khác.', pole: 'L' }, b: { text: 'Tạo nhiều áp lực lên các quyết định của người khác.', pole: 'R' } },
+  { axis: 'R', a: { text: 'Có khuynh hướng kể chuyện và biểu lộ cảm xúc.', pole: 'U' }, b: { text: 'Ít có khuynh hướng kể chuyện và biểu lộ cảm xúc.', pole: 'D' } },
+  { axis: 'A', a: { text: 'Nhìn vào mắt người đối diện khi giao tiếp.', pole: 'R' }, b: { text: 'Ít nhìn vào mắt người đối diện khi giao tiếp.', pole: 'L' } }
+];
+
+const STYLES = {
+  Analytic: {
+    name: 'Analytic',
+    vi: 'Người Phân tích',
+    tagline: 'Thận trọng — logic — chính xác.',
+    opposite: 'Expressive',
+    desc: 'Bạn thiên về dữ liệu, quy trình và sự chuẩn xác. Người khác thường thấy bạn điềm tĩnh, hỏi nhiều trước khi quyết, ít phô diễn cảm xúc. Bạn muốn làm đúng hơn là làm nhanh.',
+    strengths: ['Chỉn chu, cẩn thận, ít sai sót', 'Suy nghĩ thấu đáo trước khi nói và làm', 'Giữ được chất lượng và tính nhất quán'],
+    shadows: ['Chậm quyết, dễ bị xem là do dự', 'Sa vào chi tiết, khó chốt', 'Người khác có thể thấy bạn lạnh hoặc xa cách'],
+    insights: [
+      {
+        dislike: 'Tốc độ của mình quá chậm',
+        leverage: 'Khơi dậy Expressive (Người Biểu cảm): chấp nhận “đủ tốt để chạy” rồi tinh chỉnh',
+        advice: 'Bạn chậm vì muốn làm đúng. Với việc nhỏ tuần này, chốt bản 1 khi đã đủ khoảng 80% rồi tinh chỉnh — giữ chất lượng, không kẹt chờ hoàn hảo.'
+      },
+      {
+        dislike: 'Khó quyết khi thông tin chưa đủ',
+        leverage: 'Khơi dậy Expressive (Người Biểu cảm): chấp nhận “đủ tốt để chạy” rồi tinh chỉnh',
+        advice: 'Khi đã có khoảng 70% thông tin, nêu một quyết định tạm và mốc xem lại. Không cần đủ data mới bước — vừa chạy vừa hiệu chỉnh.'
+      },
+      {
+        dislike: 'Bị coi là quá khắt khe / thiếu linh hoạt',
+        leverage: 'Khơi dậy Expressive (Người Biểu cảm): linh hoạt đổi lịch khi bối cảnh đổi',
+        advice: 'Giữ nguyên tắc cho việc quan trọng. Việc còn lại, hỏi “bối cảnh đã đổi chưa?” rồi điều chỉnh một lần, có chủ đích — linh hoạt chứ không buông tiêu chuẩn.'
+      },
+      {
+        dislike: 'Ngại thể hiện cảm xúc trước nhóm',
+        leverage: 'Khơi dậy Expressive (Người Biểu cảm): kể chuyện ngắn để ý tưởng dễ được nghe',
+        advice: 'Trước khi đưa số liệu, mở 20 giây bằng vì sao việc này quan trọng với người nghe. Cảm xúc ngắn giúp ý tưởng được nhận, không cần bạn phải “diễn”.'
+      }
+    ]
+  },
+  Driver: {
+    name: 'Driver',
+    vi: 'Người Dẫn dắt',
+    tagline: 'Nhanh — quả quyết — hướng kết quả.',
+    opposite: 'Amiable',
+    desc: 'Bạn muốn tiến độ, quyết định và trách nhiệm rõ. Người khác thường thấy bạn thẳng, chủ động, tạo áp lực tích cực để việc chạy. Bạn ít kiên nhẫn với vòng vo.',
+    strengths: ['Ra quyết định nhanh, giữ nhịp công việc', 'Tập trung kết quả, dám nhận rủi ro hợp lý', 'Nói rõ kỳ vọng và hướng đi'],
+    shadows: ['Dễ tạo áp lực, ít lắng nghe', 'Bỏ qua cảm xúc và quan hệ', 'Người khác có thể thấy bạn độc đoán'],
+    insights: [
+      {
+        dislike: 'Mình quá vội, thiếu kiên nhẫn',
+        leverage: 'Khơi dậy Amiable (Người Hòa đồng): chừa thời gian cho người khác theo kịp',
+        advice: 'Trước khi chốt, hỏi một câu: “Ai cần thêm hai phút?” Bạn vẫn giữ nhịp, người khác kịp theo — kiên nhẫn có mục đích, không kéo dài họp.'
+      },
+      {
+        dislike: 'Đôi khi làm tổn thương người khác mà không cố ý',
+        leverage: 'Khơi dậy Amiable (Người Hòa đồng): công nhận nỗ lực, không chỉ kết quả',
+        advice: 'Sau khi nêu việc cần làm, nói một câu ghi nhận nỗ lực đang có rồi mới chốt. Thẳng về kết quả vẫn được; người kia không cảm thấy bị phủ nhận.'
+      },
+      {
+        dislike: 'Khó chậm lại để nghe hết ý',
+        leverage: 'Khơi dậy Amiable (Người Hòa đồng): hỏi cảm nhận trước khi chốt',
+        advice: 'Để người kia nói hết một ý, rồi hỏi “chỗ nào bạn còn e?” trước khi phản hồi. Lắng nghe xong mới quyết — không mất quyền chốt.'
+      },
+      {
+        dislike: 'Bị coi là cứng hoặc áp đặt',
+        leverage: 'Khơi dậy Amiable (Người Hòa đồng): giảm áp lực khi quyết định chưa cần gấp',
+        advice: 'Tách việc gấp và việc chưa gấp. Việc chưa gấp: nêu hướng, không ép deadline trong cùng một câu. Áp lực chỉ dùng khi việc thực sự cần chạy ngay.'
+      }
+    ]
+  },
+  Expressive: {
+    name: 'Expressive',
+    vi: 'Người Biểu cảm',
+    tagline: 'Nhiệt tình — linh hoạt — truyền cảm hứng.',
+    opposite: 'Analytic',
+    desc: 'Bạn sống động, hướng con người, thích ý tưởng và câu chuyện. Người khác thường thấy bạn cởi mở, hài hước, dễ lan tỏa năng lượng. Chi tiết và quy trình đôi khi không phải thế mạnh tự nhiên.',
+    strengths: ['Tạo khí thế, kết nối và truyền cảm hứng', 'Linh hoạt, nắm cơ hội nhanh', 'Diễn đạt giàu cảm xúc, dễ nhớ'],
+    shadows: ['Nhảy việc, thiếu follow-through', 'Ít dữ liệu, dễ bị xem là phóng đại', 'Lịch trình thay đổi khiến người khác khó theo'],
+    insights: [
+      {
+        dislike: 'Mình thiếu chỉn chu / hay sót chi tiết',
+        leverage: 'Khơi dậy Analytic (Người Phân tích): ghi nhận sự cẩn thận và kiểm tra lại',
+        advice: 'Trước khi gửi, dành 3 phút checklist: số liệu, tên người, deadline. Năng lượng giữ nguyên; lỗ hổng nhỏ được bắt trước khi người khác thấy.'
+      },
+      {
+        dislike: 'Khó bám deadline và quy trình',
+        leverage: 'Khơi dậy Analytic (Người Phân tích): giữ một lịch ổn định cho việc quan trọng',
+        advice: 'Chọn một việc quan trọng trong tuần và khoá khung giờ, không dời vì ý tưởng mới. Linh hoạt ở chỗ khác; chỗ này cần nhịp cố định để người khác theo được.'
+      },
+      {
+        dislike: 'Bị coi là nói nhiều, làm ít',
+        leverage: 'Khơi dậy Analytic (Người Phân tích): chốt 3 số liệu trước khi trình bày',
+        advice: 'Mở bằng ba con số hoặc kết quả đã làm, rồi mới kể chuyện. Người khác thấy việc chạy, không chỉ khí thế.'
+      },
+      {
+        dislike: 'Quyết cảm tính rồi phải sửa',
+        leverage: 'Khơi dậy Analytic (Người Phân tích): chậm lại một nhịp trước khi quyết lớn',
+        advice: 'Với quyết định lớn: viết ba rủi ro, hoặc để sang ngày hôm sau rồi mới nói “chốt”. Cảm hứng vẫn có; bạn chỉ chèn một nhịp kiểm tra.'
+      }
+    ]
+  },
+  Amiable: {
+    name: 'Amiable',
+    vi: 'Người Hòa đồng',
+    tagline: 'Hỗ trợ — kiên nhẫn — đề cao quan hệ.',
+    opposite: 'Driver',
+    desc: 'Bạn coi trọng hòa khí, lắng nghe và sự an toàn của nhóm. Người khác thường thấy bạn dễ gần, đáng tin, ít tạo xung đột. Bạn có thể ngại nói “không” hoặc ngại quyết khi có bất đồng.',
+    strengths: ['Lắng nghe, gắn kết, giữ team ổn định', 'Kiên nhẫn, đáng tin cậy', 'Ít tạo áp lực, dễ hợp tác'],
+    shadows: ['Khó từ chối, dễ ôm việc', 'Tránh xung đột nên chậm chốt', 'Người khác có thể thấy bạn thiếu dứt khoát'],
+    insights: [
+      {
+        dislike: 'Mình khó nói không / dễ ôm đồm',
+        leverage: 'Khơi dậy Driver (Người Dẫn dắt): nêu rõ đề xuất và deadline',
+        advice: 'Khi nhận thêm việc, trả lời một câu: làm được nếu việc A lùi hạn, hoặc không làm được vì đang B. Rõ phạm vi và deadline — không cần giải thích dài mới được phép từ chối.'
+      },
+      {
+        dislike: 'Ngại phản biện sếp hoặc đồng nghiệp',
+        leverage: 'Khơi dậy Driver (Người Dẫn dắt): nói thẳng rủi ro sớm, kèm phương án',
+        advice: 'Phản biện = một rủi ro + một hướng xử lý. Bạn không cãi người kia; bạn giúp việc chạy trước khi sai thành lớn.'
+      },
+      {
+        dislike: 'Quyết chậm vì sợ làm phật lòng',
+        leverage: 'Khơi dậy Driver (Người Dẫn dắt): chấp nhận một quyết “đủ tốt” để chạy',
+        advice: 'Trong họp, chốt hướng tạm và mốc xem lại (ví dụ thứ Sáu). Hòa khí vẫn còn; việc không đứng chờ sự đồng thuận tuyệt đối.'
+      },
+      {
+        dislike: 'Bị coi là thiếu chính kiến',
+        leverage: 'Khơi dậy Driver (Người Dẫn dắt): nêu rõ đề xuất và deadline',
+        advice: 'Bắt đầu bằng “Mình đề xuất X vì Y, làm xong vào …” rồi mới hỏi ý mọi người. Có hướng rõ trước đã; lắng nghe là bước hai, không phải bước một.'
+      }
+    ]
+  }
+};
+
+const FORM_ENDPOINT = 'https://formspree.io/f/xlgployv';
+
+const state = {
+  i: 0,
+  answers: Array(18).fill(null),
+  sessionId: '',
+  result: null,
+  dislike: '',
+  leverage: ''
+};
+
+function $(id) { return document.getElementById(id); }
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.i];
+  const n = state.i + 1;
+  $('qIndex').textContent = n;
+  $('qLabel').textContent = 'Cặp ' + n;
+  $('qBar').style.width = (n / 18 * 100) + '%';
+  $('choiceA').textContent = q.a.text;
+  $('choiceB').textContent = q.b.text;
+  $('choiceA').classList.toggle('selected', state.answers[state.i] === 'a');
+  $('choiceB').classList.toggle('selected', state.answers[state.i] === 'b');
+  $('prevBtn').disabled = state.i === 0;
+  const last = state.i === 17;
+  $('nextBtn').textContent = last ? 'Xem kết quả →' : 'Câu tiếp →';
+  $('nextBtn').disabled = !state.answers[state.i];
+}
+
+function pick(side) {
+  state.answers[state.i] = side;
+  renderQuestion();
+}
+
+function scoreAll() {
+  let r = 0, u = 0;
+  const detail = [];
+  QUESTIONS.forEach((q, idx) => {
+    const side = state.answers[idx];
+    const pole = q[side].pole;
+    if (pole === 'R') r += 1;
+    if (pole === 'L') r += 0;
+    if (pole === 'U') u += 1;
+    detail.push({ n: idx + 1, text: q[side].text, pole: pole });
+  });
+  const highA = r >= 5;
+  const highR = u >= 5;
+  let key;
+  if (!highA && !highR) key = 'Analytic';
+  else if (highA && !highR) key = 'Driver';
+  else if (highA && highR) key = 'Expressive';
+  else key = 'Amiable';
+  return { assertiveness: r, responsiveness: u, key: key, style: STYLES[key], detail: detail, blend: describeBlend(r, u, key) };
+}
+
+function describeBlend(a, resp, key) {
+  const corners = [
+    { key: 'Analytic', x: 0, y: 0 },
+    { key: 'Driver', x: 9, y: 0 },
+    { key: 'Amiable', x: 0, y: 9 },
+    { key: 'Expressive', x: 9, y: 9 }
+  ];
+  const ranked = corners.map(c => {
+    const d = Math.hypot(a - c.x, resp - c.y);
+    return { key: c.key, d: d };
+  }).sort((p, q) => p.d - q.d);
+  const primary = ranked[0];
+  const secondary = ranked[1];
+  const p = STYLES[primary.key];
+  const s = STYLES[secondary.key];
+  const nearCenter = Math.hypot(a - 4.5, resp - 4.5) < 2.2;
+  let note;
+  if (nearCenter) {
+    note = 'Bạn gần tâm sơ đồ — phong cách khá cân, linh hoạt chuyển giữa các góc. Vùng gần nhất vẫn là ' + p.name + ' (' + p.vi + ').';
+  } else if (secondary.d - primary.d < 2.4) {
+    note = 'Bạn ở vùng ' + p.name + ' (' + p.vi + '), nghiêng về ' + s.name + ' (' + s.vi + '). Cùng là ' + p.name + ' nhưng gần ' + s.name + ' sẽ khác người ' + p.name + ' sát góc kia.';
+  } else {
+    note = 'Bạn ở vùng ' + p.name + ' (' + p.vi + ') khá rõ, chưa sát phong cách khác.';
+  }
+  return { primary: primary.key, secondary: secondary.key, note: note };
+}
+
+function fillList(el, items) {
+  el.innerHTML = '';
+  items.forEach(t => {
+    const li = document.createElement('li');
+    li.textContent = t;
+    el.appendChild(li);
+  });
+}
+
+function renderResult(res) {
+  const s = res.style;
+  $('styleName').textContent = s.name + ' (' + s.vi + ')';
+  $('styleTagline').textContent = s.tagline;
+  $('styleDesc').textContent = s.desc;
+  fillList($('styleStrengths'), s.strengths);
+  fillList($('styleShadows'), s.shadows);
+  $('oppName').textContent = STYLES[s.opposite].name + ' (' + STYLES[s.opposite].vi + ')';
+  $('blendNote').textContent = res.blend.note;
+  drawChart(res.assertiveness, res.responsiveness);
+  renderPicks('dislikeList', res.style.insights.map(i => i.dislike), 'dislike');
+  const leverages = [];
+  res.style.insights.forEach(i => {
+    if (leverages.indexOf(i.leverage) === -1) leverages.push(i.leverage);
+  });
+  renderPicks('leverageList', leverages, 'leverage');
+}
+
+function drawChart(assertiveness, responsiveness) {
+  const W = 520, H = 430;
+  const gx = 28, gy = 36, gw = 464, gh = 348;
+  const x = gx + (assertiveness / 9) * gw;
+  const y = gy + (responsiveness / 9) * gh;
+  const ticks = [];
+  for (let i = 1; i <= 8; i++) {
+    const tx = gx + (i / 9) * gw;
+    const ty = gy + (i / 9) * gh;
+    ticks.push('<line x1="' + tx + '" y1="' + (gy + gh / 2 - 6) + '" x2="' + tx + '" y2="' + (gy + gh / 2 + 6) + '" stroke="#0B1F5C" stroke-width="1"/>');
+    ticks.push('<line x1="' + (gx + gw / 2 - 6) + '" y1="' + ty + '" x2="' + (gx + gw / 2 + 6) + '" y2="' + ty + '" stroke="#0B1F5C" stroke-width="1"/>');
+  }
+  function axisLabel(cx, cy, anchor, en, vi) {
+    return '<text x="' + cx + '" y="' + cy + '" text-anchor="' + anchor + '" font-size="11" font-weight="700" fill="#0B1F5C">' + en + ' <tspan font-weight="500" fill="#5B6478">(' + vi + ')</tspan></text>';
+  }
+  $('styleChart').innerHTML = [
+    '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Sơ đồ phong cách">',
+    axisLabel(gx, 22, 'start', 'ANALYTIC', 'Người Phân tích'),
+    axisLabel(gx + gw, 22, 'end', 'DRIVER', 'Người Dẫn dắt'),
+    '<rect x="' + gx + '" y="' + gy + '" width="' + gw + '" height="' + gh + '" fill="#fff" stroke="#0B1F5C" stroke-width="1.6"/>',
+    '<line x1="' + (gx + gw / 3) + '" y1="' + gy + '" x2="' + (gx + gw / 3) + '" y2="' + (gy + gh) + '" stroke="#0B1F5C" stroke-width="0.7"/>',
+    '<line x1="' + (gx + 2 * gw / 3) + '" y1="' + gy + '" x2="' + (gx + 2 * gw / 3) + '" y2="' + (gy + gh) + '" stroke="#0B1F5C" stroke-width="0.7"/>',
+    '<line x1="' + gx + '" y1="' + (gy + gh / 3) + '" x2="' + (gx + gw) + '" y2="' + (gy + gh / 3) + '" stroke="#0B1F5C" stroke-width="0.7"/>',
+    '<line x1="' + gx + '" y1="' + (gy + 2 * gh / 3) + '" x2="' + (gx + gw) + '" y2="' + (gy + 2 * gh / 3) + '" stroke="#0B1F5C" stroke-width="0.7"/>',
+    '<line x1="' + gx + '" y1="' + (gy + gh / 2) + '" x2="' + (gx + gw) + '" y2="' + (gy + gh / 2) + '" stroke="#0B1F5C" stroke-width="2.4"/>',
+    '<line x1="' + (gx + gw / 2) + '" y1="' + gy + '" x2="' + (gx + gw / 2) + '" y2="' + (gy + gh) + '" stroke="#0B1F5C" stroke-width="2.4"/>',
+    ticks.join(''),
+    axisLabel(gx, gy + gh + 22, 'start', 'AMIABLE', 'Người Hòa đồng'),
+    axisLabel(gx + gw, gy + gh + 22, 'end', 'EXPRESSIVE', 'Người Biểu cảm'),
+    '<circle cx="' + x + '" cy="' + y + '" r="8" fill="#F5C400" stroke="#0B1F5C" stroke-width="2"/>',
+    '<text x="' + x + '" y="' + (y - 14) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F5C">Bạn</text>',
+    '</svg>'
+  ].join('');
+}
+
+function findInsight(dislike) {
+  const list = (state.result && state.result.style.insights) || [];
+  return list.find(i => i.dislike === dislike) || null;
+}
+
+function renderPicks(id, items, key) {
+  const box = $(id);
+  box.innerHTML = '';
+  items.forEach(text => {
+    const lab = document.createElement('label');
+    lab.className = 'pick';
+    const inp = document.createElement('input');
+    inp.type = 'radio';
+    inp.name = key;
+    inp.value = text;
+    inp.addEventListener('change', () => {
+      state[key] = text;
+      box.querySelectorAll('.pick').forEach(p => p.classList.remove('selected'));
+      lab.classList.add('selected');
+    });
+    const span = document.createElement('span');
+    span.textContent = text;
+    lab.appendChild(inp);
+    lab.appendChild(span);
+    box.appendChild(lab);
+  });
+}
+
+function renderFlexRecap() {
+  const rec = $('flexRecap');
+  rec.innerHTML = '';
+  rec.style.display = 'block';
+  const hit = findInsight(state.dislike);
+  const opp = STYLES[state.result.style.opposite];
+  const title = document.createElement('p');
+  const strong = document.createElement('strong');
+  strong.textContent = 'Gợi ý Flex của bạn';
+  title.appendChild(strong);
+  const d = document.createElement('p');
+  d.textContent = 'Chưa hài lòng: ' + state.dislike;
+  const l = document.createElement('p');
+  const prefix = 'Khơi dậy ' + opp.name + ' (' + opp.vi + '): ';
+  const raw = hit ? hit.leverage : state.leverage;
+  const habit = raw.indexOf(prefix) === 0 ? raw.slice(prefix.length) : raw;
+  l.textContent = 'Tận dụng từ ' + opp.name + ' (' + opp.vi + '): ' + habit;
+  rec.appendChild(title);
+  rec.appendChild(d);
+  rec.appendChild(l);
+  if (hit && hit.advice) {
+    const a = document.createElement('p');
+    a.className = 'advice';
+    a.textContent = hit.advice;
+    rec.appendChild(a);
+  }
+}
+
+function payload(extra) {
+  const r = state.result;
+  const summary = [
+    'Flex Style (ẩn danh)',
+    'Mã phiên: ' + state.sessionId,
+    'Phong cách: ' + r.key + ' — ' + r.style.vi,
+    'Assertiveness: ' + r.assertiveness + '/9',
+    'Responsiveness: ' + r.responsiveness + '/9',
+    extra && extra.dislike ? 'Chưa hài lòng: ' + extra.dislike : '',
+    extra && extra.suggestedLeverage ? 'Gợi ý đối lập: ' + extra.suggestedLeverage : '',
+    extra && extra.leverage ? 'Học viên chọn khơi dậy: ' + extra.leverage : '',
+    extra && extra.flexAdvice ? 'Gợi ý: ' + extra.flexAdvice : ''
+  ].filter(Boolean).join('\n');
+  return Object.assign({
+    _subject: 'Flex Style ẩn danh — ' + r.key,
+    name: 'Anonymous',
+    email: 'anonymous@thuannienguyen.com',
+    message: summary,
+    formType: 'flexstyle',
+    sessionId: state.sessionId,
+    style: r.key,
+    styleVi: r.style.vi,
+    assertiveness: String(r.assertiveness),
+    responsiveness: String(r.responsiveness),
+    blendPrimary: r.blend.primary,
+    blendSecondary: r.blend.secondary,
+    answers: JSON.stringify(r.detail)
+  }, extra || {});
+}
+
+async function postResult(data) {
+  const body = new FormData();
+  Object.keys(data).forEach(k => body.append(k, data[k]));
+  const res = await fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    body: body,
+    headers: { Accept: 'application/json' }
+  });
+  if (!res.ok) throw new Error('save failed');
+}
+
+$('startBtn').addEventListener('click', () => {
+  state.sessionId = 'fs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+  state.i = 0;
+  state.answers = Array(18).fill(null);
+  show('quiz');
+  renderQuestion();
+});
+
+$('choiceA').addEventListener('click', () => pick('a'));
+$('choiceB').addEventListener('click', () => pick('b'));
+$('prevBtn').addEventListener('click', () => {
+  if (state.i > 0) { state.i -= 1; renderQuestion(); }
+});
+$('nextBtn').addEventListener('click', () => {
+  if (!state.answers[state.i]) return;
+  if (state.i < 17) {
+    state.i += 1;
+    renderQuestion();
+    return;
+  }
+  state.result = scoreAll();
+  renderResult(state.result);
+  show('result');
+  postResult(payload({ saveStep: 'result' })).catch(function () {});
+});
+
+$('flexSaveBtn').addEventListener('click', () => {
+  if (!state.dislike) {
+    alert('Hãy chọn 1 điều chưa hài lòng về mình lúc này.');
+    return;
+  }
+  if (!state.leverage) {
+    alert('Hãy chọn 1 thói quen muốn khơi dậy từ phía đối lập.');
+    return;
+  }
+  const hit = findInsight(state.dislike);
+  postResult(payload({
+    saveStep: 'flex',
+    dislike: state.dislike,
+    leverage: state.leverage,
+    suggestedLeverage: hit ? hit.leverage : state.leverage,
+    flexAdvice: hit ? hit.advice : ''
+  })).catch(function () {});
+  $('flexBtns').style.display = 'none';
+  renderFlexRecap();
+});
+
+$('skipFlexBtn').addEventListener('click', () => {
+  $('flexCard').style.display = 'none';
+});
+$('restartBtn').addEventListener('click', () => {
+  state.i = 0;
+  state.answers = Array(18).fill(null);
+  state.result = null;
+  state.dislike = '';
+  state.leverage = '';
+  $('flexCard').style.display = '';
+  $('flexBtns').style.display = '';
+  $('flexRecap').style.display = 'none';
+  $('flexRecap').innerHTML = '';
+  show('intro');
+});
+</script>
+</body>
+</html>
