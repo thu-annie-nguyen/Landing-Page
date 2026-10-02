@@ -264,7 +264,7 @@
     <div id="intro" class="screen active">
       <div class="badge">Flex Style (Phong cách linh hoạt)</div>
       <h1>Bài trắc nghiệm Flex Style (Phong cách linh hoạt) — Bạn là người như thế nào?</h1>
-      <p class="lead">18 cặp câu hỏi giúp nhận diện phong cách giao tiếp mà người khác thường thấy ở bạn: Analytic (Người Phân tích), Driver (Người Dẫn dắt), Expressive (Người Biểu cảm) hoặc Amiable (Người Hòa đồng). Bài làm hoàn toàn ẩn danh.</p>
+      <p class="lead">18 cặp câu hỏi giúp nhận diện phong cách giao tiếp mà người khác thường thấy ở bạn: Analytic (Người Phân tích), Driver (Người Dẫn dắt), Expressive (Người Biểu cảm) hoặc Amiable (Người Hòa nhã). Bài làm hoàn toàn ẩn danh.</p>
 
       <div class="card">
         <h2>Cách làm bài</h2>
@@ -277,7 +277,7 @@
           <div class="style-chip"><strong>Analytic (Người Phân tích)</strong>Thận trọng, logic, chính xác</div>
           <div class="style-chip"><strong>Driver (Người Dẫn dắt)</strong>Nhanh, quả quyết, hướng kết quả</div>
           <div class="style-chip"><strong>Expressive (Người Biểu cảm)</strong>Nhiệt tình, linh hoạt, truyền cảm hứng</div>
-          <div class="style-chip"><strong>Amiable (Người Hòa đồng)</strong>Hòa đồng, kiên nhẫn, đề cao quan hệ</div>
+          <div class="style-chip"><strong>Amiable (Người Hòa nhã)</strong>Hòa nhã, kiên nhẫn, đề cao quan hệ</div>
         </div>
       </div>
       <div class="btn-row">
@@ -423,22 +423,22 @@ const STYLES = {
     insights: [
       {
         dislike: 'Mình quá vội, thiếu kiên nhẫn',
-        leverage: 'Khơi dậy Amiable (Người Hòa đồng): chừa thời gian cho người khác theo kịp',
+        leverage: 'Khơi dậy Amiable (Người Hòa nhã): chừa thời gian cho người khác theo kịp',
         advice: 'Trước khi chốt, hỏi một câu: “Ai cần thêm hai phút?” Bạn vẫn giữ nhịp, người khác kịp theo — kiên nhẫn có mục đích, không kéo dài họp.'
       },
       {
         dislike: 'Đôi khi làm tổn thương người khác mà không cố ý',
-        leverage: 'Khơi dậy Amiable (Người Hòa đồng): công nhận nỗ lực, không chỉ kết quả',
+        leverage: 'Khơi dậy Amiable (Người Hòa nhã): công nhận nỗ lực, không chỉ kết quả',
         advice: 'Sau khi nêu việc cần làm, nói một câu ghi nhận nỗ lực đang có rồi mới chốt. Thẳng về kết quả vẫn được; người kia không cảm thấy bị phủ nhận.'
       },
       {
         dislike: 'Khó chậm lại để nghe hết ý',
-        leverage: 'Khơi dậy Amiable (Người Hòa đồng): hỏi cảm nhận trước khi chốt',
+        leverage: 'Khơi dậy Amiable (Người Hòa nhã): hỏi cảm nhận trước khi chốt',
         advice: 'Để người kia nói hết một ý, rồi hỏi “chỗ nào bạn còn e?” trước khi phản hồi. Lắng nghe xong mới quyết — không mất quyền chốt.'
       },
       {
         dislike: 'Bị coi là cứng hoặc áp đặt',
-        leverage: 'Khơi dậy Amiable (Người Hòa đồng): giảm áp lực khi quyết định chưa cần gấp',
+        leverage: 'Khơi dậy Amiable (Người Hòa nhã): giảm áp lực khi quyết định chưa cần gấp',
         advice: 'Tách việc gấp và việc chưa gấp. Việc chưa gấp: nêu hướng, không ép deadline trong cùng một câu. Áp lực chỉ dùng khi việc thực sự cần chạy ngay.'
       }
     ]
@@ -476,7 +476,7 @@ const STYLES = {
   },
   Amiable: {
     name: 'Amiable',
-    vi: 'Người Hòa đồng',
+    vi: 'Người Hòa nhã',
     tagline: 'Hỗ trợ — kiên nhẫn — đề cao quan hệ.',
     opposite: 'Driver',
     desc: 'Bạn coi trọng hòa khí, lắng nghe và sự an toàn của nhóm. Người khác thường thấy bạn dễ gần, đáng tin, ít tạo xung đột. Bạn có thể ngại nói “không” hoặc ngại quyết khi có bất đồng.',
@@ -645,7 +645,7 @@ function drawChart(assertiveness, responsiveness) {
     '<line x1="' + gx + '" y1="' + (gy + gh / 2) + '" x2="' + (gx + gw) + '" y2="' + (gy + gh / 2) + '" stroke="#0B1F5C" stroke-width="2.4"/>',
     '<line x1="' + (gx + gw / 2) + '" y1="' + gy + '" x2="' + (gx + gw / 2) + '" y2="' + (gy + gh) + '" stroke="#0B1F5C" stroke-width="2.4"/>',
     ticks.join(''),
-    axisLabel(gx, gy + gh + 22, 'start', 'AMIABLE', 'Người Hòa đồng'),
+    axisLabel(gx, gy + gh + 22, 'start', 'AMIABLE', 'Người Hòa nhã'),
     axisLabel(gx + gw, gy + gh + 22, 'end', 'EXPRESSIVE', 'Người Biểu cảm'),
     '<circle cx="' + x + '" cy="' + y + '" r="8" fill="#F5C400" stroke="#0B1F5C" stroke-width="2"/>',
     '<text x="' + x + '" y="' + (y - 14) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F5C">Bạn</text>',
