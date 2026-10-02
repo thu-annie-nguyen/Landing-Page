@@ -408,7 +408,7 @@ const STYLES = {
       {
         dislike: 'Ngại thể hiện cảm xúc trước nhóm',
         leverage: 'Khơi dậy Expressive (Người Biểu cảm): kể chuyện ngắn để ý tưởng dễ được nghe',
-        advice: 'Trước khi đưa số liệu, mở 20 giây bằng vì sao việc này quan trọng với người nghe. Cảm xúc ngắn giúp ý tưởng được nhận, không cần bạn phải “diễn”.'
+        advice: 'Trước khi đưa số liệu, mở đầu 20 giây bằng vì sao việc này quan trọng với người nghe. Cảm xúc ngắn giúp ý tưởng được nhận, không cần bạn phải “diễn”.'
       }
     ]
   },
@@ -465,7 +465,7 @@ const STYLES = {
       {
         dislike: 'Bị coi là nói nhiều, làm ít',
         leverage: 'Khơi dậy Analytic (Người Phân tích): chốt 3 số liệu trước khi trình bày',
-        advice: 'Mở bằng ba con số hoặc kết quả đã làm, rồi mới kể chuyện. Người khác thấy việc chạy, không chỉ khí thế.'
+        advice: 'Mở đầu bằng ba con số hoặc kết quả đã làm, rồi mới kể chuyện. Người khác thấy việc chạy, không chỉ khí thế.'
       },
       {
         dislike: 'Quyết cảm tính rồi phải sửa',
@@ -527,7 +527,8 @@ const state = {
   dislike: '',
   leverage: '',
   contactEmail: '',
-  source: readTrafficSource()
+  source: readTrafficSource(),
+  posted: false
 };
 
 function $(id) { return document.getElementById(id); }
@@ -755,21 +756,67 @@ function payload(extra) {
   }, extra);
 }
 
-async function postResult(data) {
+function currentSaveExtra() {
+  const extra = { saveStep: 'result' };
+  if (state.dislike && state.leverage) {
+    extra.saveStep = 'flex';
+    extra.dislike = state.dislike;
+    extra.leverage = state.leverage;
+    const hit = findInsight(state.dislike);
+    if (hit) {
+      extra.suggestedLeverage = hit.leverage;
+      extra.flexAdvice = hit.advice;
+    }
+  }
+  if (state.contactEmail) {
+    extra.saveStep = 'consult';
+    extra.contactEmail = state.contactEmail;
+    extra.dislike = state.dislike || extra.dislike;
+    extra.leverage = state.leverage || extra.leverage;
+  }
+  return extra;
+}
+
+function toFormData(data) {
   const body = new FormData();
-  Object.keys(data).forEach(k => body.append(k, data[k]));
+  Object.keys(data).forEach(k => {
+    if (data[k] == null || data[k] === '') return;
+    body.append(k, data[k]);
+  });
+  return body;
+}
+
+async function postResult(data) {
   const res = await fetch(FORM_ENDPOINT, {
     method: 'POST',
-    body: body,
-    headers: { Accept: 'application/json' }
+    body: toFormData(data),
+    headers: { Accept: 'application/json' },
+    keepalive: true
   });
   if (!res.ok) throw new Error('save failed');
+}
+
+function flushSave(opts) {
+  opts = opts || {};
+  if (state.posted || !state.result) return Promise.resolve();
+  const data = payload(currentSaveExtra());
+  if (opts.beacon && navigator.sendBeacon) {
+    const ok = navigator.sendBeacon(FORM_ENDPOINT, toFormData(data));
+    if (ok) {
+      state.posted = true;
+      return Promise.resolve();
+    }
+  }
+  return postResult(data).then(function () {
+    state.posted = true;
+  });
 }
 
 $('startBtn').addEventListener('click', () => {
   state.sessionId = 'fs-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
   state.i = 0;
   state.answers = Array(18).fill(null);
+  state.posted = false;
   show('quiz');
   renderQuestion();
 });
@@ -789,7 +836,6 @@ $('nextBtn').addEventListener('click', () => {
   state.result = scoreAll();
   renderResult(state.result);
   show('result');
-  postResult(payload({ saveStep: 'result' })).catch(function () {});
 });
 
 $('flexSaveBtn').addEventListener('click', () => {
@@ -801,14 +847,6 @@ $('flexSaveBtn').addEventListener('click', () => {
     alert('Hãy chọn 1 thói quen muốn khơi dậy từ phía đối lập.');
     return;
   }
-  const hit = findInsight(state.dislike);
-  postResult(payload({
-    saveStep: 'flex',
-    dislike: state.dislike,
-    leverage: state.leverage,
-    suggestedLeverage: hit ? hit.leverage : state.leverage,
-    flexAdvice: hit ? hit.advice : ''
-  })).catch(function () {});
   $('flexBtns').style.display = 'none';
   renderFlexRecap();
 });
@@ -848,18 +886,7 @@ $('consultForm').addEventListener('submit', (e) => {
   }
   state.contactEmail = email;
   $('consultBtn').disabled = true;
-  const extra = {
-    saveStep: 'consult',
-    contactEmail: email,
-    dislike: state.dislike,
-    leverage: state.leverage
-  };
-  const hit = findInsight(state.dislike);
-  if (hit) {
-    extra.suggestedLeverage = hit.leverage;
-    extra.flexAdvice = hit.advice;
-  }
-  postResult(payload(extra)).then(function () {
+  flushSave().then(function () {
     $('consultForm').style.display = 'none';
     $('consultThanks').style.display = 'block';
   }).catch(function () {
@@ -870,17 +897,26 @@ $('consultForm').addEventListener('submit', (e) => {
 });
 
 $('restartBtn').addEventListener('click', () => {
+  flushSave({ beacon: true });
   state.i = 0;
   state.answers = Array(18).fill(null);
   state.result = null;
   state.dislike = '';
   state.leverage = '';
+  state.posted = false;
   $('flexCard').style.display = '';
   $('flexBtns').style.display = '';
   $('flexRecap').style.display = 'none';
   $('flexRecap').innerHTML = '';
   resetConsult();
   show('intro');
+});
+
+window.addEventListener('pagehide', function () {
+  flushSave({ beacon: true });
+});
+document.addEventListener('visibilitychange', function () {
+  if (document.visibilityState === 'hidden') flushSave({ beacon: true });
 });
 </script>
 </body>
