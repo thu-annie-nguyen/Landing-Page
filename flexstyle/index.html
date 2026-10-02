@@ -509,6 +509,16 @@ const STYLES = {
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xlgployv';
 
+function readTrafficSource() {
+  const p = new URLSearchParams(window.location.search);
+  const raw = (p.get('src') || p.get('source') || p.get('utm_source') || '').trim();
+  if (raw) {
+    try { sessionStorage.setItem('flexstyle_src', raw); } catch (e) {}
+    return raw;
+  }
+  try { return sessionStorage.getItem('flexstyle_src') || ''; } catch (e) { return ''; }
+}
+
 const state = {
   i: 0,
   answers: Array(18).fill(null),
@@ -516,7 +526,8 @@ const state = {
   result: null,
   dislike: '',
   leverage: '',
-  contactEmail: ''
+  contactEmail: '',
+  source: readTrafficSource()
 };
 
 function $(id) { return document.getElementById(id); }
@@ -625,8 +636,9 @@ function renderResult(res) {
 function drawChart(assertiveness, responsiveness) {
   const W = 520, H = 430;
   const gx = 28, gy = 36, gw = 464, gh = 348;
-  const x = gx + (assertiveness / 9) * gw;
-  const y = gy + (responsiveness / 9) * gh;
+  const inset = 12;
+  const x = gx + inset + (assertiveness / 9) * (gw - 2 * inset);
+  const y = gy + inset + (responsiveness / 9) * (gh - 2 * inset);
   const ticks = [];
   for (let i = 1; i <= 8; i++) {
     const tx = gx + (i / 9) * gw;
@@ -648,7 +660,6 @@ function drawChart(assertiveness, responsiveness) {
     axisLabel(gx, gy + gh + 22, 'start', 'AMIABLE', 'Người Hòa nhã'),
     axisLabel(gx + gw, gy + gh + 22, 'end', 'EXPRESSIVE', 'Người Biểu cảm'),
     '<circle cx="' + x + '" cy="' + y + '" r="8" fill="#F5C400" stroke="#0B1F5C" stroke-width="2"/>',
-    '<text x="' + x + '" y="' + (y - 14) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#0B1F5C">Bạn</text>',
     '</svg>'
   ].join('');
 }
@@ -723,7 +734,8 @@ function payload(extra) {
     extra.suggestedLeverage ? 'Gợi ý đối lập: ' + extra.suggestedLeverage : '',
     extra.leverage ? 'Học viên chọn khơi dậy: ' + extra.leverage : '',
     extra.flexAdvice ? 'Gợi ý: ' + extra.flexAdvice : '',
-    contact ? 'Email tư vấn: ' + contact : ''
+    contact ? 'Email tư vấn: ' + contact : '',
+    'Nguồn: ' + (state.source || 'direct')
   ].filter(Boolean).join('\n');
   return Object.assign({
     _subject: (contact ? 'Flex Style tư vấn — ' : 'Flex Style ẩn danh — ') + r.key,
@@ -732,6 +744,7 @@ function payload(extra) {
     message: summary,
     formType: 'flexstyle',
     sessionId: state.sessionId,
+    source: state.source || 'direct',
     style: r.key,
     styleVi: r.style.vi,
     assertiveness: String(r.assertiveness),
