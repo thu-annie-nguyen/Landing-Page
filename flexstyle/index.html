@@ -179,6 +179,45 @@
       font-size: 1.75rem;
       margin-bottom: 0.4rem;
     }
+    .result-hero .second-hint {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.86);
+    }
+    .result-hero .second-hint strong { color: var(--gold); font-weight: 700; }
+    .second-block + .second-block {
+      margin-top: 1.15rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid var(--line);
+    }
+    .second-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.3rem;
+    }
+    .second-block h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.15rem;
+    }
+    .second-block .tagline {
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .second-block .desc { color: var(--mid); margin-bottom: 0.7rem; }
+    .second-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
     .scores {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -264,7 +303,7 @@
     <div id="intro" class="screen active">
       <div class="badge">Flex Style (Phong cách linh hoạt)</div>
       <h1>Bài trắc nghiệm Flex Style (Phong cách linh hoạt) — Bạn là người như thế nào?</h1>
-      <p class="lead">18 cặp câu hỏi giúp nhận diện phong cách giao tiếp mà người khác thường thấy ở bạn: Analytic (Người Phân tích), Driver (Người Dẫn dắt), Expressive (Người Biểu cảm) hoặc Amiable (Người Hòa nhã). Bài làm hoàn toàn ẩn danh.</p>
+      <p class="lead">18 cặp câu hỏi giúp nhận diện phong cách giao tiếp mà người khác thường thấy ở bạn: Analytical (Người Phân tích), Driver (Người Dẫn dắt), Expressive (Người Biểu cảm) hoặc Amiable (Người Hòa nhã). Bài làm hoàn toàn ẩn danh.</p>
 
       <div class="card">
         <h2>Cách làm bài</h2>
@@ -274,7 +313,7 @@
           <li>Chỉ chọn một câu ở mỗi cặp. Cần trả lời đủ 18 cặp.</li>
         </ul>
         <div class="grid-hint">
-          <div class="style-chip"><strong>Analytic (Người Phân tích)</strong>Thận trọng, logic, chính xác</div>
+          <div class="style-chip"><strong>Analytical (Người Phân tích)</strong>Thận trọng, logic, chính xác</div>
           <div class="style-chip"><strong>Driver (Người Dẫn dắt)</strong>Nhanh, quả quyết, hướng kết quả</div>
           <div class="style-chip"><strong>Expressive (Người Biểu cảm)</strong>Nhiệt tình, linh hoạt, truyền cảm hứng</div>
           <div class="style-chip"><strong>Amiable (Người Hòa nhã)</strong>Hòa nhã, kiên nhẫn, đề cao quan hệ</div>
@@ -307,6 +346,7 @@
         <div class="kicker">Phong cách của bạn</div>
         <h2 id="styleName">—</h2>
         <p id="styleTagline"></p>
+        <p class="second-hint" id="secondHint"></p>
       </div>
       <div class="card chart-card">
         <h2>Bạn đang ở đâu trên sơ đồ phong cách</h2>
@@ -325,6 +365,12 @@
       <div class="card">
         <h2>Khi quá đà, người khác có thể thấy</h2>
         <ul id="styleShadows"></ul>
+      </div>
+
+      <div class="card" id="secondCard">
+        <h2>Góc nhìn thứ hai về bạn</h2>
+        <p class="note" id="secondLead" style="margin-bottom:1rem;"></p>
+        <div id="secondStyles"></div>
       </div>
 
       <div class="card" id="flexCard">
@@ -381,8 +427,8 @@ const QUESTIONS = [
 ];
 
 const STYLES = {
-  Analytic: {
-    name: 'Analytic',
+  Analytical: {
+    name: 'Analytical',
     vi: 'Người Phân tích',
     tagline: 'Thận trọng — logic — chính xác.',
     opposite: 'Expressive',
@@ -447,29 +493,29 @@ const STYLES = {
     name: 'Expressive',
     vi: 'Người Biểu cảm',
     tagline: 'Nhiệt tình — linh hoạt — truyền cảm hứng.',
-    opposite: 'Analytic',
+    opposite: 'Analytical',
     desc: 'Bạn sống động, hướng con người, thích ý tưởng và câu chuyện. Người khác thường thấy bạn cởi mở, hài hước, dễ lan tỏa năng lượng. Chi tiết và quy trình đôi khi không phải thế mạnh tự nhiên.',
     strengths: ['Tạo khí thế, kết nối và truyền cảm hứng', 'Linh hoạt, nắm cơ hội nhanh', 'Diễn đạt giàu cảm xúc, dễ nhớ'],
     shadows: ['Nhảy việc, thiếu follow-through', 'Ít dữ liệu, dễ bị xem là phóng đại', 'Lịch trình thay đổi khiến người khác khó theo'],
     insights: [
       {
         dislike: 'Mình thiếu chỉn chu / hay sót chi tiết',
-        leverage: 'Khơi dậy Analytic (Người Phân tích): ghi nhận sự cẩn thận và kiểm tra lại',
+        leverage: 'Khơi dậy Analytical (Người Phân tích): ghi nhận sự cẩn thận và kiểm tra lại',
         advice: 'Trước khi gửi, dành 3 phút checklist: số liệu, tên người, deadline. Năng lượng giữ nguyên; lỗ hổng nhỏ được bắt trước khi người khác thấy.'
       },
       {
         dislike: 'Khó bám deadline và quy trình',
-        leverage: 'Khơi dậy Analytic (Người Phân tích): giữ một lịch ổn định cho việc quan trọng',
+        leverage: 'Khơi dậy Analytical (Người Phân tích): giữ một lịch ổn định cho việc quan trọng',
         advice: 'Chọn một việc quan trọng trong tuần và khoá khung giờ, không dời vì ý tưởng mới. Linh hoạt ở chỗ khác; chỗ này cần nhịp cố định để người khác theo được.'
       },
       {
         dislike: 'Bị coi là nói nhiều, làm ít',
-        leverage: 'Khơi dậy Analytic (Người Phân tích): chốt 3 số liệu trước khi trình bày',
+        leverage: 'Khơi dậy Analytical (Người Phân tích): chốt 3 số liệu trước khi trình bày',
         advice: 'Mở đầu bằng ba con số hoặc kết quả đã làm, rồi mới kể chuyện. Người khác thấy việc chạy, không chỉ khí thế.'
       },
       {
         dislike: 'Quyết cảm tính rồi phải sửa',
-        leverage: 'Khơi dậy Analytic (Người Phân tích): chậm lại một nhịp trước khi quyết lớn',
+        leverage: 'Khơi dậy Analytical (Người Phân tích): chậm lại một nhịp trước khi quyết lớn',
         advice: 'Với quyết định lớn: viết ba rủi ro, hoặc để sang ngày hôm sau rồi mới nói “chốt”. Cảm hứng vẫn có; bạn chỉ chèn một nhịp kiểm tra.'
       }
     ]
@@ -573,16 +619,27 @@ function scoreAll() {
   const highA = r >= 5;
   const highR = u >= 5;
   let key;
-  if (!highA && !highR) key = 'Analytic';
+  if (!highA && !highR) key = 'Analytical';
   else if (highA && !highR) key = 'Driver';
   else if (highA && highR) key = 'Expressive';
   else key = 'Amiable';
   return { assertiveness: r, responsiveness: u, key: key, style: STYLES[key], detail: detail, blend: describeBlend(r, u, key) };
 }
 
+function styleLabel(key) {
+  const s = STYLES[key];
+  return s.name + ' (' + s.vi + ')';
+}
+
+function joinLabels(keys) {
+  const labels = keys.map(styleLabel);
+  if (labels.length <= 1) return labels[0] || '';
+  return labels.slice(0, -1).join(', ') + ' và ' + labels[labels.length - 1];
+}
+
 function describeBlend(a, resp, key) {
   const corners = [
-    { key: 'Analytic', x: 0, y: 0 },
+    { key: 'Analytical', x: 0, y: 0 },
     { key: 'Driver', x: 9, y: 0 },
     { key: 'Amiable', x: 0, y: 9 },
     { key: 'Expressive', x: 9, y: 9 }
@@ -591,20 +648,34 @@ function describeBlend(a, resp, key) {
     const d = Math.hypot(a - c.x, resp - c.y);
     return { key: c.key, d: d };
   }).sort((p, q) => p.d - q.d);
-  const primary = ranked[0];
-  const secondary = ranked[1];
+  const primary = ranked.find(c => c.key === key) || ranked[0];
+  const others = ranked.filter(c => c.key !== primary.key);
+  const secondDist = others[0].d;
+  const seconds = others.filter(c => Math.abs(c.d - secondDist) < 0.05);
+  const secondary = seconds[0];
   const p = STYLES[primary.key];
-  const s = STYLES[secondary.key];
+  const pLabel = styleLabel(primary.key);
+  const secondLabel = joinLabels(seconds.map(c => c.key));
   const nearCenter = Math.hypot(a - 4.5, resp - 4.5) < 2.2;
+  const gap = secondary.d - primary.d;
+  const closeness = nearCenter ? 'center' : (gap < 2.4 ? 'blend' : 'clear');
   let note;
-  if (nearCenter) {
-    note = 'Bạn gần tâm sơ đồ — phong cách khá cân, linh hoạt chuyển giữa các góc. Vùng gần nhất vẫn là ' + p.name + ' (' + p.vi + ').';
-  } else if (secondary.d - primary.d < 2.4) {
-    note = 'Bạn ở vùng ' + p.name + ' (' + p.vi + '), nghiêng về ' + s.name + ' (' + s.vi + '). Cùng là ' + p.name + ' nhưng gần ' + s.name + ' sẽ khác người ' + p.name + ' sát góc kia.';
+  if (closeness === 'center') {
+    note = 'Bạn gần tâm sơ đồ — phong cách khá cân, linh hoạt chuyển giữa các góc. Vùng gần nhất là ' + pLabel + '. Phong cách thứ hai: ' + secondLabel + '.';
+  } else if (closeness === 'blend') {
+    note = 'Bạn ở vùng ' + pLabel + ', nghiêng về ' + secondLabel + '. Cùng là ' + p.name + ' nhưng gần ' + (seconds.length > 1 ? 'các phong cách này' : STYLES[secondary.key].name) + ' sẽ khác người ' + p.name + ' sát góc kia.';
+  } else if (seconds.length > 1) {
+    note = 'Bạn ở vùng ' + pLabel + ' khá rõ. Hai phong cách kề bên — ' + secondLabel + ' — cùng gần bạn. Đó là những mặt khác, nhẹ hơn, nhưng vẫn là một phần của bạn.';
   } else {
-    note = 'Bạn ở vùng ' + p.name + ' (' + p.vi + ') khá rõ, chưa sát phong cách khác.';
+    note = 'Bạn ở vùng ' + pLabel + ' khá rõ. Phong cách gần bạn nhất bên cạnh là ' + secondLabel + ' — một mặt khác, chưa nổi bằng, nhưng vẫn thuộc về bạn.';
   }
-  return { primary: primary.key, secondary: secondary.key, note: note };
+  return {
+    primary: primary.key,
+    secondary: secondary.key,
+    seconds: seconds.map(c => c.key),
+    closeness: closeness,
+    note: note
+  };
 }
 
 function fillList(el, items) {
@@ -625,6 +696,7 @@ function renderResult(res) {
   fillList($('styleShadows'), s.shadows);
   $('oppName').textContent = STYLES[s.opposite].name + ' (' + STYLES[s.opposite].vi + ')';
   $('blendNote').textContent = res.blend.note;
+  renderSecond(res);
   drawChart(res.assertiveness, res.responsiveness);
   renderPicks('dislikeList', res.style.insights.map(i => i.dislike), 'dislike');
   const leverages = [];
@@ -632,6 +704,63 @@ function renderResult(res) {
     if (leverages.indexOf(i.leverage) === -1) leverages.push(i.leverage);
   });
   renderPicks('leverageList', leverages, 'leverage');
+}
+
+function renderSecond(res) {
+  const keys = (res.blend.seconds && res.blend.seconds.length) ? res.blend.seconds : [res.blend.secondary];
+  const joined = joinLabels(keys);
+  const hint = $('secondHint');
+  hint.textContent = '';
+  hint.appendChild(document.createTextNode(keys.length > 1 ? 'Hai phong cách gần bạn tiếp theo: ' : 'Phong cách thứ hai: '));
+  const strong = document.createElement('strong');
+  strong.textContent = joined;
+  hint.appendChild(strong);
+
+  const many = keys.length > 1;
+  let lead;
+  if (res.blend.closeness === 'center') {
+    lead = 'Bạn không chỉ thuộc một góc. Ngoài ' + styleLabel(res.key) + ', ' + (many ? 'hai phong cách' : 'phong cách') + ' gần bạn tiếp theo là ' + joined + '. Nhìn thêm ' + (many ? 'hai mặt này' : 'mặt này') + ' sẽ rõ bạn linh hoạt ở đâu.';
+  } else if (res.blend.closeness === 'blend') {
+    lead = 'Bạn đang đứng giữa hai cách thể hiện. ' + res.style.vi + ' là mặt nổi hơn, và ' + joined + ' là mặt đang đi cùng — cả hai đều có thật trong cách người khác gặp bạn.';
+  } else {
+    lead = res.style.vi + ' là mặt rõ nhất. ' + joined + ' là góc gần bạn nhất bên cạnh: chưa nổi bằng, nhưng là một phần bạn có thể nhận ra khi nhìn mình từ hướng khác.';
+  }
+  $('secondLead').textContent = lead;
+
+  const box = $('secondStyles');
+  box.textContent = '';
+  keys.forEach(k => {
+    const s = STYLES[k];
+    const block = document.createElement('div');
+    block.className = 'second-block';
+    const kicker = document.createElement('div');
+    kicker.className = 'second-kicker';
+    kicker.textContent = many ? 'Cùng gần bạn' : 'Phong cách thứ hai';
+    const h = document.createElement('h3');
+    h.textContent = styleLabel(k);
+    const tag = document.createElement('p');
+    tag.className = 'tagline';
+    tag.textContent = s.tagline;
+    const desc = document.createElement('p');
+    desc.className = 'desc';
+    desc.textContent = s.desc;
+    const label = document.createElement('p');
+    label.className = 'second-label';
+    label.textContent = 'Mặt này mang lại';
+    const ul = document.createElement('ul');
+    s.strengths.forEach(t => {
+      const li = document.createElement('li');
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+    block.appendChild(kicker);
+    block.appendChild(h);
+    block.appendChild(tag);
+    block.appendChild(desc);
+    block.appendChild(label);
+    block.appendChild(ul);
+    box.appendChild(block);
+  });
 }
 
 function drawChart(assertiveness, responsiveness) {
@@ -652,7 +781,7 @@ function drawChart(assertiveness, responsiveness) {
   }
   $('styleChart').innerHTML = [
     '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Sơ đồ phong cách">',
-    axisLabel(gx, 22, 'start', 'ANALYTIC', 'Người Phân tích'),
+    axisLabel(gx, 22, 'start', 'ANALYTICAL', 'Người Phân tích'),
     axisLabel(gx + gw, 22, 'end', 'DRIVER', 'Người Dẫn dắt'),
     '<rect x="' + gx + '" y="' + gy + '" width="' + gw + '" height="' + gh + '" fill="#fff" stroke="#0B1F5C" stroke-width="1.6"/>',
     '<line x1="' + gx + '" y1="' + (gy + gh / 2) + '" x2="' + (gx + gw) + '" y2="' + (gy + gh / 2) + '" stroke="#0B1F5C" stroke-width="2.4"/>',
@@ -729,6 +858,7 @@ function payload(extra) {
     contact ? 'Flex Style — cần tư vấn' : 'Flex Style (ẩn danh)',
     'Mã phiên: ' + state.sessionId,
     'Phong cách: ' + r.key + ' — ' + r.style.vi,
+    'Phong cách thứ hai: ' + joinLabels(r.blend.seconds || [r.blend.secondary]),
     'Assertiveness: ' + r.assertiveness + '/9',
     'Responsiveness: ' + r.responsiveness + '/9',
     extra.dislike ? 'Chưa hài lòng: ' + extra.dislike : '',
@@ -752,6 +882,7 @@ function payload(extra) {
     responsiveness: String(r.responsiveness),
     blendPrimary: r.blend.primary,
     blendSecondary: r.blend.secondary,
+    blendSeconds: (r.blend.seconds || [r.blend.secondary]).join(','),
     answers: JSON.stringify(r.detail)
   }, extra);
 }
